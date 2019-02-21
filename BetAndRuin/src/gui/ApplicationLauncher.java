@@ -1,6 +1,6 @@
 package gui;
 
-import java.awt.Color;
+import java.awt.Color; // This import is necessary to add Color
 import java.net.URL;
 import java.util.Locale;
 
