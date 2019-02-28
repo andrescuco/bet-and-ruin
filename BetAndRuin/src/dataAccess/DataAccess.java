@@ -256,7 +256,7 @@ public class DataAccess  {
 		db.getTransaction().begin();
 		
 		Query q1 = db.createQuery("SELECT username FROM Account WHERE username = \"" + username + "\" AND password = \"" + password);
-
+		System.out.print(q1.getResultList().size() == 1);
 		return q1.getResultList().size() == 1;
 
 	}
