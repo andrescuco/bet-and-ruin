@@ -18,6 +18,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
+import domain.Account;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
@@ -222,5 +223,22 @@ public class DataAccess  {
 	     calendar.set(Calendar.MILLISECOND, 0);
 
 	     return calendar.getTime();
+	}
+	
+	public Account createAccount(String username, String password){
+		//System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
+	
+		//Account ev = db.find(Account.class, a.getEventNumber());
+		
+		//if (db.find(Account.class, username) == null) throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
+		
+		db.getTransaction().begin();
+		Account a = new Account(username, password);
+		//db.persist(q);
+		db.persist(a); // db.persist(q) not required when CascadeType.PERSIST is added in questions property of Event class
+						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+		db.getTransaction().commit();
+		return a;
+	
 	}
 }
