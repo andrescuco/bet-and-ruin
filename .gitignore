@@ -2,3 +2,6 @@
 /bin/*
 /libs/log
 /libs/log/*
+/domain/
+/dataAccess/
+/gui/
