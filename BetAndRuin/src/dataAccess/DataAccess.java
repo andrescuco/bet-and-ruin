@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.util.Calendar;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,10 +16,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Account;
+import domain.Login;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
@@ -240,5 +243,21 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		return a;
 	
+	}
+	
+	/**
+	 * This method verifies that an user account exists on the database
+	 * 
+	 * @param username and password
+	 * @return true if username and password exist in the database, false otherwise
+	 */
+	public Boolean verifyAccount(String username, String password) {
+
+		db.getTransaction().begin();
+		
+		Query q1 = db.createQuery("SELECT username FROM Account WHERE username = \"" + username + "\" AND password = \"" + password);
+
+		return q1.getResultList().size() == 1;
+
 	}
 }

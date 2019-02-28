@@ -23,7 +23,8 @@ public class ApplicationLauncher {
 		
 		DataAccess db = new DataAccess();
 		try {
-			db.createAccount("admin", "admin");
+			//db.createAccount("admin", "admin"); Test createAccount method
+			db.verifyAccount("admin", "badpass"); /* Test verifyUser method */
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
