@@ -86,6 +86,27 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.initializeDB();
 		dBManager.close();
 	}
+    /*
+     * 
+     * This method gets information from GUI, and communicates with database
+     * if created successfully returns true
+     */
+    @WebMethod	
+	 public boolean Register(String username, String password){
+		DataAccess dBManager=new DataAccess();
+		boolean created = dBManager.createAccount(username, password);
+		dBManager.close();
+		return created;
+	}
+    
+    @WebMethod	
+	 public boolean UsernameAvailable(String username){
+		DataAccess dBManager=new DataAccess();
+		boolean notAvailable = dBManager.usernameExists(username);
+		dBManager.close();
+		return !notAvailable;
+	}
+    
 
 }
 

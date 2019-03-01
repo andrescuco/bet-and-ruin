@@ -9,7 +9,6 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
@@ -19,11 +18,12 @@ public class ApplicationLauncher {
 	
 	public static void main(String[] args) {
 		
-		DataAccess db = new DataAccess();
+		//DataAccess db = new DataAccess();
 		try {
-			//db.createAccount("admin", "admin"); Test createAccount method
-			db.verifyAccount("admin", "admin"); /* Test verifyUser method */
+			//db.createAccount("admin", "admin"); //Test createAccount method
+			//db.verifyAccount("admin", "admin"); /* Test verifyUser method */
 			//db.createAccount("admin", "admin");
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -77,7 +77,10 @@ public class ApplicationLauncher {
 				appFacadeInterface.initializeBD();
 				*/
 			MainGUI.setBussinessLogic(appFacadeInterface);
-
+			//########################################################################################
+			// just for testing purpose
+			if(appFacadeInterface.UsernameAvailable("admin55"))System.out.println("Available");
+			appFacadeInterface.Register("admin55", "admin");
 		
 
 			
