@@ -43,6 +43,7 @@ public class RegistrationGUI extends JFrame  {
 	private JTextField EmailAddressField;
 	private final JFileChooser openFileChooser;
 	private BufferedImage originalBI;  //BufferedImage
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -156,6 +157,12 @@ public class RegistrationGUI extends JFrame  {
 			}
 		});
 		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
 		
 		
 	
@@ -175,32 +182,37 @@ public class RegistrationGUI extends JFrame  {
 										.addComponent(lblLastname)
 										.addComponent(lblBirthdate)
 										.addComponent(lblEmail)
+										.addComponent(lblUsername)
 										.addComponent(lblPassword)
 										.addComponent(lblNewLabel)
 										.addComponent(idPicture))
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(79)
+											.addGap(99)
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(passwordField, 296, 296, 296)
-												.addComponent(FirstnameField, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-												.addComponent(LastnameField, 296, 296, 296)
-												.addComponent(EmailAddressField, 296, 296, 296)
-												.addComponent(dateChooserBirthdate, GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
 												.addGroup(gl_contentPane.createSequentialGroup()
 													.addComponent(btnNewButton)
-													.addPreferredGap(ComponentPlacement.UNRELATED)
-													.addComponent(messageLabel))))
+													.addGap(18)
+													.addComponent(messageLabel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+												.addGroup(gl_contentPane.createSequentialGroup()
+													.addComponent(maleChoice)
+													.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+													.addComponent(femaleChoice)
+													.addGap(152))))
 										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(104)
-											.addComponent(maleChoice)
-											.addGap(18)
-											.addComponent(femaleChoice))))
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(passwordField, Alignment.LEADING)
+												.addComponent(textField, Alignment.LEADING)
+												.addComponent(EmailAddressField, Alignment.LEADING)
+												.addComponent(dateChooserBirthdate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(LastnameField, Alignment.LEADING)
+												.addComponent(FirstnameField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))))
 								.addComponent(lblFirstname)))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(267)
-							.addComponent(registerButton)))
-					.addContainerGap())
+							.addGap(255)
+							.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
+					.addGap(0))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -217,35 +229,33 @@ public class RegistrationGUI extends JFrame  {
 						.addComponent(LastnameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblBirthdate)
-							.addGap(18)
-							.addComponent(lblEmail)
-							.addGap(18)
-							.addComponent(lblPassword))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(dateChooserBirthdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(EmailAddressField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
+						.addComponent(lblBirthdate)
+						.addComponent(dateChooserBirthdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(14)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblEmail)
+						.addComponent(EmailAddressField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(19)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(18)
-							.addComponent(idPicture))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(femaleChoice)
-								.addComponent(maleChoice))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnNewButton)
-								.addComponent(messageLabel))))
-					.addGap(35)
-					.addComponent(registerButton)
-					.addGap(65))
+						.addComponent(lblUsername)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblPassword)
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(22)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(maleChoice)
+						.addComponent(femaleChoice)
+						.addComponent(lblNewLabel))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(messageLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(idPicture))
+					.addGap(18)
+					.addComponent(registerButton, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
