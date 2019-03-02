@@ -82,7 +82,7 @@ public class ApplicationLauncher {
 			//########################################################################################
 			// just for testing purpose
 			if(appFacadeInterface.UsernameAvailable("admin55"))System.out.println("Available");
-			appFacadeInterface.Register("admin55", "admin");
+			//appFacadeInterface.Register("admin55", "admin");
 		
 
 			

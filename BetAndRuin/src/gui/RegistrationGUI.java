@@ -32,6 +32,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.ButtonGroup;
 
 public class RegistrationGUI extends JFrame  {
 
@@ -47,6 +50,7 @@ public class RegistrationGUI extends JFrame  {
 	private final JFileChooser openFileChooser;
 	private BufferedImage originalBI;  //BufferedImage
 	private JTextField usernameField;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -97,9 +101,11 @@ public class RegistrationGUI extends JFrame  {
 		
 		passwordField = new JPasswordField();
 		
-		JRadioButton maleChoice = new JRadioButton("Male");
+		final JRadioButton maleChoice = new JRadioButton("Male");
+		buttonGroup.add(maleChoice);
 		
-		JRadioButton femaleChoice = new JRadioButton("Female");
+		final JRadioButton femaleChoice = new JRadioButton("Female");
+		buttonGroup.add(femaleChoice);
 		
 		FirstnameField = new JTextField();
 		FirstnameField.setColumns(10);
@@ -116,7 +122,7 @@ public class RegistrationGUI extends JFrame  {
 		JLabel idPicture = new JLabel("ID picture");
 		idPicture.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		JDateChooser dateChooserBirthdate = new JDateChooser();
+		final JDateChooser dateChooserBirthdate = new JDateChooser();
 		
 		
 		openFileChooser = new JFileChooser();
@@ -155,22 +161,55 @@ public class RegistrationGUI extends JFrame  {
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
+		final JLabel usernameAvailableLabel = new JLabel("");
+		usernameAvailableLabel.setForeground(new Color(255, 0, 0));
+		
 		usernameField = new JTextField();
+		usernameField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				BLFacade facade=MainGUI.getBusinessLogic();
+				String username = usernameField.getText();
+				
+				if(facade.UsernameAvailable(username)) {
+					usernameAvailableLabel.setText("Available");
+					usernameAvailableLabel.setForeground(new Color(0, 204, 0));
+				}
+				else {
+					usernameAvailableLabel.setText("Not available");
+					usernameAvailableLabel.setForeground(new Color(255, 0, 0));
+				}
+			}
+		});
 		usernameField.setColumns(10);
 		
 		JButton registerButton = new JButton("Register");
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String fname = FirstnameField.getText();
+				String lname = LastnameField.getText();
+				String email = EmailAddressField.getText();
+				String birthdate = dateChooserBirthdate.getDate().toString();
 				
 				String username = usernameField.getText();
-				String password = passwordField.getPassword().toString();
-				System.out.println(password);
+				String password = new String(passwordField.getPassword());
+				String gender = "";
+				if(maleChoice.isSelected())
+					gender="male";
+				else if(femaleChoice.isSelected())
+					gender="female";
+				
+				System.out.println(fname + lname + email + birthdate + username + password + gender);
 				
 				BLFacade facade=MainGUI.getBusinessLogic();
-				//facade.Register(username, password);
+				if(facade.Register(fname, lname, email, birthdate, username, password, gender)) {
+					System.out.println("success");
+				}
+				//TODO make validation of data before, and expand Account class for remaining variables
 			}
 		});
 		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	
 		
 	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -182,7 +221,9 @@ public class RegistrationGUI extends JFrame  {
 							.addGap(22)
 							.addComponent(title))
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(159)
+							.addGap(95)
+							.addComponent(usernameAvailableLabel)
+							.addGap(18)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -203,7 +244,7 @@ public class RegistrationGUI extends JFrame  {
 													.addComponent(messageLabel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
 												.addGroup(gl_contentPane.createSequentialGroup()
 													.addComponent(maleChoice)
-													.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+													.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
 													.addComponent(femaleChoice)
 													.addGap(152))))
 										.addGroup(gl_contentPane.createSequentialGroup()
@@ -244,7 +285,9 @@ public class RegistrationGUI extends JFrame  {
 						.addComponent(EmailAddressField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(19)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUsername)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblUsername)
+							.addComponent(usernameAvailableLabel))
 						.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -262,7 +305,7 @@ public class RegistrationGUI extends JFrame  {
 						.addComponent(idPicture))
 					.addGap(18)
 					.addComponent(registerButton, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGap(18))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

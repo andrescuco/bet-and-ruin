@@ -232,16 +232,16 @@ public class DataAccess  {
 	 * 
 	 * 
 	 */
-	public boolean createAccount(String username, String password){
+	public boolean createAccount(String fname, String lname, String em, String d, String uname, String passw, String gender){
 		//System.out.println(">> DataAccess: createQuestion=> event= "+event+" question= "+question+" betMinimum="+betMinimum);
 	
 		//Account ev = db.find(Account.class, a.getEventNumber());
 		
 		//if (db.find(Account.class, username) == null) throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
 		
-		if (usernameExists(username) == true) return false;
+		if (usernameExists(uname) == true) return false;
 		db.getTransaction().begin();
-		Account a = new Account(username, password);
+		Account a = new Account(fname, lname, em, d,uname, passw, gender);
 		//db.persist(q);
 		db.persist(a);
 		db.getTransaction().commit();
