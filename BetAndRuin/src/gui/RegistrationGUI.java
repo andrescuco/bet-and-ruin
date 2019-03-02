@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.ButtonGroup;
+import javax.swing.SwingConstants;
 
 public class RegistrationGUI extends JFrame  {
 
@@ -73,7 +74,7 @@ public class RegistrationGUI extends JFrame  {
 	 */
 	public RegistrationGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(200, 200, 650, 500);
+		setBounds(200, 200, 654, 502);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -161,8 +162,9 @@ public class RegistrationGUI extends JFrame  {
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		final JLabel usernameAvailableLabel = new JLabel("");
-		usernameAvailableLabel.setForeground(new Color(255, 0, 0));
+		final JLabel warningLabel = new JLabel("sadsadasd");
+		warningLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		warningLabel.setForeground(new Color(255, 0, 0));
 		
 		usernameField = new JTextField();
 		usernameField.addFocusListener(new FocusAdapter() {
@@ -172,12 +174,12 @@ public class RegistrationGUI extends JFrame  {
 				String username = usernameField.getText();
 				
 				if(facade.UsernameAvailable(username)) {
-					usernameAvailableLabel.setText("Available");
-					usernameAvailableLabel.setForeground(new Color(0, 204, 0));
+					warningLabel.setText("");
+					//warningLabel.setForeground(new Color(0, 204, 0));
 				}
 				else {
-					usernameAvailableLabel.setText("Not available");
-					usernameAvailableLabel.setForeground(new Color(255, 0, 0));
+					warningLabel.setText("Username Not available");
+					warningLabel.setForeground(new Color(255, 0, 0));
 				}
 			}
 		});
@@ -187,23 +189,52 @@ public class RegistrationGUI extends JFrame  {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String fname = FirstnameField.getText();
+				if(fname.equals("")) {
+					warningLabel.setText("Enter first name");
+					return;
+				}
 				String lname = LastnameField.getText();
+				if(lname.equals("")) {
+					warningLabel.setText("Enter last name");
+					return;
+				}
 				String email = EmailAddressField.getText();
-				String birthdate = dateChooserBirthdate.getDate().toString();
-				
+				if(email.equals("")) {
+					warningLabel.setText("Enter Email");
+					return;
+				}
+				String birthdate = "";
+				if(dateChooserBirthdate.getDate()!= null)birthdate = dateChooserBirthdate.getDate().toString();
+				else {
+					warningLabel.setText("Date of birth not correct");
+					return;
+				}
 				String username = usernameField.getText();
+				if(username.equals("")) {
+					warningLabel.setText("Enter username");
+					return;
+				}
 				String password = new String(passwordField.getPassword());
+				if(password.equals("")) {
+					warningLabel.setText("Enter password");
+					return;
+				}
 				String gender = "";
 				if(maleChoice.isSelected())
 					gender="male";
 				else if(femaleChoice.isSelected())
 					gender="female";
-				
+				if(gender.equals("")) {
+					warningLabel.setText("Gender not chosen");
+					return;
+				}
 				System.out.println(fname + lname + email + birthdate + username + password + gender);
 				
 				BLFacade facade=MainGUI.getBusinessLogic();
 				if(facade.Register(fname, lname, email, birthdate, username, password, gender)) {
 					System.out.println("success");
+					setVisible(false);
+					dispose();
 				}
 				//TODO make validation of data before, and expand Account class for remaining variables
 			}
@@ -215,15 +246,13 @@ public class RegistrationGUI extends JFrame  {
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 							.addGap(22)
 							.addComponent(title))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(95)
-							.addComponent(usernameAvailableLabel)
-							.addGap(18)
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+							.addGap(123)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -244,7 +273,7 @@ public class RegistrationGUI extends JFrame  {
 													.addComponent(messageLabel, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
 												.addGroup(gl_contentPane.createSequentialGroup()
 													.addComponent(maleChoice)
-													.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+													.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
 													.addComponent(femaleChoice)
 													.addGap(152))))
 										.addGroup(gl_contentPane.createSequentialGroup()
@@ -257,10 +286,14 @@ public class RegistrationGUI extends JFrame  {
 												.addComponent(LastnameField, Alignment.LEADING)
 												.addComponent(FirstnameField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)))))
 								.addComponent(lblFirstname)))
-						.addGroup(gl_contentPane.createSequentialGroup()
+						.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 							.addGap(255)
 							.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)))
 					.addGap(0))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(188)
+					.addComponent(warningLabel, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+					.addGap(195))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -285,9 +318,7 @@ public class RegistrationGUI extends JFrame  {
 						.addComponent(EmailAddressField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(19)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblUsername)
-							.addComponent(usernameAvailableLabel))
+						.addComponent(lblUsername)
 						.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -303,9 +334,10 @@ public class RegistrationGUI extends JFrame  {
 						.addComponent(messageLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 						.addComponent(idPicture))
-					.addGap(18)
-					.addComponent(registerButton, GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-					.addGap(18))
+					.addGap(9)
+					.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(warningLabel, GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

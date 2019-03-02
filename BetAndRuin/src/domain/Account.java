@@ -4,11 +4,11 @@ import javax.persistence.*;
 
 @Entity
 public class Account {
-	@Id
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String date;
+	@Id
 	private String username;
 	
 	private String password;
