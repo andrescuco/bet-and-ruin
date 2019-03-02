@@ -71,7 +71,9 @@ public class HomepageGUI {
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				MainGUI guest = new MainGUI();
+				guest.setVisible(true);
+				frame.dispose();
 				//add code 
 			}
 		});
@@ -81,6 +83,16 @@ public class HomepageGUI {
 		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
 		
 		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				//redirect to LogInGUI class
+				LogInGUI log = new LogInGUI();
+				log.setVisible(true);
+				frame.dispose();
+				
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
