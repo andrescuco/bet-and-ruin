@@ -21,6 +21,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
+
+import businessLogic.BLFacade;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -43,23 +46,23 @@ public class RegistrationGUI extends JFrame  {
 	private JTextField EmailAddressField;
 	private final JFileChooser openFileChooser;
 	private BufferedImage originalBI;  //BufferedImage
-	private JTextField textField;
+	private JTextField usernameField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistrationGUI frame = new RegistrationGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					RegistrationGUI frame = new RegistrationGUI();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -115,14 +118,6 @@ public class RegistrationGUI extends JFrame  {
 		
 		JDateChooser dateChooserBirthdate = new JDateChooser();
 		
-		JButton registerButton = new JButton("Register");
-		registerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		
 		
 		openFileChooser = new JFileChooser();
 		openFileChooser.setCurrentDirectory(new File("c:\\temps"));
@@ -160,10 +155,22 @@ public class RegistrationGUI extends JFrame  {
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		usernameField = new JTextField();
+		usernameField.setColumns(10);
 		
-		
+		JButton registerButton = new JButton("Register");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String username = usernameField.getText();
+				String password = passwordField.getPassword().toString();
+				System.out.println(password);
+				
+				BLFacade facade=MainGUI.getBusinessLogic();
+				//facade.Register(username, password);
+			}
+		});
+		registerButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
 	
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -203,7 +210,7 @@ public class RegistrationGUI extends JFrame  {
 											.addPreferredGap(ComponentPlacement.RELATED)
 											.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 												.addComponent(passwordField, Alignment.LEADING)
-												.addComponent(textField, Alignment.LEADING)
+												.addComponent(usernameField, Alignment.LEADING)
 												.addComponent(EmailAddressField, Alignment.LEADING)
 												.addComponent(dateChooserBirthdate, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 												.addComponent(LastnameField, Alignment.LEADING)
@@ -238,7 +245,7 @@ public class RegistrationGUI extends JFrame  {
 					.addGap(19)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblUsername)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(usernameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPassword)

@@ -14,32 +14,36 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
-public class HomepageGUI {
+public class HomepageGUI extends JFrame{
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HomepageGUI window = new HomepageGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					HomepageGUI window = new HomepageGUI();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
 	public HomepageGUI() {
+		super();
+		this.setSize(495, 290);
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 		initialize();
 	}
 
@@ -47,9 +51,11 @@ public class HomepageGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame = new JFrame();
+//		frame.setBounds(100, 100, 450, 400);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 450, 400);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel title = new JLabel("Bet and Ruin");
 		title.setFont(new Font("Times New Roman", Font.PLAIN, 46));
@@ -60,7 +66,7 @@ public class HomepageGUI {
 			{
 						
 				RegistrationGUI registration = new RegistrationGUI();	
-				frame.dispose();
+				//frame.dispose();
 				registration.setVisible(true);
 					
 			}
@@ -73,7 +79,7 @@ public class HomepageGUI {
 			{
 				MainGUI guest = new MainGUI();
 				guest.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 				//add code 
 			}
 		});
@@ -89,13 +95,13 @@ public class HomepageGUI {
 				//redirect to LogInGUI class
 				LogInGUI log = new LogInGUI();
 				log.setVisible(true);
-				frame.dispose();
+				//frame.dispose();
 				
 			}
 		});
 		
 		JSeparator separator = new JSeparator();
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -144,16 +150,6 @@ public class HomepageGUI {
 						.addComponent(lblAlreadyHaveAn))
 					.addGap(34))
 		);
-		frame.getContentPane().setLayout(groupLayout);
-	}
-
-	protected void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	protected void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
+		this.getContentPane().setLayout(groupLayout);
 	}
 }

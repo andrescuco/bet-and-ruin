@@ -37,9 +37,10 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-	/*	HomepageGUI a = new HomepageGUI();*/                     // <---  NEEDS TO BE THE STARTING WINDOW
-		MainGUI a =new MainGUI();
-		a.setVisible(true);
+		HomepageGUI home = new HomepageGUI();                   // <---  NEEDS TO BE THE STARTING WINDOW
+		home.setVisible(true);
+		//MainGUI a =new MainGUI();
+		//a.setVisible(true);
 
 
 
@@ -86,8 +87,8 @@ public class ApplicationLauncher {
 
 			
 		}catch (Exception e) {
-			a.jLabelSelectOption.setText("Error: "+e.toString());
-			a.jLabelSelectOption.setForeground(Color.RED);		
+			//a.jLabelSelectOption.setText("Error: "+e.toString());
+			//a.jLabelSelectOption.setForeground(Color.RED);		
 			System.out.println("Error in ApplicationLauncher: "+e.toString());
 		}
 		//a.pack();
