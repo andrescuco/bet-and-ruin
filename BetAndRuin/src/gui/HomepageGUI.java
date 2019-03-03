@@ -3,8 +3,11 @@ package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+
 import javax.swing.BoxLayout;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.SpringLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -14,36 +17,34 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
-public class HomepageGUI extends JFrame{
+public class HomepageGUI {
 
 	private JFrame frame;
 
 	/**
 	 * Launch the application.
 	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					HomepageGUI window = new HomepageGUI();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					HomepageGUI window = new HomepageGUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the application.
 	 */
 	public HomepageGUI() {
-		super();
-		this.setSize(495, 290);
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 		initialize();
 	}
 
@@ -51,14 +52,9 @@ public class HomepageGUI extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-//		frame = new JFrame();
-//		frame.setBounds(100, 100, 450, 400);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 450, 400);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JLabel title = new JLabel("Bet and Ruin");
-		title.setFont(new Font("Times New Roman", Font.PLAIN, 46));
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
@@ -66,7 +62,7 @@ public class HomepageGUI extends JFrame{
 			{
 						
 				RegistrationGUI registration = new RegistrationGUI();	
-				//frame.dispose();
+				frame.dispose();
 				registration.setVisible(true);
 					
 			}
@@ -77,9 +73,7 @@ public class HomepageGUI extends JFrame{
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				MainGUI guest = new MainGUI();
-				guest.setVisible(true);
-				//frame.dispose();
+				
 				//add code 
 			}
 		});
@@ -89,54 +83,53 @@ public class HomepageGUI extends JFrame{
 		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
 		
 		JButton btnSignIn = new JButton("Sign in");
-		btnSignIn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				//redirect to LogInGUI class
-				LogInGUI log = new LogInGUI();
-				log.setVisible(true);
-				//frame.dispose();
-				
-			}
-		});
 		
 		JSeparator separator = new JSeparator();
-		GroupLayout groupLayout = new GroupLayout(this.getContentPane());
+		
+		JLabel logo = new JLabel("");
+		logo.setHorizontalAlignment(SwingConstants.CENTER);
+		//logo.setIcon(new ImageIcon("img\\ATG.png"));
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\ATG.png").getImage().getScaledInstance(250, 140, Image.SCALE_DEFAULT));
+		logo.setIcon(imageIcon);
+		
+		
+		
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(98)
-					.addComponent(title)
-					.addContainerGap(97, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap(97, Short.MAX_VALUE)
 					.addComponent(lblAlreadyHaveAn)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnSignIn)
 					.addGap(139))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(161)
-					.addComponent(btnEnterAsA)
-					.addContainerGap(162, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(211)
 					.addComponent(lblOr)
 					.addContainerGap(213, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(178)
-					.addComponent(btnRegister)
-					.addContainerGap(183, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(31, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(46)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(57, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(175)
+					.addComponent(btnRegister)
+					.addContainerGap(186, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(156)
+					.addComponent(btnEnterAsA)
+					.addContainerGap(167, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(title)
-					.addPreferredGap(ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+					.addGap(19)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
 					.addComponent(btnRegister)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblOr)
@@ -150,6 +143,16 @@ public class HomepageGUI extends JFrame{
 						.addComponent(lblAlreadyHaveAn))
 					.addGap(34))
 		);
-		this.getContentPane().setLayout(groupLayout);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+
+	protected void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	protected void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 }
