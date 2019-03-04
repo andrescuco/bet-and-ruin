@@ -37,8 +37,10 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-		HomepageGUI home = new HomepageGUI();                   // <---  NEEDS TO BE THE STARTING WINDOW
-		home.setVisible(true);
+		HomepageGUI home = new HomepageGUI(); 
+		home.setVisible(true);  // <---  NEEDS TO BE THE STARTING WINDOW
+		
+		
 		//MainGUI a =new MainGUI();
 		//a.setVisible(true);
 

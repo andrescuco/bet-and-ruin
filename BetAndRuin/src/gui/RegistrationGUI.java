@@ -162,7 +162,7 @@ public class RegistrationGUI extends JFrame  {
 		JLabel lblUsername = new JLabel("Username");
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
-		final JLabel warningLabel = new JLabel("sadsadasd");
+		final JLabel warningLabel = new JLabel("");
 		warningLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		warningLabel.setForeground(new Color(255, 0, 0));
 		
