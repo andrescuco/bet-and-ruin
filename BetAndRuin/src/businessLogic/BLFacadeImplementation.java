@@ -107,6 +107,15 @@ public class BLFacadeImplementation  implements BLFacade {
 		return !notAvailable;
 	}
     
+    @Override
+	public boolean verifyUser(String username, String password) {
+		DataAccess dBManager=new DataAccess();
+		boolean isCorrectUser = dBManager.verifyAccount(username, password);
+		dBManager.close();
+		return isCorrectUser;
+	}
+
+    
 
 }
 

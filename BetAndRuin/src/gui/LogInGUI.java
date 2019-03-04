@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -13,6 +16,9 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPasswordField;
 
 public class LogInGUI extends JFrame {
@@ -42,7 +48,7 @@ public class LogInGUI extends JFrame {
 	 */
 	public LogInGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 461, 363);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,8 +59,41 @@ public class LogInGUI extends JFrame {
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		
+		final JLabel label = new JLabel("");
+		
 		JButton btnNewButton = new JButton("Log In\r\n");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String username = textField.getText();
+				String password = new String(passwordField.getPassword());
+				
+				BLFacade facade=MainGUI.getBusinessLogic();
+				
+				if (username.isEmpty() || password.isEmpty()) {
+					label.setText("Please fill in the username and password fields");
+					System.out.print("blank fields");
+				}
+				else {
+					if (facade.verifyUser(username, password)) {
+						label.setText("Correct!");
+						long start = System.currentTimeMillis();   /* THIS IS A 3 SECONDS SLEEP BEFORE OPENING THE OTHER WINDOWD UPON LOGIN*/
+						try {
+							Thread.sleep(3000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						MainGUI enter = new MainGUI(); /* OPENING THE MAIN GUI*/
+						enter.setVisible(true);
+					} else {
+						label.setText("The credentials you entered are not correct");
+					}
+				}
+			}
+		});
+
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -63,6 +102,7 @@ public class LogInGUI extends JFrame {
 		
 		JLabel lblPleaseLogIn = new JLabel("Please, l\r\nog in with your information");
 		lblPleaseLogIn.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -71,17 +111,20 @@ public class LogInGUI extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(72)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUsername)
-								.addComponent(lblPassword))
-							.addGap(46)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnNewButton)
-								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-								.addComponent(textField)))
+								.addGroup(gl_contentPane.createSequentialGroup()
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblUsername)
+										.addComponent(lblPassword))
+									.addGap(46)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+										.addComponent(textField)
+										.addComponent(btnNewButton)))
+								.addComponent(label)))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(45)
 							.addComponent(lblPleaseLogIn)))
-					.addContainerGap(131, Short.MAX_VALUE))
+					.addContainerGap(40, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -96,9 +139,11 @@ public class LogInGUI extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPassword)
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+					.addGap(31)
 					.addComponent(btnNewButton)
-					.addGap(42))
+					.addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+					.addComponent(label)
+					.addGap(28))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

@@ -28,7 +28,7 @@ public class HomepageGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -39,7 +39,7 @@ public class HomepageGUI {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -55,7 +55,8 @@ public class HomepageGUI {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.setVisible(true);
+
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -70,19 +71,34 @@ public class HomepageGUI {
 		});
 		
 		JButton btnEnterAsA = new JButton("Enter as a guest");
+
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
-				//add code 
+			MainGUI guest = new MainGUI();
+			guest.setVisible(true);
+			frame.dispose();
+								
+			//add code 
 			}
-		});
+			});
 		
 		JLabel lblOr = new JLabel("or");
 		
 		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
 		
 		JButton btnSignIn = new JButton("Sign in");
+		
+		btnSignIn.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) 
+		{
+		//redirect to LogInGUI class
+		LogInGUI log = new LogInGUI();
+		log.setVisible(true);
+		frame.dispose();
+							
+		}
+		});
 		
 		JSeparator separator = new JSeparator();
 		
@@ -146,13 +162,13 @@ public class HomepageGUI {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
-	protected void dispose() {
+	/*public void dispose() {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
-	protected void setVisible(boolean b) {
+	/*protected void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 }
