@@ -9,6 +9,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
+import dataAccess.DataAccess;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
@@ -22,7 +23,10 @@ public class ApplicationLauncher {
 		try {
 			//db.createAccount("admin", "admin"); //Test createAccount method
 			//db.verifyAccount("admin", "admin"); /* Test verifyUser method */
+			//db.createAccount("String0", "String1", "String2", "String3", "username", "pass", "String4");
 			//db.createAccount("admin", "admin");
+			
+			// You can try the verifyUser method with the credentials "username" and "pass".
 			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
