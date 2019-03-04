@@ -12,8 +12,10 @@ import businessLogic.BLFacade;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingUtilities;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -78,17 +80,18 @@ public class LogInGUI extends JFrame {
 				else {
 					if (facade.verifyUser(username, password)) {
 						label.setText("Correct!");
-						long start = System.currentTimeMillis();   /* THIS IS A 3 SECONDS SLEEP BEFORE OPENING THE OTHER WINDOWD UPON LOGIN*/
-						try {
-							Thread.sleep(3000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						//long start = System.currentTimeMillis();   /* THIS IS A 3 SECONDS SLEEP BEFORE OPENING THE OTHER WINDOWD UPON LOGIN*/
+						//try {
+						//	Thread.sleep(3000);
+						//} catch (InterruptedException e) {
+						//	// TODO Auto-generated catch block
+						//	e.printStackTrace();
+						//}*/
 						MainGUI enter = new MainGUI(); /* OPENING THE MAIN GUI*/
 						enter.setVisible(true);
+						SwingUtilities.windowForComponent(contentPane).dispose();
 					} else {
-						label.setText("The credentials you entered are not correct");
+						JOptionPane.showMessageDialog(null, "Invalid Login Details", "Login Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
