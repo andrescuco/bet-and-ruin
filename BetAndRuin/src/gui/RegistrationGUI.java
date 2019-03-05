@@ -2,8 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +33,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -203,12 +206,27 @@ public class RegistrationGUI extends JFrame  {
 					warningLabel.setText("Enter Email");
 					return;
 				}
-				String birthdate = "";
-				if(dateChooserBirthdate.getDate()!= null)birthdate = dateChooserBirthdate.getDate().toString();
+				String emailRegex = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+				Pattern r = Pattern.compile(emailRegex);
+				Matcher m = r.matcher(email);
+				if(!m.matches()) {
+					warningLabel.setText("Email format not correct");
+					return;
+				}
+				Date birthdate = new Date();
+				if(dateChooserBirthdate.getDate()!= null)birthdate = dateChooserBirthdate.getDate();
 				else {
 					warningLabel.setText("Date of birth not correct");
 					return;
 				}
+				LocalDateTime d = LocalDateTime.now();
+				d.getYear();
+				int yearsBetween =  d.getYear() - birthdate.getYear() - 1900;
+				if(yearsBetween < 18) {
+					warningLabel.setText("You need to be at least 18");
+					return;
+				}
+				
 				String username = usernameField.getText();
 				if(username.equals("")) {
 					warningLabel.setText("Enter username");
@@ -217,6 +235,10 @@ public class RegistrationGUI extends JFrame  {
 				String password = new String(passwordField.getPassword());
 				if(password.equals("")) {
 					warningLabel.setText("Enter password");
+					return;
+				}
+				if(password.length() < 5) {
+					warningLabel.setText("Password must consists of at least 5 symbols");
 					return;
 				}
 				String gender = "";
@@ -233,7 +255,7 @@ public class RegistrationGUI extends JFrame  {
 				
 				BLFacade facade=MainGUI.getBusinessLogic();
 				
-				if(facade.Register(fname, lname, email, birthdate, username, password, gender)) {
+				if(facade.Register(fname, lname, email, birthdate.toString(), username, password, gender)) {
 					System.out.println("registration successful");
 					warningLabel.setText("Success");
 					long start = System.currentTimeMillis(); /* 3 SECONDS TIMER*/
