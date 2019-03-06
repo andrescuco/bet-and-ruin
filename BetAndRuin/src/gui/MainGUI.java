@@ -223,12 +223,13 @@ public class MainGUI extends JFrame {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
+		lblAccountSettings.setText(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
 	private JButton getLblAccountSettings() {
 		if (lblAccountSettings == null) {
-			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblAccountSettings.text"));
+			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 			lblAccountSettings.setBackground(Color.GRAY);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
 			lblAccountSettings.setForeground(Color.BLACK);
