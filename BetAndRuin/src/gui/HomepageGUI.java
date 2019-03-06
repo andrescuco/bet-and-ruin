@@ -162,6 +162,11 @@ public class HomepageGUI {
 		frame.getContentPane().setLayout(groupLayout);
 	}
 
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/*public void dispose() {
 		// TODO Auto-generated method stub
 		
