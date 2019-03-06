@@ -188,9 +188,12 @@ public class RegistrationGUI extends JFrame  {
 		});
 		usernameField.setColumns(10);
 		
-		JButton registerButton = new JButton("Register");
+		final JButton registerButton = new JButton("Register");
+		registerButton.setEnabled(true);;
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 				String fname = FirstnameField.getText();
 				if(fname.equals("")) {
 					warningLabel.setText("Enter first name");
@@ -256,6 +259,7 @@ public class RegistrationGUI extends JFrame  {
 				BLFacade facade=MainGUI.getBusinessLogic();
 				
 				if(facade.Register(fname, lname, email, birthdate.toString(), username, password, gender)) {
+					
 					System.out.println("registration successful");
 					warningLabel.setText("Success");
 					long start = System.currentTimeMillis(); /* 3 SECONDS TIMER*/

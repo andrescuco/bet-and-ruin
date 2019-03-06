@@ -11,8 +11,10 @@ import domain.Event;
 import businessLogic.BLFacade;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Locale;
@@ -21,6 +23,7 @@ import java.util.Vector;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 
 public class MainGUI extends JFrame {
@@ -41,11 +44,13 @@ public class MainGUI extends JFrame {
 		appFacadeInterface=afi;
 	}
 	protected JLabel jLabelSelectOption;
+	protected JLabel Icon;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton lblAccountSettings;
 	
 	/**
 	 * This is the default constructor
@@ -92,15 +97,23 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+			jContentPane.setLayout(new GridLayout(5, 1, 5, 5));
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getBoton3());
 			jContentPane.add(getBoton2());
+			jContentPane.add(getLblAccountSettings());
 			jContentPane.add(getPanel());
+			
+			 
 		}
 		return jContentPane;
 	}
 
+
+
+	
+		
+	
 
 	/**
 	 * This method initializes boton1
@@ -196,6 +209,9 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+			flowLayout.setVgap(15);
+			flowLayout.setHgap(15);
 			panel.add(getRdbtnNewRadioButton_1());
 			panel.add(getRdbtnNewRadioButton_2());
 			panel.add(getRdbtnNewRadioButton());
@@ -210,5 +226,17 @@ public class MainGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
+	private JButton getLblAccountSettings() {
+		if (lblAccountSettings == null) {
+			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.lblAccountSettings.text"));
+			lblAccountSettings.setBackground(Color.GRAY);
+			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
+			lblAccountSettings.setForeground(Color.BLACK);
+			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\user-3.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			lblAccountSettings.setIcon(imageIcon);//$NON-NLS-1$ //$NON-NLS-2$
+		}
+		return lblAccountSettings;
+	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 
