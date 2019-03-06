@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class HomepageGUI {
 
@@ -53,6 +54,8 @@ public class HomepageGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -86,6 +89,7 @@ public class HomepageGUI {
 		JLabel lblOr = new JLabel("or");
 		
 		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
+		lblAlreadyHaveAn.setForeground(Color.WHITE);
 		
 		JButton btnSignIn = new JButton("Sign in");
 		
