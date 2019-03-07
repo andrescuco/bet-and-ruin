@@ -8,6 +8,7 @@ public class Account {
 	private String lastname;
 	private String email;
 	private String date;
+	private Boolean isLogged;
 	@Id
 	private String username;
 	
@@ -20,7 +21,7 @@ public class Account {
 		username = uname;
 		password = passw;
 	}
-	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend) {
+	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, Boolean logged) {
 		firstname = fname;
 		lastname = lname;
 		email = em;
@@ -28,5 +29,7 @@ public class Account {
 		username = uname;
 		password = passw;
 		gender = gend;
+		isLogged = logged;
 	}
+
 }
