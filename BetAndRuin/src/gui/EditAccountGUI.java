@@ -15,6 +15,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EditAccountGUI extends JFrame {
 
@@ -48,9 +50,9 @@ public class EditAccountGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel Usernamelbl = new JLabel("Username");
@@ -67,7 +69,7 @@ public class EditAccountGUI extends JFrame {
 		gbc_UsernameDB.gridx = 3;
 		gbc_UsernameDB.gridy = 1;
 		contentPane.add(UsernameDB, gbc_UsernameDB);
-		BLFacade facade=MainGUI.getBusinessLogic();
+		//BLFacade facade=MainGUI.getBusinessLogic(); //Implement code to retrieve Username from database
 		
 		
 		JButton btnEditUsername = new JButton("Edit Username");
@@ -154,16 +156,31 @@ public class EditAccountGUI extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Credit available");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
 		gbc_lblNewLabel_1.gridy = 13;
 		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JButton btnGetMoreCredit = new JButton("Get more credit");
 		GridBagConstraints gbc_btnGetMoreCredit = new GridBagConstraints();
+		gbc_btnGetMoreCredit.insets = new Insets(0, 0, 5, 0);
 		gbc_btnGetMoreCredit.gridx = 8;
 		gbc_btnGetMoreCredit.gridy = 13;
 		contentPane.add(btnGetMoreCredit, gbc_btnGetMoreCredit);
+		
+		JButton btnReturn = new JButton("Return ");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainGUI back = new MainGUI();
+				back.setVisible(true);
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnReturn = new GridBagConstraints();
+		gbc_btnReturn.insets = new Insets(0, 0, 0, 5);
+		gbc_btnReturn.gridx = 5;
+		gbc_btnReturn.gridy = 15;
+		contentPane.add(btnReturn, gbc_btnReturn);
 	}
 
 }
