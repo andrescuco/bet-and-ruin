@@ -230,6 +230,13 @@ public class MainGUI extends JFrame {
 	private JButton getLblAccountSettings() {
 		if (lblAccountSettings == null) {
 			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
+			lblAccountSettings.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					EditAccountGUI edit = new EditAccountGUI();
+					edit.setVisible(true);
+					dispose();
+				}
+			});
 			lblAccountSettings.setBackground(Color.GRAY);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
 			lblAccountSettings.setForeground(Color.BLACK);
