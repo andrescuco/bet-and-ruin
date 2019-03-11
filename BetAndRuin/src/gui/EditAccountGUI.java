@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Account;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -69,8 +70,10 @@ public class EditAccountGUI extends JFrame {
 		gbc_UsernameDB.gridx = 3;
 		gbc_UsernameDB.gridy = 1;
 		contentPane.add(UsernameDB, gbc_UsernameDB);
-		//BLFacade facade=MainGUI.getBusinessLogic(); //Implement code to retrieve Username from database
-		
+		BLFacade facade=MainGUI.getBusinessLogic(); 
+		UsernameDB.getName();
+		//Implement code to retrieve Username from database
+		UsernameDB.setText("awiwi");
 		
 		JButton btnEditUsername = new JButton("Edit Username");
 		GridBagConstraints gbc_btnEditUsername = new GridBagConstraints();
@@ -164,7 +167,7 @@ public class EditAccountGUI extends JFrame {
 		JButton btnGetMoreCredit = new JButton("Get more credit");
 		btnGetMoreCredit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				EditAccountGUI credit = new EditAccountGUI();
+				WalletGUI credit = new WalletGUI();
 				credit.setVisible(true);
 				dispose();
 			}

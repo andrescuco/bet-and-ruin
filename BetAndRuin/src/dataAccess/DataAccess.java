@@ -294,7 +294,16 @@ public class DataAccess {
 			}
 
 		return user;
-
+		
+		
+			
+		}
+		public  String getUsername(String username) {
+			db.getTransaction().begin();
+			String usernamelbl = null;
+				Query q3 = db.createQuery("SELECT username FROM Account WHERE username = \"" + username);
+				db.getTransaction().commit();
+				return usernamelbl;
 	}
 
 }

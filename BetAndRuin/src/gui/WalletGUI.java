@@ -59,7 +59,7 @@ public class WalletGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WalletGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -80,6 +80,21 @@ public class WalletGUI extends JFrame {
 		gbc_lblMyWallet.gridy = 0;
 		contentPane.add(lblMyWallet, gbc_lblMyWallet);
 		lblMyWallet.setIcon(imageIcon);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				EditAccountGUI back = new EditAccountGUI();
+				back.setVisible(true);
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnBack = new GridBagConstraints();
+		gbc_btnBack.anchor = GridBagConstraints.EAST;
+		gbc_btnBack.insets = new Insets(0, 0, 5, 0);
+		gbc_btnBack.gridx = 3;
+		gbc_btnBack.gridy = 0;
+		contentPane.add(btnBack, gbc_btnBack);
 		
 		JLabel lblAvalaibleCredit = new JLabel("Availaible credit:");
 		lblAvalaibleCredit.setFont(new Font("Roboto", Font.PLAIN, 15));
@@ -167,6 +182,8 @@ public class WalletGUI extends JFrame {
 		
 		
 	}
+
+
 
 	private Icon ImageIcon(String string) {
 		// TODO Auto-generated method stub

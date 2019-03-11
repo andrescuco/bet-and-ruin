@@ -114,8 +114,16 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return isCorrectUser;
 	}
-
     
+    @WebMethod
+    public String RetrieveUsername(String username) {
+    	DataAccess dBManager = new DataAccess();
+    	String getUsername = dBManager.getUsername(username);
+    	dBManager.close();
+    	return getUsername;
+    }
+
+ 
 
 }
 
