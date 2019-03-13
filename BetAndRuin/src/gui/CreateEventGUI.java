@@ -20,6 +20,8 @@ import businessLogic.BLFacade;
 
 
 import domain.Event;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
 
 
 
@@ -44,6 +46,7 @@ private static final long serialVersionUID = 1L;
 
   private JButton jButtonCreate = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
   private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
+  private JButton jButtonDelete = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Delete"));
   private JLabel jLabelMsg = new JLabel();
   private JLabel jLabelError = new JLabel();
 
@@ -111,6 +114,7 @@ private static final long serialVersionUID = 1L;
 
     this.getContentPane().add(jButtonClose, null);
     this.getContentPane().add(jButtonCreate, null);
+    this.getContentPane().add(jButtonDelete, null);
     this.getContentPane().add(jTextFieldQuery, null);
     this.getContentPane().add(jLabelQuery, null);
     this.getContentPane().add(jLabelListOfEvents, null);
@@ -121,6 +125,16 @@ private static final long serialVersionUID = 1L;
     jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
     jLabelEventDate.setBounds(40, 16, 140, 25);
     getContentPane().add(jLabelEventDate);
+    
+    final JButton jButtonDelete = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateEventGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+    jButtonDelete.setEnabled(false);
+    jButtonDelete.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent arg0) {
+    		jButtonDelete_actionPerformed(arg0);
+    	}
+    });
+    jButtonDelete.setBounds(275, 101, 254, 20);
+    getContentPane().add(jButtonDelete);
     
 
     
@@ -157,8 +171,9 @@ private static final long serialVersionUID = 1L;
       		jComboBoxEvents.repaint();
       		
       		if (events.size()==0)
-      			//jButtonCreate.setEnabled(false);
-      		//else
+      			jButtonDelete.setEnabled(false);
+      		else
+      			jButtonDelete.setEnabled(true);
       			jButtonCreate.setEnabled(true);
 
             } catch (Exception e1) {
@@ -240,7 +255,8 @@ private static final long serialVersionUID = 1L;
 
 	  			//Obtain the business logic from a StartWindow class (local or remote)
 	  			BLFacade facade=MainGUI.getBusinessLogic();
-
+	  			jButtonDelete.setEnabled(true);
+	  			this.validate();
 	  			facade.createEvent(firstDay,inputQuery);
 	  			updateCalendar();
 
@@ -275,6 +291,26 @@ private static final long serialVersionUID = 1L;
 	  
 	  paintDaysWithEvents(jCalendar);
 }
+  
+  private void jButtonDelete_actionPerformed(ActionEvent e){
+	    domain.Event event=((domain.Event)jComboBoxEvents.getSelectedItem());
+	  	 	
+	  	try {
+	  		jLabelError.setText("");
+	  		jLabelMsg.setText("");
+
+  			BLFacade facade=MainGUI.getBusinessLogic();
+
+  			facade.deleteEvent(event);
+  			updateCalendar();
+
+  			jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("EventDeleted"));
+	    }catch (Exception e1) {
+
+	  		e1.printStackTrace();
+
+	  	}
+  }
 
 private void jButtonClose_actionPerformed(ActionEvent e)
   {

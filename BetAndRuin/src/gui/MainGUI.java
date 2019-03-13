@@ -120,7 +120,7 @@ public class MainGUI extends JFrame {
 	private JButton getEventButton() {
 		if (jButtonCreateEvent == null) {
 			jButtonCreateEvent = new JButton();
-			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
+			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();

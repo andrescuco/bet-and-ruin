@@ -355,4 +355,13 @@ public class DataAccess {
 
 		}
 
+		public Event deleteEvent(Event event) {
+			Event ev = db.find(Event.class, event);
+			
+			db.getTransaction().begin();
+			db.remove(ev);
+			db.getTransaction().commit();
+			return ev;
+		}
+
 }

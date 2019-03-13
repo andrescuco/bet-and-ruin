@@ -133,7 +133,13 @@ public class BLFacadeImplementation  implements BLFacade {
     	dBManager.close();
     	return getUsername;
     }
-
+    
+    @WebMethod
+	public Event deleteEvent(Event event) {
+    	DataAccess dBManager = new DataAccess();
+    	Event ev = dBManager.deleteEvent(event);
+    	return ev;
+    }
  
 
 }
