@@ -78,7 +78,7 @@ public class LogInGUI extends JFrame {
 					System.out.print("blank fields");
 				}
 				else {
-					if (facade.verifyUser(username, password)) {
+					if (facade.isValidUser(username, password)) {
 						label.setText("Correct!");
 						//long start = System.currentTimeMillis();   /* THIS IS A 3 SECONDS SLEEP BEFORE OPENING THE OTHER WINDOWD UPON LOGIN*/
 						//try {

@@ -17,10 +17,10 @@ public class Account {
 	private String gender;
 	
 	//For testing purpose
-	public Account(String uname, String passw) {
+	/*public Account(String uname, String passw) {
 		username = uname;
 		password = passw;
-	}
+	}*/
 	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, Boolean logged) {
 		firstname = fname;
 		lastname = lname;
