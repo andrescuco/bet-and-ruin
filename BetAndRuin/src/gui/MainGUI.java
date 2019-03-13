@@ -32,6 +32,7 @@ public class MainGUI extends JFrame {
 
 	private JPanel jContentPane = null;
 	private JButton jButtonCreateQuery = null;
+	private JButton jButtonCreateEvent = null;
 	private JButton jButtonQueryQueries = null;
 
     private static BLFacade appFacadeInterface;
@@ -97,10 +98,11 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
-			jContentPane.setLayout(new GridLayout(5, 1, 5, 5));
+			jContentPane.setLayout(new GridLayout(6, 1, 5, 5));
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getBoton3());
 			jContentPane.add(getBoton2());
+			jContentPane.add(getEventButton());
 			jContentPane.add(getLblAccountSettings());
 			jContentPane.add(getPanel());
 			
@@ -114,6 +116,22 @@ public class MainGUI extends JFrame {
 	
 		
 	
+
+	private JButton getEventButton() {
+		if (jButtonCreateEvent == null) {
+			jButtonCreateEvent = new JButton();
+			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateEvent"));
+			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					BLFacade facade=MainGUI.getBusinessLogic();
+					//Vector<Event> events=facade.getAllEvents();
+					JFrame a = new CreateEventGUI(new Vector<Event>());
+					a.setVisible(true);
+				}
+			});
+		}
+		return jButtonCreateEvent;
+	}
 
 	/**
 	 * This method initializes boton1

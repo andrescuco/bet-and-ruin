@@ -60,6 +60,17 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 		return qry;
    };
+   @WebMethod
+   public Event createEvent(Date date, String eventName) {
+	    DataAccess dBManager=new DataAccess();
+		Event qry=null;
+		
+		 qry=dBManager.createEvent(date, eventName);		
+
+		dBManager.close();
+		
+		return qry;
+   }
 	
 	/**
 	 * This method invokes the data access to retrieve the events of a given date 

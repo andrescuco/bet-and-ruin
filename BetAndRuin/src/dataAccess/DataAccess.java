@@ -77,9 +77,7 @@ public class DataAccess {
 		db.getTransaction().begin();
 		try {
 
-			Event ev1 = new Event(1, "Atletico-Athletic", newDate(2019
-
-					, 1, 17));
+			Event ev1 = new Event(1, "Atletico-Athletic", newDate(2019, 1, 17));
 			Event ev2 = new Event(2, "Eibar-Barcelona", newDate(2019, 1, 17));
 			Event ev3 = new Event(3, "Getafe-Celta", newDate(2019, 1, 17));
 			Event ev4 = new Event(4, "Alavés-Deportivo", newDate(2019, 1, 17));
@@ -97,10 +95,13 @@ public class DataAccess {
 			Event ev15 = new Event(15, "Español-Villareal", newDate(2019, 2, 1));
 			Event ev16 = new Event(16, "Las Palmas-Sevilla", newDate(2019, 2, 1));
 
-			Event ev17 = new Event(17, "Malaga-Valencia", newDate(2019, 2, 31));
-			Event ev18 = new Event(18, "Girona-Leganés", newDate(2019, 2, 31));
-			Event ev19 = new Event(19, "Real Sociedad-Levante", newDate(2019, 2, 31));
-			Event ev20 = new Event(20, "Betis-Real Madrid", newDate(2019, 2, 31));
+			Event ev17 = new Event(17, "Malaga-Valencia", newDate(2019, 2, 24));
+			Event ev18 = new Event(18, "Girona-Leganés", newDate(2019, 2, 24));
+			Event ev19 = new Event(19, "Real Sociedad-Levante", newDate(2019, 2, 24));
+			Event ev20 = new Event(20, "Betis-Real Madrid", newDate(2019, 2, 24));
+			
+			System.out.println("Test event &&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			Event ev21 = new Event(21, "Test Event", newDate(2019, 3, 31));
 
 			Question q1;
 			Question q2;
@@ -159,6 +160,8 @@ public class DataAccess {
 			db.persist(ev18);
 			db.persist(ev19);
 			db.persist(ev20);
+		
+			db.persist(ev21); //Test
 
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -226,7 +229,7 @@ public class DataAccess {
 	private Date newDate(int year, int month, int day) {
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(year, month, day, 0, 0, 0);
+		calendar.set(year, month-1, day, 0, 0, 0); //Month needs to be -1, 
 		calendar.set(Calendar.MILLISECOND, 0);
 
 		return calendar.getTime();
@@ -305,5 +308,20 @@ public class DataAccess {
 				db.getTransaction().commit();
 				return usernamelbl;
 	}
+
+		public Event createEvent(Date date, String description) {
+//			System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
+//					+ betMinimum);
+
+			db.getTransaction().begin();
+			Event ev = new Event(description, date);
+			// db.persist(q);
+			db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
+							// property of Event class
+							// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+			db.getTransaction().commit();
+			return ev;
+
+		}
 
 }

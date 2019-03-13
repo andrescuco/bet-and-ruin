@@ -57,5 +57,8 @@ public interface BLFacade  {
 	@WebMethod	public boolean UsernameAvailable(String username);
 	@WebMethod	public boolean verifyUser(String username, String password);
 	@WebMethod	public String RetrieveUsername(String username);
+
+
+	@WebMethod Event createEvent(Date date, String inputQuery);
 	
 }
