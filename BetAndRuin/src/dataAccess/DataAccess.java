@@ -272,6 +272,38 @@ public class DataAccess {
 	 * @param username and password
 	 * @return true if username and password exist in the database, false otherwise
 	 */
+
+	public Account findAccount(String username) {
+		Account a = null;
+		
+		db.getTransaction().begin();
+		
+		try {
+			TypedQuery<Account> q1 = db.createQuery(
+					"SELECT a FROM Account a WHERE username = \"" + username,
+					Account.class);
+			a = q1.getSingleResult();
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return a; 
+
+		// if (q1.getResultList().size() == 1) {
+
+		// Query q2 = db.createQuery(
+		// "UPDATE Account SET isLogged = true");
+
+		// q2.executeUpdate();
+
+		// user = q1.getResultList().size() == 1;
+		// } else {
+		// System.out.print("No user was found");
+		// }
+
+	}
+	
 	public Boolean verifyAccount(String username, String password) {
 
 		db.getTransaction().begin();
@@ -294,16 +326,15 @@ public class DataAccess {
 			}
 
 		return user;
-		
-		
 			
 		}
-		public  String getUsername(String username) {
-			db.getTransaction().begin();
-			String usernamelbl = null;
-				Query q3 = db.createQuery("SELECT username FROM Account WHERE username = \"" + username);
-				db.getTransaction().commit();
-				return usernamelbl;
+
+	public String getUsername(String username) {
+		db.getTransaction().begin();
+		String usernamelbl = null;
+		Query q3 = db.createQuery("SELECT username FROM Account WHERE username = \"" + username);
+		db.getTransaction().commit();
+		return usernamelbl;
 	}
 
 }
