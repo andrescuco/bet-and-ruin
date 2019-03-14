@@ -109,7 +109,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		boolean created = dBManager.createAccount(fname,lname,em,d,uname, passw, gender);
 		dBManager.close();
 		return created;
-	}
+	} 
     
     @WebMethod	
 	 public boolean UsernameAvailable(String username){
@@ -139,6 +139,7 @@ public class BLFacadeImplementation  implements BLFacade {
     	}
     	
     }
+  
     
     @WebMethod
     public String RetrieveUsername(String username) {

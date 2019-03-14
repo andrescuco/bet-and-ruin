@@ -253,7 +253,7 @@ public class DataAccess {
 		if (usernameExists(uname) == true)
 			return false;
 		db.getTransaction().begin();
-		Account a = new Account(fname, lname, em, d, uname, passw, gender, false);
+		Account a = new Account(fname, lname, em, d, uname, passw, gender, false, false);
 		// db.persist(q);
 		db.persist(a);
 		db.getTransaction().commit();

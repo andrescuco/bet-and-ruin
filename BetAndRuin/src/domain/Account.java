@@ -9,6 +9,7 @@ public class Account {
 	private String email;
 	private String date;
 	private Boolean isLogged;
+	private Boolean isAdmin;
 	@Id
 	private String username;
 	
@@ -21,7 +22,7 @@ public class Account {
 		username = uname;
 		password = passw;
 	}*/
-	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, Boolean logged) {
+	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, Boolean logged, Boolean admin) {
 		firstname = fname;
 		lastname = lname;
 		email = em;
@@ -30,6 +31,7 @@ public class Account {
 		password = passw;
 		gender = gend;
 		isLogged = logged;
+		isAdmin = admin;
 	}
 	
 	public String getPassword() {
@@ -38,6 +40,14 @@ public class Account {
 	
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public Boolean isAdmin() {
+		return this.isAdmin;
+	}
+	
+	public Boolean getLoginStatus() {
+		return this.isLogged;
 	}
 
 }

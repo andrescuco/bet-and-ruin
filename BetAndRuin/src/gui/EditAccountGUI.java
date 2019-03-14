@@ -191,6 +191,19 @@ public class EditAccountGUI extends JFrame {
 		gbc_btnReturn.gridx = 5;
 		gbc_btnReturn.gridy = 15;
 		contentPane.add(btnReturn, gbc_btnReturn);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainGUI guest = new MainGUI();
+				guest.setVisible(true);
+				dispose();
+			} 
+		});
+		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
+		gbc_btnLogout.gridx = 8;
+		gbc_btnLogout.gridy = 15;
+		contentPane.add(btnLogout, gbc_btnLogout);
 	}
 
 }
