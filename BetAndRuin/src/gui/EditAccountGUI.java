@@ -195,9 +195,7 @@ public class EditAccountGUI extends JFrame {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MainGUI guest = new MainGUI();
-				guest.setVisible(true);
-				dispose();
+				
 			} 
 		});
 		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
