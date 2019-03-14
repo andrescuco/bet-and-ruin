@@ -31,5 +31,13 @@ public class Account {
 		gender = gend;
 		isLogged = logged;
 	}
+	
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public String getUsername() {
+		return this.username;
+	}
 
 }

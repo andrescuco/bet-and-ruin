@@ -74,19 +74,10 @@ public class LogInGUI extends JFrame {
 				BLFacade facade=MainGUI.getBusinessLogic();
 				
 				if (username.isEmpty() || password.isEmpty()) {
-					label.setText("Please fill in the username and password fields");
-					System.out.print("blank fields");
+					JOptionPane.showMessageDialog(null, "Please fill in all the fields", "Error", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
 					if (facade.isValidUser(username, password)) {
-						label.setText("Correct!");
-						//long start = System.currentTimeMillis();   /* THIS IS A 3 SECONDS SLEEP BEFORE OPENING THE OTHER WINDOWD UPON LOGIN*/
-						//try {
-						//	Thread.sleep(3000);
-						//} catch (InterruptedException e) {
-						//	// TODO Auto-generated catch block
-						//	e.printStackTrace();
-						//}*/
 						MainGUI enter = new MainGUI(); /* OPENING THE MAIN GUI*/
 						enter.setVisible(true);
 						SwingUtilities.windowForComponent(contentPane).dispose();

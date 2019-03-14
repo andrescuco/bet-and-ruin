@@ -10,6 +10,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
+import domain.Account;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -121,10 +122,23 @@ public class BLFacadeImplementation  implements BLFacade {
     @Override
 	public boolean isValidUser(String username, String password) {
 		DataAccess dBManager=new DataAccess();
-		boolean isCorrectUser = dBManager.verifyAccount(username, password);
-		dBManager.close();
-		return isCorrectUser;
+		if (dBManager.findAccount(username) == null) {
+			return false;
+		} else {
+			Account a = dBManager.findAccount(username);
+			dBManager.close();
+			return checkPassword(a, password);
+		}
 	}
+    
+    public boolean checkPassword(Account a, String password) {
+    	if (a.getPassword().equals(password)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    	
+    }
     
     @WebMethod
     public String RetrieveUsername(String username) {

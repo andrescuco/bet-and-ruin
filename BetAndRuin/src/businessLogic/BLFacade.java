@@ -9,6 +9,7 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.Account;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -58,6 +59,7 @@ public interface BLFacade  {
 
 	@WebMethod Event createEvent(Date date, String inputQuery);
 	@WebMethod	public boolean isValidUser(String username, String password);
+	@WebMethod	public boolean checkPassword(Account a, String password);
 
 
 	@WebMethod Event deleteEvent(Event event);

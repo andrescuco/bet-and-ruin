@@ -285,10 +285,10 @@ public class DataAccess {
 			TypedQuery<Account> q1 = db.createQuery(
 					"SELECT a FROM Account a WHERE username = \"" + username,
 					Account.class);
-			a = q1.getSingleResult();
+			a = q1.getSingleResult(); 	
 			db.getTransaction().commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			return a;
 		}
 		
 		return a; 
