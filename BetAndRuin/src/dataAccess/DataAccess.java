@@ -241,7 +241,7 @@ public class DataAccess {
 	 * 
 	 */
 	public boolean createAccount(String fname, String lname, String em, String d, String uname, String passw,
-			String gender) {
+			String gender, int funds) {
 		// System.out.println(">> DataAccess: createQuestion=> event= "+event+"
 		// question= "+question+" betMinimum="+betMinimum);
 
@@ -253,7 +253,7 @@ public class DataAccess {
 		if (usernameExists(uname) == true)
 			return false;
 		db.getTransaction().begin();
-		Account a = new Account(fname, lname, em, d, uname, passw, gender, false, false);
+		Account a = new Account(fname, lname, em, d, uname, passw, gender, funds, false, false);
 		// db.persist(q);
 		db.persist(a);
 		db.getTransaction().commit();

@@ -30,6 +30,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class WalletGUI extends JFrame {
 
@@ -60,7 +61,7 @@ public class WalletGUI extends JFrame {
 	 */
 	public WalletGUI() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 609, 512);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,21 +97,21 @@ public class WalletGUI extends JFrame {
 		gbc_btnBack.gridy = 0;
 		contentPane.add(btnBack, gbc_btnBack);
 		
-		JLabel lblAvalaibleCredit = new JLabel("Availaible credit:");
-		lblAvalaibleCredit.setFont(new Font("Roboto", Font.PLAIN, 15));
+		JLabel lblAvailableCredit = new JLabel("Available credit:");
+		lblAvailableCredit.setFont(new Font("Roboto", Font.PLAIN, 15));
 		GridBagConstraints gbc_lblAvalaibleCredit = new GridBagConstraints();
 		gbc_lblAvalaibleCredit.fill = GridBagConstraints.BOTH;
 		gbc_lblAvalaibleCredit.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAvalaibleCredit.gridx = 1;
 		gbc_lblAvalaibleCredit.gridy = 2;
-		contentPane.add(lblAvalaibleCredit, gbc_lblAvalaibleCredit);
+		contentPane.add(lblAvailableCredit, gbc_lblAvalaibleCredit);
 		
-		JLabel lblNewLabel = new JLabel("*amount to be displayed*");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 2;
-		gbc_lblNewLabel.gridy = 2;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblWalletFunds = new JLabel("Wallet Funds");
+		GridBagConstraints gbc_lblWalletFunds = new GridBagConstraints();
+		gbc_lblWalletFunds.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWalletFunds.gridx = 2;
+		gbc_lblWalletFunds.gridy = 2;
+		contentPane.add(lblWalletFunds, gbc_lblWalletFunds);
 		
 		JLabel lblGetMoreCredits = new JLabel("Get more credits");
 		lblGetMoreCredits.setFont(new Font("Roboto", Font.BOLD, 14));
@@ -166,6 +167,17 @@ public class WalletGUI extends JFrame {
 				}
 			}
 		});
+		
+		JComboBox fundsToAdd = new JComboBox();
+		fundsToAdd.addItem(100);
+		fundsToAdd.addItem(500);
+		fundsToAdd.addItem(1000);
+		GridBagConstraints gbc_fundsToAdd = new GridBagConstraints();
+		gbc_fundsToAdd.insets = new Insets(0, 0, 5, 5);
+		gbc_fundsToAdd.fill = GridBagConstraints.HORIZONTAL;
+		gbc_fundsToAdd.gridx = 2;
+		gbc_fundsToAdd.gridy = 7;
+		contentPane.add(fundsToAdd, gbc_fundsToAdd);
 		GridBagConstraints gbc_btnContinue = new GridBagConstraints();
 		gbc_btnContinue.insets = new Insets(0, 0, 0, 5);
 		gbc_btnContinue.gridx = 2;

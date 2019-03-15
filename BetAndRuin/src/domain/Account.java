@@ -10,6 +10,7 @@ public class Account {
 	private String date;
 	private Boolean isLogged;
 	private Boolean isAdmin;
+	private int walletFunds;
 	@Id
 	private String username;
 	
@@ -22,7 +23,7 @@ public class Account {
 		username = uname;
 		password = passw;
 	}*/
-	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, Boolean logged, Boolean admin) {
+	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, int funds, Boolean logged, Boolean admin) {
 		firstname = fname;
 		lastname = lname;
 		email = em;
@@ -30,6 +31,7 @@ public class Account {
 		username = uname;
 		password = passw;
 		gender = gend;
+		walletFunds = funds;
 		isLogged = logged;
 		isAdmin = admin;
 	}
@@ -40,6 +42,10 @@ public class Account {
 	
 	public String getUsername() {
 		return this.username;
+	}
+	
+	public int getAccountFunds() {
+		return this.walletFunds;
 	}
 	
 	public Boolean isAdmin() {
