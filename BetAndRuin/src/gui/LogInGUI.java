@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Account;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;

@@ -20,6 +20,7 @@ import exceptions.QuestionAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
+	Account currentUser = null;
 
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
@@ -131,15 +132,20 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 	}
     
+    public Account getCurrentUser() {
+    	return currentUser;
+    }
+    
     public boolean checkPassword(Account a, String password) {
     	if (a.getPassword().equals(password)) {
+    		currentUser = a;
+    		System.out.print("blabla" + currentUser);
     		return true;
     	} else {
     		return false;
     	}
     	
     }
-  
     
     @WebMethod
     public String RetrieveUsername(String username) {

@@ -56,6 +56,8 @@ public class EditAccountGUI extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
+		BLFacade facade=MainGUI.getBusinessLogic(); 
+		
 		JLabel Usernamelbl = new JLabel("Username");
 		Usernamelbl.setFont(new Font("Roboto", Font.PLAIN, 12));
 		GridBagConstraints gbc_Usernamelbl = new GridBagConstraints();
@@ -64,16 +66,15 @@ public class EditAccountGUI extends JFrame {
 		gbc_Usernamelbl.gridy = 1;
 		contentPane.add(Usernamelbl, gbc_Usernamelbl);
 		
-		JLabel UsernameDB = new JLabel("");
+		JLabel UsernameDB = new JLabel(facade.getCurrentUser().getUsername());
 		GridBagConstraints gbc_UsernameDB = new GridBagConstraints();
 		gbc_UsernameDB.insets = new Insets(0, 0, 5, 5);
 		gbc_UsernameDB.gridx = 3;
 		gbc_UsernameDB.gridy = 1;
 		contentPane.add(UsernameDB, gbc_UsernameDB);
-		BLFacade facade=MainGUI.getBusinessLogic(); 
 		UsernameDB.getName();
 		//Implement code to retrieve Username from database
-		UsernameDB.setText("awiwi");
+		//UsernameDB.setText(facade.getCurrentUser().getUsername());
 		
 		JButton btnEditUsername = new JButton("Edit Username");
 		GridBagConstraints gbc_btnEditUsername = new GridBagConstraints();
