@@ -51,9 +51,9 @@ public class EditAccountGUI extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		BLFacade facade=MainGUI.getBusinessLogic(); 
@@ -91,6 +91,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Passwordlbl.gridy = 3;
 		contentPane.add(Passwordlbl, gbc_Passwordlbl);
 		
+		JLabel PasswordDB = new JLabel(facade.getCurrentUser().getPassword());
+		GridBagConstraints gbc_PasswordDB = new GridBagConstraints();
+		gbc_PasswordDB.insets = new Insets(0, 0, 5, 5);
+		gbc_PasswordDB.gridx = 3;
+		gbc_PasswordDB.gridy = 3;
+		contentPane.add(PasswordDB, gbc_PasswordDB);
+		
 		JButton btnEditPassword = new JButton("Edit Password");
 		GridBagConstraints gbc_btnEditPassword = new GridBagConstraints();
 		gbc_btnEditPassword.insets = new Insets(0, 0, 5, 0);
@@ -105,6 +112,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Birthdatelbl.gridx = 1;
 		gbc_Birthdatelbl.gridy = 5;
 		contentPane.add(Birthdatelbl, gbc_Birthdatelbl);
+		
+		JLabel BirthdateDB = new JLabel(facade.getCurrentUser().getBirthdayDate());
+		GridBagConstraints gbc_BirthdateDB = new GridBagConstraints();
+		gbc_BirthdateDB.insets = new Insets(0, 0, 5, 5);
+		gbc_BirthdateDB.gridx = 3;
+		gbc_BirthdateDB.gridy = 5;
+		contentPane.add(BirthdateDB, gbc_BirthdateDB);
 		
 		JButton btnEditBirthdate = new JButton("Edit Birthdate");
 		GridBagConstraints gbc_btnEditBirthdate = new GridBagConstraints();
@@ -121,6 +135,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_EmailAddresslbl.gridy = 7;
 		contentPane.add(EmailAddresslbl, gbc_EmailAddresslbl);
 		
+		JLabel EmailAddressDB = new JLabel(facade.getCurrentUser().getAddressEmail());
+		GridBagConstraints gbc_EmailAddressDB = new GridBagConstraints();
+		gbc_EmailAddressDB.insets = new Insets(0, 0, 5, 5);
+		gbc_EmailAddressDB.gridx = 3;
+		gbc_EmailAddressDB.gridy = 7;
+		contentPane.add(EmailAddressDB, gbc_EmailAddressDB);
+		
 		JButton btnEditEmailAddress = new JButton("Edit Email Address");
 		GridBagConstraints gbc_btnEditEmailAddress = new GridBagConstraints();
 		gbc_btnEditEmailAddress.insets = new Insets(0, 0, 5, 0);
@@ -136,6 +157,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Firstnamelbl.gridy = 9;
 		contentPane.add(Firstnamelbl, gbc_Firstnamelbl);
 		
+		JLabel FirstnameDB = new JLabel(facade.getCurrentUser().getFirstname());
+		GridBagConstraints gbc_FirstnameDB = new GridBagConstraints();
+		gbc_FirstnameDB.insets = new Insets(0, 0, 5, 5);
+		gbc_FirstnameDB.gridx = 3;
+		gbc_FirstnameDB.gridy = 9;
+		contentPane.add(FirstnameDB, gbc_FirstnameDB);
+		
 		JButton btnEditFirstname = new JButton("Edit Firstname");
 		GridBagConstraints gbc_btnEditFirstname = new GridBagConstraints();
 		gbc_btnEditFirstname.insets = new Insets(0, 0, 5, 0);
@@ -150,6 +178,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Lastnamelbl.gridx = 1;
 		gbc_Lastnamelbl.gridy = 11;
 		contentPane.add(Lastnamelbl, gbc_Lastnamelbl);
+		
+		JLabel LastnameDB = new JLabel(facade.getCurrentUser().getLastname());
+		GridBagConstraints gbc_LastnameDB = new GridBagConstraints();
+		gbc_LastnameDB.insets = new Insets(0, 0, 5, 5);
+		gbc_LastnameDB.gridx = 3;
+		gbc_LastnameDB.gridy = 11;
+		contentPane.add(LastnameDB, gbc_LastnameDB);
 		
 		JButton btnEditLastname = new JButton("Edit Lastname");
 		GridBagConstraints gbc_btnEditLastname = new GridBagConstraints();
@@ -190,7 +225,7 @@ public class EditAccountGUI extends JFrame {
 		GridBagConstraints gbc_btnReturn = new GridBagConstraints();
 		gbc_btnReturn.insets = new Insets(0, 0, 0, 5);
 		gbc_btnReturn.gridx = 5;
-		gbc_btnReturn.gridy = 15;
+		gbc_btnReturn.gridy = 16;
 		contentPane.add(btnReturn, gbc_btnReturn);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -201,7 +236,7 @@ public class EditAccountGUI extends JFrame {
 		});
 		GridBagConstraints gbc_btnLogout = new GridBagConstraints();
 		gbc_btnLogout.gridx = 8;
-		gbc_btnLogout.gridy = 15;
+		gbc_btnLogout.gridy = 16;
 		contentPane.add(btnLogout, gbc_btnLogout);
 	}
 

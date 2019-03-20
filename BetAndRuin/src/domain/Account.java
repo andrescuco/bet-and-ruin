@@ -44,6 +44,22 @@ public class Account {
 		return this.username;
 	}
 	
+	public String getAddressEmail() {
+		return this.email;
+	}
+	
+	public String getBirthdayDate() {
+		return this.date;
+	}
+	
+	public String getFirstname() {
+		return this.firstname;
+	}
+	
+	public String getLastname() {
+		return this.lastname;
+	}
+	
 	public int getAccountFunds() {
 		return this.walletFunds;
 	}
