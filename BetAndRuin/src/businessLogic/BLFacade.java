@@ -9,6 +9,7 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.Wallet;
 import domain.Account;
 import domain.Event;
 import exceptions.EventFinished;
@@ -61,6 +62,7 @@ public interface BLFacade  {
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
 	@WebMethod	public Account getCurrentUser();
+	
 
 
 	@WebMethod Event deleteEvent(Event event);

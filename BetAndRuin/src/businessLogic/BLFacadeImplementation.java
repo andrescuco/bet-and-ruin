@@ -161,6 +161,8 @@ public class BLFacadeImplementation  implements BLFacade {
     	Event ev = dBManager.deleteEvent(event);
     	return ev;
     }
+    
+   
  
 
 }
