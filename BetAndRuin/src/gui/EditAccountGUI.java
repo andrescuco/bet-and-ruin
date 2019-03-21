@@ -193,12 +193,12 @@ public class EditAccountGUI extends JFrame {
 		gbc_btnEditLastname.gridy = 11;
 		contentPane.add(btnEditLastname, gbc_btnEditLastname);
 		
-		JLabel lblNewLabel_1 = new JLabel("Credit available");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 1;
-		gbc_lblNewLabel_1.gridy = 13;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		JLabel CreditLbl = new JLabel("Credit available");
+		GridBagConstraints gbc_CreditLbl = new GridBagConstraints();
+		gbc_CreditLbl.insets = new Insets(0, 0, 5, 5);
+		gbc_CreditLbl.gridx = 1;
+		gbc_CreditLbl.gridy = 13;
+		contentPane.add(CreditLbl, gbc_CreditLbl);
 		
 		JButton btnGetMoreCredit = new JButton("Get more credit");
 		btnGetMoreCredit.addActionListener(new ActionListener() {
@@ -208,6 +208,13 @@ public class EditAccountGUI extends JFrame {
 				dispose();
 			}
 		});
+		
+		JLabel CreditValue = new JLabel(facade.getCurrentUser().newAccountFunds()+ " Betcoins");
+		GridBagConstraints gbc_CreditValue = new GridBagConstraints();
+		gbc_CreditValue.insets = new Insets(0, 0, 5, 5);
+		gbc_CreditValue.gridx = 3;
+		gbc_CreditValue.gridy = 13;
+		contentPane.add(CreditValue, gbc_CreditValue);
 		GridBagConstraints gbc_btnGetMoreCredit = new GridBagConstraints();
 		gbc_btnGetMoreCredit.insets = new Insets(0, 0, 5, 0);
 		gbc_btnGetMoreCredit.gridx = 8;

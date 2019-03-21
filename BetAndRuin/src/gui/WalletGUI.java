@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import domain.Account;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.Image;
-
+import businessLogic.BLFacade;
 import javax.swing.JLabel;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -73,6 +73,8 @@ public class WalletGUI extends JFrame {
 		contentPane.setLayout(gbl_contentPane);
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\wallet.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 		
+		BLFacade facade=MainGUI.getBusinessLogic(); 
+		
 		JLabel lblMyWallet = new JLabel("My Wallet");
 		lblMyWallet.setFont(new Font("Roboto", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblMyWallet = new GridBagConstraints();
@@ -106,7 +108,9 @@ public class WalletGUI extends JFrame {
 		gbc_lblAvalaibleCredit.gridy = 2;
 		contentPane.add(lblAvailableCredit, gbc_lblAvalaibleCredit);
 		
-		JLabel lblWalletFunds = new JLabel("Wallet Funds");
+		JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().newAccountFunds()+ " Betcoins");
+		lblWalletFunds.setForeground(Color.RED);
+		lblWalletFunds.setFont(new Font("Roboto", Font.BOLD, 14));
 		GridBagConstraints gbc_lblWalletFunds = new GridBagConstraints();
 		gbc_lblWalletFunds.insets = new Insets(0, 0, 5, 5);
 		gbc_lblWalletFunds.gridx = 2;
@@ -193,13 +197,6 @@ public class WalletGUI extends JFrame {
 	
 		
 		
-	}
-
-
-
-	private Icon ImageIcon(String string) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

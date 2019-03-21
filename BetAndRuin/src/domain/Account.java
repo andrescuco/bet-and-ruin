@@ -71,5 +71,20 @@ public class Account {
 	public Boolean getLoginStatus() {
 		return this.isLogged;
 	}
+	
+	public String newAccountFunds()
+	{
+		
+		walletFunds = 100;
+		return String.valueOf(walletFunds);
+		
+	}
+	
+/*	public String currentfunds() {
+		int current;                                           method to substract the funds with the betting cost
+		current = walletFunds - Betcost;
+		
+	}*/
+
 
 }
