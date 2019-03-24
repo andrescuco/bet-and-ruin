@@ -252,13 +252,15 @@ public class RegistrationGUI extends JFrame  {
 				if(gender.equals("")) {
 					warningLabel.setText("Gender not chosen");
 					return;
+					
 				}
 				
-				System.out.println(fname + lname + email + birthdate + username + password + gender);
+				int funds = 100;
+				System.out.println(fname + lname + email + birthdate + username + password + gender + funds);
 				
 				BLFacade facade=MainGUI.getBusinessLogic();
 				
-				if(facade.Register(fname, lname, email, birthdate.toString(), username, password, gender)) {
+				if(facade.Register(fname, lname, email, birthdate.toString(), username, password, gender, funds)) {
 					
 					System.out.println("registration successful");
 					warningLabel.setText("Success");

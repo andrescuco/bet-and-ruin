@@ -209,7 +209,7 @@ public class EditAccountGUI extends JFrame {
 			}
 		});
 		
-		JLabel CreditValue = new JLabel(facade.getCurrentUser().newAccountFunds()+ " Betcoins");
+		JLabel CreditValue = new JLabel(facade.getCurrentUser().getAccountFunds()+ " Betcoins");
 		GridBagConstraints gbc_CreditValue = new GridBagConstraints();
 		gbc_CreditValue.insets = new Insets(0, 0, 5, 5);
 		gbc_CreditValue.gridx = 3;

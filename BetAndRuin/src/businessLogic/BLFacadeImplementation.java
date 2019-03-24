@@ -105,9 +105,9 @@ public class BLFacadeImplementation  implements BLFacade {
      * if created successfully returns true
      */
     @WebMethod	
-	 public boolean Register(String fname, String lname, String em, String d, String uname, String passw, String gender){
+	 public boolean Register(String fname, String lname, String em, String d, String uname, String passw, String gender, int funds){
 		DataAccess dBManager=new DataAccess();
-		boolean created = dBManager.createAccount(fname,lname,em,d,uname, passw, gender, 0);
+		boolean created = dBManager.createAccount(fname,lname,em,d,uname, passw, gender, funds);
 		dBManager.close();
 		return created;
 	} 
