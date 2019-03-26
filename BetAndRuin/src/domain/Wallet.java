@@ -8,6 +8,7 @@ public class Wallet {
 
 	private float availablecredit;
 	private float bettingcost;
+
 	
 	
 	public Wallet(float cred, float cost) {
@@ -15,10 +16,11 @@ public class Wallet {
 		bettingcost = cost;
 	}
 	
-	public float Credit() {
+	public float getCredit() {
 		return availablecredit;
 		
 	}
+	
 	
 	public float Update() {
 		float balance = availablecredit - bettingcost;

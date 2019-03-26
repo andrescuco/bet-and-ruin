@@ -261,9 +261,8 @@ public class RegistrationGUI extends JFrame  {
 				BLFacade facade=MainGUI.getBusinessLogic();
 				
 				if(facade.Register(fname, lname, email, birthdate.toString(), username, password, gender, funds)) {
-					
-					System.out.println("registration successful");
 					warningLabel.setText("Success");
+					System.out.println("registration successful");
 					long start = System.currentTimeMillis(); /* 3 SECONDS TIMER*/
 					try {
 						Thread.sleep(3000);
