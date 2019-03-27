@@ -23,6 +23,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class LogInGUI extends JFrame {
 
@@ -53,19 +56,29 @@ public class LogInGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 461, 363);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.WHITE);
+		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblUsername.setForeground(new Color(255, 255, 255));
+		lblUsername.setBounds(77, 97, 89, 13);
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblPassword.setForeground(new Color(255, 255, 255));
+		lblPassword.setBackground(new Color(255, 255, 255));
+		lblPassword.setBounds(77, 145, 100, 20);
+		lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		final JLabel label = new JLabel("");
+		label.setBounds(77, 274, 0, 0);
 		
 		JButton btnNewButton = new JButton("Log In\r\n");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton.setBackground(new Color(255, 215, 0));
+		btnNewButton.setBounds(77, 210, 133, 41);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -91,14 +104,24 @@ public class LogInGUI extends JFrame {
 
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		textField.setBounds(181, 90, 177, 26);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		passwordField.setBounds(181, 142, 177, 26);
 		
-		JLabel lblPleaseLogIn = new JLabel("Please, l\r\nog in with your information");
-		lblPleaseLogIn.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		JLabel lblPleaseLogIn = new JLabel("Login");
+		lblPleaseLogIn.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPleaseLogIn.setForeground(new Color(255, 255, 255));
+		lblPleaseLogIn.setBounds(15, 16, 409, 49);
+		lblPleaseLogIn.setFont(new Font("Tahoma", Font.BOLD, 24));
 		
 		JButton btnReturn = new JButton("Return");
+		btnReturn.setBackground(new Color(255, 255, 255));
+		btnReturn.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnReturn.setBounds(225, 210, 133, 41);
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				HomepageGUI e = new HomepageGUI();
@@ -106,58 +129,14 @@ public class LogInGUI extends JFrame {
 				dispose();
 			}
 		});
-		
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(72)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblUsername)
-										.addComponent(lblPassword))
-									.addGap(46)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-										.addComponent(textField)
-										.addComponent(btnNewButton)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(label)
-									.addPreferredGap(ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
-									.addComponent(btnReturn))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(45)
-							.addComponent(lblPleaseLogIn)))
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(23)
-					.addComponent(lblPleaseLogIn)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(36)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblUsername)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(26)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPassword)
-								.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(31)
-							.addComponent(btnNewButton)
-							.addPreferredGap(ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-							.addComponent(label)
-							.addGap(28))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnReturn)
-							.addContainerGap())))
-		);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(lblUsername);
+		contentPane.add(lblPassword);
+		contentPane.add(passwordField);
+		contentPane.add(textField);
+		contentPane.add(btnNewButton);
+		contentPane.add(label);
+		contentPane.add(btnReturn);
+		contentPane.add(lblPleaseLogIn);
 	}
 }
