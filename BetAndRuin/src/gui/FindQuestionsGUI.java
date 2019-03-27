@@ -24,6 +24,7 @@ public class FindQuestionsGUI extends JFrame {
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
+	private JButton makeBetButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarMio = null;
@@ -71,8 +72,12 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
+		
+		makeBetButton.setEnabled(false);
+		makeBetButton.setBounds(414, 420, 130, 30);
+		getContentPane().add(makeBetButton);
 
-		jButtonClose.setBounds(new Rectangle(274, 419, 130, 30));
+		jButtonClose.setBounds(new Rectangle(138, 420, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,6 +140,8 @@ public class FindQuestionsGUI extends JFrame {
 		scrollPaneEvents.setBounds(new Rectangle(292, 50, 346, 150));
 		scrollPaneQueries.setBounds(new Rectangle(138, 274, 406, 116));
 
+		
+		
 		tableEvents.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -143,21 +150,28 @@ public class FindQuestionsGUI extends JFrame {
 				Vector<Question> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
+				tableModelQueries.setColumnCount(3);
 
-				if (queries.isEmpty())
+				if (queries.isEmpty()) {
+					makeBetButton.setEnabled(false);
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
-				else 
+				}
+				else {
+					makeBetButton.setEnabled(true);
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
+				}
 
 				for (domain.Question q:queries){
 					Vector<Object> row = new Vector<Object>();
 
 					row.add(q.getQuestionNumber());
 					row.add(q.getQuestion());
+					row.add(q);
 					tableModelQueries.addRow(row);	
 				}
 				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+				tableQueries.getColumnModel().removeColumn(tableQueries.getColumnModel().getColumn(2)); // not shown in JTable
 			}
 		});
 
@@ -176,8 +190,23 @@ public class FindQuestionsGUI extends JFrame {
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
 
+		tableQueries.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i=tableQueries.getSelectedRow();
+				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,2); // obtain question object
+				
+				// Start Betting GUI
+				
+				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
+				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+			}
+		});
+		
+		
 		this.getContentPane().add(scrollPaneEvents, null);
 		this.getContentPane().add(scrollPaneQueries, null);
+		
 
 	}
 

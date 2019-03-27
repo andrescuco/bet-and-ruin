@@ -255,8 +255,7 @@ private static final long serialVersionUID = 1L;
 
 	  			//Obtain the business logic from a StartWindow class (local or remote)
 	  			BLFacade facade=MainGUI.getBusinessLogic();
-	  			jButtonDelete.setEnabled(true);
-	  			this.validate();
+	  			jButtonDelete.setEnabled(true);    // SHOULD 
 	  			facade.createEvent(firstDay,inputQuery);
 	  			updateCalendar();
 
