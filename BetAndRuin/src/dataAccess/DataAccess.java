@@ -21,7 +21,6 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Account;
-import domain.Login;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
