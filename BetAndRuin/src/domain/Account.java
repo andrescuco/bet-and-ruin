@@ -72,6 +72,10 @@ public class Account {
 		return this.isLogged;
 	}
 	
+	public void changeToLogout() {
+		isLogged = false;
+	}
+	
 	
 
 

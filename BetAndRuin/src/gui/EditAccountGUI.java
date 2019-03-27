@@ -229,6 +229,7 @@ public class EditAccountGUI extends JFrame {
 				dispose();
 			}
 		});
+		
 		GridBagConstraints gbc_btnReturn = new GridBagConstraints();
 		gbc_btnReturn.insets = new Insets(0, 0, 0, 5);
 		gbc_btnReturn.gridx = 5;
@@ -238,7 +239,12 @@ public class EditAccountGUI extends JFrame {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				BLFacade facade=MainGUI.getBusinessLogic();
+				facade.getCurrentUser().changeToLogout();
+				System.out.print("isLogged has been set to " + facade.getCurrentUser().getLoginStatus());
+				MainGUI back = new MainGUI();
+				back.setVisible(true);
+				dispose();
 			} 
 		});
 		GridBagConstraints gbc_btnLogout = new GridBagConstraints();

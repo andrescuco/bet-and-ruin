@@ -2,11 +2,11 @@ package domain;
 
 public class Bet {
 	
-	private int amount;
+	private int betAmount;
 	private Account account;
 	
-	public int getAmount() {
-		return amount;
+	public int getBetAmount() {
+		return betAmount;
 	}
 	
 }
