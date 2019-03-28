@@ -58,6 +58,7 @@ public class HomepageGUI {
 		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 
 		JButton btnRegister = new JButton("Register");
@@ -66,6 +67,7 @@ public class HomepageGUI {
 			{
 						
 				RegistrationGUI registration = new RegistrationGUI();	
+				registration.setLocationRelativeTo(null);
 				frame.dispose();
 				registration.setVisible(true);
 					
@@ -79,6 +81,7 @@ public class HomepageGUI {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 			MainGUI guest = new MainGUI();
+			guest.setLocationRelativeTo(null);
 			guest.setVisible(true);
 			frame.dispose();
 								
@@ -98,6 +101,7 @@ public class HomepageGUI {
 		{
 		//redirect to LogInGUI class
 		LogInGUI log = new LogInGUI();
+		log.setLocationRelativeTo(null); //Centers window
 		log.setVisible(true);
 		frame.dispose();
 							

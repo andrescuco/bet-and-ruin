@@ -125,8 +125,9 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
 					//Vector<Event> events=facade.getAllEvents();
-					JFrame a = new CreateEventGUI(new Vector<Event>());
-					a.setVisible(true);
+					JFrame CreateEventGUI = new CreateEventGUI(new Vector<Event>());
+					CreateEventGUI.setLocationRelativeTo(null);
+					CreateEventGUI.setVisible(true);
 				}
 			});
 		}
@@ -146,8 +147,9 @@ public class MainGUI extends JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
 					//Vector<Event> events=facade.getAllEvents();
-					JFrame a = new CreateQuestionGUI(new Vector<Event>());
-					a.setVisible(true);
+					JFrame CreateQuestionGUI = new CreateQuestionGUI(new Vector<Event>());
+					CreateQuestionGUI.setLocationRelativeTo(null);
+					CreateQuestionGUI.setVisible(true);
 				}
 			});
 		}
@@ -165,9 +167,9 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI();
-
-					a.setVisible(true);
+					JFrame FindQuestionsGUI = new FindQuestionsGUI();
+					FindQuestionsGUI.setLocationRelativeTo(null);
+					FindQuestionsGUI.setVisible(true);
 				}
 			});
 		}
@@ -251,8 +253,9 @@ public class MainGUI extends JFrame {
 			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 			lblAccountSettings.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					EditAccountGUI edit = new EditAccountGUI();
-					edit.setVisible(true);
+					EditAccountGUI EditAccountGUI = new EditAccountGUI();
+					EditAccountGUI.setLocationRelativeTo(null);
+					EditAccountGUI.setVisible(true);
 					dispose();
 				}
 			});

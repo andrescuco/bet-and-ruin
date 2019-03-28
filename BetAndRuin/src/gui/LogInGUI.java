@@ -28,7 +28,6 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 public class LogInGUI extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -53,6 +52,8 @@ public class LogInGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public LogInGUI() {
+		setResizable(false);
+		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 461, 363);
 		contentPane = new JPanel();
@@ -93,6 +94,7 @@ public class LogInGUI extends JFrame {
 				else {
 					if (facade.isValidUser(username, password)) {
 						MainGUI enter = new MainGUI(); /* OPENING THE MAIN GUI*/
+						enter.setLocationRelativeTo(null);
 						enter.setVisible(true);
 						SwingUtilities.windowForComponent(contentPane).dispose();
 					} else {
