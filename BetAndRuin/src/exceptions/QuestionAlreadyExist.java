@@ -6,7 +6,7 @@ public class QuestionAlreadyExist extends Exception {
   {
     super();
   }
-  /**This exception is triggered if the question already exists 
+  /**This exception is triggered if the is not enough money in wallet
   *@param s String of the exception
   */
   public QuestionAlreadyExist(String s)

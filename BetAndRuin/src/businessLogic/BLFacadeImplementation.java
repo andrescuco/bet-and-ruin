@@ -14,6 +14,7 @@ import domain.Account;
 import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
+import exceptions.InsuficientFunds;
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -164,9 +165,16 @@ public class BLFacadeImplementation  implements BLFacade {
     }
     
     @WebMethod
-    public Bet placeBet(float amount, Question question) {
+    public Bet placeBet(float amount, Question question) throws InsuficientFunds {
     	DataAccess dBManager = new DataAccess();
-    	return dBManager.createBet(amount, question, getCurrentUser());
+    	Account acc = getCurrentUser(); // Needs to update information
+    	//Checking if there is enough money on wallet
+    	if(acc.getAccountFunds() < amount) {
+    		throw new InsuficientFunds(ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));
+    	}
+    	Bet bet = dBManager.createBet(amount, question, acc);
+    	dBManager.updateFunds(acc.getAccountFunds()-amount, acc);
+    	return bet;
     	
     }
  

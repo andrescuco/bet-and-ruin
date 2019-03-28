@@ -367,10 +367,19 @@ public class DataAccess {
 		public Bet createBet(float amount, Question question, Account account) {
 			
 			db.getTransaction().begin();
+			//create bet
 			Bet b = new Bet(amount, question, account);
+			//update account
 			db.persist(b);
 			db.getTransaction().commit();
 			return b;
+		}
+
+		public void updateFunds(float funds, Account acc) {
+			Account a = db.find(Account.class, acc.getUsername());
+			db.getTransaction().begin();
+			a.setWalletFunds(funds);
+			db.getTransaction().commit();
 		}
 
 }

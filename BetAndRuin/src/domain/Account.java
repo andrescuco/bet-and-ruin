@@ -75,6 +75,11 @@ public class Account {
 	public void changeToLogout() {
 		isLogged = false;
 	}
+
+	public void setWalletFunds(float funds) {
+		walletFunds = (int) funds;
+		
+	}
 	
 	
 

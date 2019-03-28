@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Question;
+import exceptions.InsuficientFunds;
+
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 public class BetGUI extends JFrame {
@@ -55,12 +58,14 @@ public class BetGUI extends JFrame {
 						warningLabel.setText("Your bet has to be bigger");
 					}
 					else {
-						//CODE HERE
-						
 						BLFacade facade=MainGUI.getBusinessLogic();
 						
-						facade.placeBet(Float.parseFloat(BetAmountField.getText()), question);
-						
+						try {
+							facade.placeBet(Float.parseFloat(BetAmountField.getText()), question);
+						}	
+						catch(InsuficientFunds e1) {
+							warningLabel.setText( ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));
+						}
 					}
 				}
 				else {

@@ -14,6 +14,7 @@ import domain.Account;
 import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
+import exceptions.InsuficientFunds;
 import exceptions.QuestionAlreadyExist;
 
 import javax.jws.WebMethod;
@@ -69,6 +70,6 @@ public interface BLFacade  {
 	@WebMethod Event deleteEvent(Event event);
 
 
-	@WebMethod public Bet placeBet(float amount, Question question);
+	@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds;
 	
 }
