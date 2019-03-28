@@ -62,6 +62,7 @@ public class BetGUI extends JFrame {
 						
 						try {
 							facade.placeBet(Float.parseFloat(BetAmountField.getText()), question);
+							warningLabel.setText("");
 						}	
 						catch(InsuficientFunds e1) {
 							warningLabel.setText( ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));

@@ -174,9 +174,15 @@ public class BLFacadeImplementation  implements BLFacade {
     	}
     	Bet bet = dBManager.createBet(amount, question, acc);
     	dBManager.updateFunds(acc.getAccountFunds()-amount, acc);
+    	updateCurrentUser();
     	return bet;
     	
     }
+
+	private void updateCurrentUser() {
+		DataAccess dBManager = new DataAccess();
+		currentUser = dBManager.findAccount(getCurrentUser().getUsername());
+	}
  
 
 }
