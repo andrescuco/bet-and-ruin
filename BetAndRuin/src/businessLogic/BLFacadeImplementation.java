@@ -11,6 +11,7 @@ import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
 import domain.Account;
+import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -162,7 +163,12 @@ public class BLFacadeImplementation  implements BLFacade {
     	return ev;
     }
     
-   
+    @WebMethod
+    public Bet placeBet(float amount, Question question) {
+    	DataAccess dBManager = new DataAccess();
+    	return dBManager.createBet(amount, question, getCurrentUser());
+    	
+    }
  
 
 }

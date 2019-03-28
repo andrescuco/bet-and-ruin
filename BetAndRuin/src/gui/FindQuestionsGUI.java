@@ -73,6 +73,7 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
 		
+		
 		makeBetButton.setEnabled(false);
 		makeBetButton.setBounds(414, 420, 130, 30);
 		getContentPane().add(makeBetButton);
@@ -190,18 +191,18 @@ public class FindQuestionsGUI extends JFrame {
 		tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
 
-		tableQueries.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+
+		makeBetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				int i=tableQueries.getSelectedRow();
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,2); // obtain question object
 				
-				// Start Betting GUI
-				
-				tableQueries.getColumnModel().getColumn(0).setPreferredWidth(25);
-				tableQueries.getColumnModel().getColumn(1).setPreferredWidth(268);
+				JFrame CreateQuestionGUI = new BetGUI(question);
+				CreateQuestionGUI.setLocationRelativeTo(null);
+				CreateQuestionGUI.setVisible(true);
 			}
 		});
+		
 		
 		
 		this.getContentPane().add(scrollPaneEvents, null);

@@ -21,6 +21,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import domain.Account;
+import domain.Bet;
 import domain.Event;
 import domain.Question;
 import exceptions.EventFinished;
@@ -361,6 +362,15 @@ public class DataAccess {
 			db.remove(ev);
 			db.getTransaction().commit();
 			return ev;
+		}
+
+		public Bet createBet(float amount, Question question, Account account) {
+			
+			db.getTransaction().begin();
+			Bet b = new Bet(amount, question, account);
+			db.persist(b);
+			db.getTransaction().commit();
+			return b;
 		}
 
 }

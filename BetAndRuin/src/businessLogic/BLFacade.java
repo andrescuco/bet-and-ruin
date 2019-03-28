@@ -11,6 +11,7 @@ import java.util.Date;
 import domain.Question;
 import domain.Wallet;
 import domain.Account;
+import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -66,5 +67,8 @@ public interface BLFacade  {
 
 
 	@WebMethod Event deleteEvent(Event event);
+
+
+	@WebMethod public Bet placeBet(float amount, Question question);
 	
 }
