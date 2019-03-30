@@ -14,7 +14,7 @@ import domain.Account;
 import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
-import exceptions.InsuficientFunds;
+
 import exceptions.QuestionAlreadyExist;
 
 /**
@@ -164,7 +164,7 @@ public class BLFacadeImplementation  implements BLFacade {
     	return ev;
     }
     
-    @WebMethod
+ /*   @WebMethod
     public Bet placeBet(float amount, Question question) throws InsuficientFunds {
     	DataAccess dBManager = new DataAccess();
     	Account acc = getCurrentUser(); // Needs to update information
@@ -184,6 +184,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		currentUser = dBManager.findAccount(getCurrentUser().getUsername());
 	}
  
-
+*/
 }
 

@@ -307,19 +307,20 @@ public class DataAccess {
 
 	}
 	
-	public Account updateUsername(String username) {
-		Account a = null;
-		
+	public Boolean updateUsername(String username) {
+	
 		db.getTransaction().begin();
-		try {
-			TypedQuery<Account> q1 = db.createQuery("UPDATE a FROM Account WHERE username = \"" + username, Account.class);
-			a = q1.getSingleResult();
-			db.getTransaction().commit();
-		} catch (Exception e) {
-			return a;
-		}
-		return a;
+		TypedQuery<Account> q1 = db.createQuery("UPDATE a FROM Account WHERE username = \"" + username, Account.class);
+		db.persist(q1);
+		db.getTransaction().commit();
+		return true;
 	}
+		
+		
+			
+			
+		
+	
 	
 	public Boolean verifyAccount(String username, String password) {
 

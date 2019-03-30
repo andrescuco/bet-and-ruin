@@ -98,6 +98,7 @@ public class MainGUI extends JFrame {
 	private JPanel getJContentPane() {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
+			jContentPane.setBackground(Color.BLACK);
 			jContentPane.setLayout(new GridLayout(6, 1, 5, 5));
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getBoton3());
@@ -120,6 +121,8 @@ public class MainGUI extends JFrame {
 	private JButton getEventButton() {
 		if (jButtonCreateEvent == null) {
 			jButtonCreateEvent = new JButton();
+			jButtonCreateEvent.setBackground(Color.DARK_GRAY);
+			jButtonCreateEvent.setForeground(Color.ORANGE);
 			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -142,6 +145,8 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (jButtonCreateQuery == null) {
 			jButtonCreateQuery = new JButton();
+			jButtonCreateQuery.setBackground(Color.DARK_GRAY);
+			jButtonCreateQuery.setForeground(Color.ORANGE);
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -164,6 +169,8 @@ public class MainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
+			jButtonQueryQueries.setBackground(Color.DARK_GRAY);
+			jButtonQueryQueries.setForeground(Color.ORANGE);
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -181,7 +188,7 @@ public class MainGUI extends JFrame {
 		if (jLabelSelectOption == null) {
 			jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
-			jLabelSelectOption.setForeground(Color.BLACK);
+			jLabelSelectOption.setForeground(Color.ORANGE);
 			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		}
 		return jLabelSelectOption;
@@ -189,6 +196,8 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
 			rdbtnNewRadioButton = new JRadioButton("English");
+			rdbtnNewRadioButton.setBackground(Color.GRAY);
+			rdbtnNewRadioButton.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("en"));
@@ -202,6 +211,8 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_1() {
 		if (rdbtnNewRadioButton_1 == null) {
 			rdbtnNewRadioButton_1 = new JRadioButton("Euskara");
+			rdbtnNewRadioButton_1.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_1.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Locale.setDefault(new Locale("eus"));
@@ -215,6 +226,8 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_2() {
 		if (rdbtnNewRadioButton_2 == null) {
 			rdbtnNewRadioButton_2 = new JRadioButton("Castellano");
+			rdbtnNewRadioButton_2.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_2.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Locale.setDefault(new Locale("es"));
@@ -229,6 +242,7 @@ public class MainGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			panel.setBackground(Color.GRAY);
 			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 			flowLayout.setVgap(15);
 			flowLayout.setHgap(15);
@@ -259,9 +273,9 @@ public class MainGUI extends JFrame {
 					dispose();
 				}
 			});
-			lblAccountSettings.setBackground(Color.GRAY);
+			lblAccountSettings.setBackground(Color.BLACK);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
-			lblAccountSettings.setForeground(Color.BLACK);
+			lblAccountSettings.setForeground(Color.ORANGE);
 			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\user-3.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 			lblAccountSettings.setIcon(imageIcon);//$NON-NLS-1$ //$NON-NLS-2$

@@ -48,9 +48,10 @@ public class EditAccountGUI extends JFrame {
 	 */
 	public EditAccountGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		setBounds(100, 100, 536, 600);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.DARK_GRAY);
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
@@ -81,11 +82,7 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Usernamelbl, gbc_Usernamelbl);
 		
 		final JTextField Usernamefield = new JTextField(facade.getCurrentUser().getUsername());
-		Usernamefield.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Usernamefield.getText();
-			}
-		});
+		
 		Usernamefield.setEditable(true);
 		Usernamefield.setFont(new Font("Roboto", Font.PLAIN, 12));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -198,7 +195,7 @@ public class EditAccountGUI extends JFrame {
 		gbc_CreditValue.gridy = 14;
 		contentPane.add(CreditValue, gbc_CreditValue);
 		
-		JButton btnNewButton = new JButton("Finish");
+		JButton btnNewButton = new JButton(" Update and Finish");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				HomepageGUI back = new HomepageGUI();
