@@ -307,6 +307,20 @@ public class DataAccess {
 
 	}
 	
+	public Account updateUsername(String username) {
+		Account a = null;
+		
+		db.getTransaction().begin();
+		try {
+			TypedQuery<Account> q1 = db.createQuery("UPDATE a FROM Account WHERE username = \"" + username, Account.class);
+			a = q1.getSingleResult();
+			db.getTransaction().commit();
+		} catch (Exception e) {
+			return a;
+		}
+		return a;
+	}
+	
 	public Boolean verifyAccount(String username, String password) {
 
 		db.getTransaction().begin();
