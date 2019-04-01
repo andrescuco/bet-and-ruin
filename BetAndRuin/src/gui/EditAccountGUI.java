@@ -57,7 +57,7 @@ public class EditAccountGUI extends JFrame {
 	public EditAccountGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 578, 600);
+		setBounds(100, 100, 578, 621);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
