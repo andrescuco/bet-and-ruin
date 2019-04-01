@@ -60,6 +60,10 @@ public class Account {
 		return this.lastname;
 	}
 	
+	public String getGender() {
+		return this.gender;
+	}
+	
 	public int getAccountFunds() {
 		return this.walletFunds;
 	}

@@ -17,14 +17,22 @@ import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.JRadioButton;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class EditAccountGUI extends JFrame {
 
 	private JPanel contentPane;
+	private JComboBox GenderDB;
 
 	/**
 	 * Launch the application.
@@ -49,21 +57,58 @@ public class EditAccountGUI extends JFrame {
 	public EditAccountGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 536, 600);
+		setBounds(100, 100, 578, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{38, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
 		BLFacade facade=MainGUI.getBusinessLogic(); 
 		
-		JLabel titleNewLabel = new JLabel("Please, modify the fields and press Enter");
+		JLabel Genderlbl = new JLabel("Gender");
+		Genderlbl.setFont(new Font("Roboto", Font.PLAIN, 15));
+		Genderlbl.setForeground(Color.ORANGE);
+		GridBagConstraints gbc_Genderlbl = new GridBagConstraints();
+		gbc_Genderlbl.insets = new Insets(0, 0, 5, 5);
+		gbc_Genderlbl.gridx = 1;
+		gbc_Genderlbl.gridy = 14;
+		contentPane.add(Genderlbl, gbc_Genderlbl);
+		
+		GenderDB = new JComboBox();
+		GenderDB.addItem(facade.getCurrentUser().getGender());
+		if (facade.getCurrentUser().getGender().toString() != "female") 
+			GenderDB.addItem("female");
+		
+		GenderDB.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				GenderDB.getSelectedItem();
+			}
+		});
+	
+		
+		GridBagConstraints gbc_GenderDB = new GridBagConstraints();
+		gbc_GenderDB.insets = new Insets(0, 0, 5, 5);
+		gbc_GenderDB.fill = GridBagConstraints.HORIZONTAL;
+		gbc_GenderDB.gridx = 2;
+		gbc_GenderDB.gridy = 14;
+		contentPane.add(GenderDB, gbc_GenderDB);
+		
+		final JLabel WarningLabel = new JLabel("");
+		WarningLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+		WarningLabel.setForeground(Color.RED);
+		GridBagConstraints gbc_WarningLabel = new GridBagConstraints();
+		gbc_WarningLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_WarningLabel.gridx = 1;
+		gbc_WarningLabel.gridy = 19;
+		contentPane.add(WarningLabel, gbc_WarningLabel);
+		
+		JLabel titleNewLabel = new JLabel("Please, modify the fields and press Update button");
 		titleNewLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
 		titleNewLabel.setForeground(Color.ORANGE);
 		GridBagConstraints gbc_titleNewLabel = new GridBagConstraints();
@@ -82,6 +127,10 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Usernamelbl, gbc_Usernamelbl);
 		
 		final JTextField Usernamefield = new JTextField(facade.getCurrentUser().getUsername());
+		Usernamefield.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		
 		Usernamefield.setEditable(true);
 		Usernamefield.setFont(new Font("Roboto", Font.PLAIN, 12));
@@ -101,7 +150,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Passwordlbl.gridy = 4;
 		contentPane.add(Passwordlbl, gbc_Passwordlbl);
 		
-		JTextField PasswordDB = new JTextField(facade.getCurrentUser().getPassword());
+		final JTextField PasswordDB = new JTextField(facade.getCurrentUser().getPassword());
+		PasswordDB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		GridBagConstraints gbc_PasswordDB = new GridBagConstraints();
 		gbc_PasswordDB.fill = GridBagConstraints.BOTH;
 		gbc_PasswordDB.insets = new Insets(0, 0, 5, 5);
@@ -119,6 +174,11 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Birthdatelbl, gbc_Birthdatelbl);
 		
 		JTextField BirthdateDB = new JTextField(facade.getCurrentUser().getBirthdayDate());
+		BirthdateDB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		GridBagConstraints gbc_BirthdateDB = new GridBagConstraints();
 		gbc_BirthdateDB.fill = GridBagConstraints.BOTH;
 		gbc_BirthdateDB.insets = new Insets(0, 0, 5, 5);
@@ -135,7 +195,12 @@ public class EditAccountGUI extends JFrame {
 		gbc_EmailAddresslbl.gridy = 8;
 		contentPane.add(EmailAddresslbl, gbc_EmailAddresslbl);
 		
-		JTextField EmailAddressDB = new JTextField(facade.getCurrentUser().getAddressEmail());
+		final JTextField EmailAddressDB = new JTextField(facade.getCurrentUser().getAddressEmail());
+		EmailAddressDB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		GridBagConstraints gbc_EmailAddressDB = new GridBagConstraints();
 		gbc_EmailAddressDB.fill = GridBagConstraints.BOTH;
 		gbc_EmailAddressDB.insets = new Insets(0, 0, 5, 5);
@@ -152,7 +217,12 @@ public class EditAccountGUI extends JFrame {
 		gbc_Firstnamelbl.gridy = 10;
 		contentPane.add(Firstnamelbl, gbc_Firstnamelbl);
 		
-		JTextField FirstnameDB = new JTextField(facade.getCurrentUser().getFirstname());
+		final JTextField FirstnameDB = new JTextField(facade.getCurrentUser().getFirstname());
+		FirstnameDB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String fname = FirstnameDB.getText();
+			}
+		});
 		GridBagConstraints gbc_FirstnameDB = new GridBagConstraints();
 		gbc_FirstnameDB.fill = GridBagConstraints.BOTH;
 		gbc_FirstnameDB.insets = new Insets(0, 0, 5, 5);
@@ -169,7 +239,12 @@ public class EditAccountGUI extends JFrame {
 		gbc_Lastnamelbl.gridy = 12;
 		contentPane.add(Lastnamelbl, gbc_Lastnamelbl);
 		
-		JTextField LastnameDB = new JTextField(facade.getCurrentUser().getLastname());
+		final JTextField LastnameDB = new JTextField(facade.getCurrentUser().getLastname());
+		LastnameDB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String lname = LastnameDB.getText();
+			}
+		});
 		GridBagConstraints gbc_LastnameDB = new GridBagConstraints();
 		gbc_LastnameDB.fill = GridBagConstraints.BOTH;
 		gbc_LastnameDB.insets = new Insets(0, 0, 5, 5);
@@ -183,7 +258,7 @@ public class EditAccountGUI extends JFrame {
 		GridBagConstraints gbc_CreditLbl = new GridBagConstraints();
 		gbc_CreditLbl.insets = new Insets(0, 0, 5, 5);
 		gbc_CreditLbl.gridx = 1;
-		gbc_CreditLbl.gridy = 14;
+		gbc_CreditLbl.gridy = 16;
 		contentPane.add(CreditLbl, gbc_CreditLbl);
 		
 		JLabel CreditValue = new JLabel(facade.getCurrentUser().getAccountFunds()+ " Betcoins");
@@ -192,22 +267,43 @@ public class EditAccountGUI extends JFrame {
 		GridBagConstraints gbc_CreditValue = new GridBagConstraints();
 		gbc_CreditValue.insets = new Insets(0, 0, 5, 5);
 		gbc_CreditValue.gridx = 2;
-		gbc_CreditValue.gridy = 14;
+		gbc_CreditValue.gridy = 16;
 		contentPane.add(CreditValue, gbc_CreditValue);
 		
-		JButton btnNewButton = new JButton(" Update and Finish");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton FinishButton = new JButton(" Update and Finish");
+		FinishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				BLFacade facade=MainGUI.getBusinessLogic();
+				
+				if (Usernamefield.getText() != facade.getCurrentUser().getUsername())
+					facade.UpdateUsername(Usernamefield.getText());
+				if (FirstnameDB.getText() != facade.getCurrentUser().getPassword())
+					facade.UpdateFirstname(FirstnameDB.getText());
+				if (LastnameDB.getText() != facade.getCurrentUser().getLastname())
+					facade.UpdateLastname(LastnameDB.getText());
+				if (PasswordDB.getText() != facade.getCurrentUser().getPassword())
+					facade.UpdatePassword(PasswordDB.getText());
+				if (EmailAddressDB.getText() != facade.getCurrentUser().getUsername())
+					facade.UpdateEmailAddress(EmailAddressDB.getText());
+				if(GenderDB.getSelectedItem() != facade.getCurrentUser().getGender().toString())
+					facade.UpdateGender(GenderDB.getSelectedItem().toString());
+				
+				System.out.println("Information Updated");
+				WarningLabel.setForeground(Color.GREEN);
+				WarningLabel.setText("Changed Saved");
 				HomepageGUI back = new HomepageGUI();
 				back.setVisible(true);
 				dispose();
+				
 			}
 		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 16;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
+				
+		GridBagConstraints gbc_FinishButton = new GridBagConstraints();
+		gbc_FinishButton.insets = new Insets(0, 0, 5, 5);
+		gbc_FinishButton.gridx = 1;
+		gbc_FinishButton.gridy = 18;
+		contentPane.add(FinishButton, gbc_FinishButton);
 		
 		JButton btnGetMoreCoins = new JButton("Get more coins");
 		btnGetMoreCoins.addActionListener(new ActionListener() {
@@ -220,8 +316,10 @@ public class EditAccountGUI extends JFrame {
 		GridBagConstraints gbc_btnGetMoreCoins = new GridBagConstraints();
 		gbc_btnGetMoreCoins.insets = new Insets(0, 0, 5, 5);
 		gbc_btnGetMoreCoins.gridx = 2;
-		gbc_btnGetMoreCoins.gridy = 16;
+		gbc_btnGetMoreCoins.gridy = 18;
 		contentPane.add(btnGetMoreCoins, gbc_btnGetMoreCoins);
+		
+		
 	}
 
 }

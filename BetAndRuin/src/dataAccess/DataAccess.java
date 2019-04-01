@@ -308,16 +308,45 @@ public class DataAccess {
 	}
 	
 	public Boolean updateUsername(String username) {
-	
+		boolean user = false;
 		db.getTransaction().begin();
-		TypedQuery<Account> q1 = db.createQuery("UPDATE a FROM Account WHERE username = \"" + username, Account.class);
-		db.persist(q1);
+		Query q1 = db.createQuery("UPDATE Account SET username = \"" + username);
+		q1.executeUpdate();
 		db.getTransaction().commit();
-		return true;
+		user = true;
+		return user;
 	}
 		
+	public Boolean updatePassword(String password) {
+		boolean user = false;
+		db.getTransaction().begin();
+		Query q1 = db.createQuery("UPDATE Account SET password = \"" + password);
+		q1.executeUpdate();
+		db.getTransaction().commit();
+		user = true;
+		return user;
+	}
+	
+	public boolean updateEmailAddress(String email) {
+		boolean user = false;
+		db.getTransaction().begin();
+		Query q1 = db.createQuery("UPDATE Account SET email = \"" + email);
+		q1.executeUpdate();
+		db.getTransaction().commit();
+		user = true;
+		return user;
+	}
+	
+	public boolean updateGender(String gender) {
+		boolean user = false;
+		db.getTransaction().begin();
+		Query q1 = db.createQuery("UPDATE Account SET gender = \"" + gender);
+		q1.executeUpdate();
+		db.getTransaction().commit();
+		user = true;
+		return user;
 		
-			
+	}
 			
 		
 	

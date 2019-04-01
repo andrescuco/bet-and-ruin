@@ -114,6 +114,20 @@ public class BLFacadeImplementation  implements BLFacade {
 		return created;
 	} 
     
+    @WebMethod public boolean UpdateUsername(String username) {
+    	DataAccess dBManager = new DataAccess();
+    	boolean update1 = dBManager.updateUsername(username);
+    	dBManager.close();
+    	return update1;
+    }
+    
+    @WebMethod public Boolean UpdatePassword(String password) {
+    	DataAccess dBManager = new DataAccess();
+    	boolean update2 = dBManager.updatePassword(password);
+    	dBManager.close();
+    	return update2;
+    }
+    
     @WebMethod	
 	 public boolean UsernameAvailable(String username){
 		DataAccess dBManager=new DataAccess();
@@ -121,6 +135,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 		return !notAvailable;
 	}
+    
+    @WebMethod
+    public boolean UpdateEmailAddress(String email) {
+    	DataAccess dBManager = new DataAccess();
+    	boolean update3 = dBManager.updatePassword(email);
+    	dBManager.close();
+    	return update3;
+    }
     
     @Override
 	public boolean isValidUser(String username, String password) {
@@ -163,6 +185,24 @@ public class BLFacadeImplementation  implements BLFacade {
     	Event ev = dBManager.deleteEvent(event);
     	return ev;
     }
+
+	@Override
+	public boolean UpdateFirstname(String firstname) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean UpdateLastname(String lastname) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean UpdateGender(String gender) {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
  /*   @WebMethod
     public Bet placeBet(float amount, Question question) throws InsuficientFunds {
