@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import businessLogic.BLFacade;
+
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -80,12 +83,10 @@ public class HomepageGUI {
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-			MainGUI guest = new MainGUI();
-			guest.setLocationRelativeTo(null);
-			guest.setVisible(true);
-			frame.dispose();
-								
-			//add code 
+				MainGuestGUI guest = new MainGuestGUI();
+				guest.setLocationRelativeTo(null);
+				guest.setVisible(true);
+				frame.dispose();
 			}
 			});
 		

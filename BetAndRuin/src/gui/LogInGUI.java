@@ -93,6 +93,7 @@ public class LogInGUI extends JFrame {
 				}
 				else {
 					if (facade.isValidUser(username, password)) {
+						System.out.print(facade.getCurrentUser() == null);
 						MainGUI enter = new MainGUI(); /* OPENING THE MAIN GUI*/
 						enter.setLocationRelativeTo(null);
 						enter.setVisible(true);

@@ -262,7 +262,10 @@ public class MainGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
+	//If user is logged, show account settings button, if guest show login button
+	
 	private JButton getLblAccountSettings() {
+		
 		if (lblAccountSettings == null) {
 			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 			lblAccountSettings.addActionListener(new ActionListener() {
@@ -273,6 +276,23 @@ public class MainGUI extends JFrame {
 					dispose();
 				}
 			});
+		
+		/*if (facade.getCurrentUser() == null) {
+			
+			if (lblAccountSettings == null) {
+				lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
+				lblAccountSettings.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						EditAccountGUI EditAccountGUI = new EditAccountGUI();
+						EditAccountGUI.setLocationRelativeTo(null);
+						EditAccountGUI.setVisible(true);
+						dispose();
+					}
+				});
+		} else {
+			System.out.print(facade.getCurrentUser());
+		}*/
+
 			lblAccountSettings.setBackground(Color.BLACK);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
 			lblAccountSettings.setForeground(Color.ORANGE);

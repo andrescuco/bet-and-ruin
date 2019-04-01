@@ -135,7 +135,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
     
     public Account getCurrentUser() {
-    	return currentUser;
+    		return currentUser;
     }
     
     public boolean checkPassword(Account a, String password) {
