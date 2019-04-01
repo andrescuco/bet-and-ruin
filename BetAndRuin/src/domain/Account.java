@@ -13,17 +13,18 @@ public class Account {
 	private int walletFunds;
 	@Id
 	private String username;
-	
+
 	private String password;
-	
+
 	private String gender;
-	
-	//For testing purpose
-	/*public Account(String uname, String passw) {
-		username = uname;
-		password = passw;
-	}*/
-	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, int funds, Boolean logged, Boolean admin) {
+
+	// For testing purpose
+	/*
+	 * public Account(String uname, String passw) { username = uname; password =
+	 * passw; }
+	 */
+	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, int funds,
+			Boolean logged, Boolean admin) {
 		firstname = fname;
 		lastname = lname;
 		email = em;
@@ -35,57 +36,54 @@ public class Account {
 		isLogged = logged;
 		isAdmin = admin;
 	}
-	
+
 	public String getPassword() {
 		return this.password;
 	}
-	
+
 	public String getUsername() {
 		return this.username;
 	}
-	
+
 	public String getAddressEmail() {
 		return this.email;
 	}
-	
+
 	public String getBirthdayDate() {
 		return this.date;
 	}
-	
+
 	public String getFirstname() {
 		return this.firstname;
 	}
-	
+
 	public String getLastname() {
 		return this.lastname;
 	}
-	
+
 	public String getGender() {
 		return this.gender;
 	}
-	
+
 	public int getAccountFunds() {
 		return this.walletFunds;
 	}
-	
+
 	public Boolean isAdmin() {
 		return this.isAdmin;
 	}
-	
+
 	public Boolean getLoginStatus() {
 		return this.isLogged;
 	}
-	
+
 	public void changeToLogout() {
 		isLogged = false;
 	}
 
 	public void setWalletFunds(float funds) {
 		walletFunds = (int) funds;
-		
-	}
-	
-	
 
+	}
 
 }
