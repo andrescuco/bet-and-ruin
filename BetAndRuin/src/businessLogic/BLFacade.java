@@ -66,6 +66,7 @@ public interface BLFacade  {
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
 	@WebMethod	public Account getCurrentUser();
+	@WebMethod	public boolean deleteCurrentUser();
 	
 
 

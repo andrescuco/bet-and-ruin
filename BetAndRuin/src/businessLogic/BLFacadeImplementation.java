@@ -146,6 +146,11 @@ public class BLFacadeImplementation  implements BLFacade {
     	return currentUser;
     }
     
+    public boolean deleteCurrentUser() {
+    	currentUser = null;
+    	return true;
+    }
+    
     public boolean checkPassword(Account a, String password) {
     	if (a.getPassword().equals(password)) {
     		currentUser = a;

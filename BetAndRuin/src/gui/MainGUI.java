@@ -85,7 +85,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(495, 290);
+		this.setSize(534, 376);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -264,10 +264,10 @@ public class MainGUI extends JFrame {
 	
 	//If user is logged, show account settings button, if guest show login button
 	
-	private JButton getLblAccountSettings() {
+	private JButton getLblAccountSettings() {	
 		
 		if (lblAccountSettings == null) {
-			lblAccountSettings = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Account"));
+			lblAccountSettings = new JButton("Account Settings");
 			lblAccountSettings.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					EditAccountGUI EditAccountGUI = new EditAccountGUI();

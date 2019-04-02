@@ -67,17 +67,17 @@ public class EditAccountGUI extends JFrame {
 	public EditAccountGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 578, 621);
+		setBounds(100, 100, 595, 676);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 38, 0, 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		final BLFacade facade = MainGUI.getBusinessLogic();
@@ -113,7 +113,7 @@ public class EditAccountGUI extends JFrame {
 		WarningLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		WarningLabel.setForeground(Color.RED);
 		GridBagConstraints gbc_WarningLabel = new GridBagConstraints();
-		gbc_WarningLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_WarningLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_WarningLabel.gridx = 1;
 		gbc_WarningLabel.gridy = 19;
 		contentPane.add(WarningLabel, gbc_WarningLabel);
@@ -350,6 +350,23 @@ public class EditAccountGUI extends JFrame {
 		gbc_btnGetMoreCoins.gridx = 2;
 		gbc_btnGetMoreCoins.gridy = 18;
 		contentPane.add(btnGetMoreCoins, gbc_btnGetMoreCoins);
+		
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.deleteCurrentUser();
+				System.out.print(facade.getCurrentUser());
+				HomepageGUI home = new HomepageGUI();
+				home.setVisible(true);
+				dispose();
+			}
+		});
+		GridBagConstraints gbc_btnLogOut = new GridBagConstraints();
+		gbc_btnLogOut.insets = new Insets(0, 0, 0, 5);
+		gbc_btnLogOut.gridx = 1;
+		gbc_btnLogOut.gridy = 20;
+		contentPane.add(btnLogOut, gbc_btnLogOut);
 
 	}
 
