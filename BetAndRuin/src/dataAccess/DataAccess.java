@@ -307,45 +307,77 @@ public class DataAccess {
 
 	}
 	
-	public Boolean updateUsername(String username) {
+	public Boolean updateUsername(String username, String usernamedefault) {
 		boolean user = false;
 		db.getTransaction().begin();
-		Query q1 = db.createQuery("UPDATE Account SET username = \"" + username);
+		Query q1 = db.createQuery("UPDATE Account SET username = \"" + username + "\" WHERE username = \"" + usernamedefault);
 		q1.executeUpdate();
 		db.getTransaction().commit();
 		user = true;
 		return user;
 	}
 		
-	public Boolean updatePassword(String password) {
+	public Boolean updatePassword(String password, String username) {
 		boolean user = false;
 		db.getTransaction().begin();
-		Query q1 = db.createQuery("UPDATE Account SET password = \"" + password);
+		Query q1 = db.createQuery("UPDATE Account SET password = \"" + password + "\" WHERE username = \"" + username);
 		q1.executeUpdate();
 		db.getTransaction().commit();
 		user = true;
 		return user;
 	}
 	
-	public boolean updateEmailAddress(String email) {
+	public boolean updateEmailAddress(String email, String username) {
 		boolean user = false;
 		db.getTransaction().begin();
-		Query q1 = db.createQuery("UPDATE Account SET email = \"" + email);
+		Query q1 = db.createQuery("UPDATE Account SET email = \"" + email + "\" WHERE username = \"" + username);
 		q1.executeUpdate();
 		db.getTransaction().commit();
 		user = true;
 		return user;
 	}
 	
-	public boolean updateGender(String gender) {
+	public boolean updateGender(String gender, String username) {
 		boolean user = false;
 		db.getTransaction().begin();
-		Query q1 = db.createQuery("UPDATE Account SET gender = \"" + gender);
+		Query q1 = db.createQuery("UPDATE Account SET gender = \"" + gender + "\" WHERE username = \"" + username);
 		q1.executeUpdate();
 		db.getTransaction().commit();
 		user = true;
 		return user;
-		
+
+	}
+
+	public boolean updateFirstname(String firstname, String username) {
+
+		db.getTransaction().begin();
+		Boolean user = false;
+
+		Query q2 = db
+				.createQuery("UPDATE Account SET firstname = \"" + firstname + "\" WHERE username = \"" + username);
+
+		q2.executeUpdate();
+		db.getTransaction().commit();
+
+		user = true;
+
+		return user;
+	}
+	
+	public boolean updateLastname(String lastname, String username) {
+
+		db.getTransaction().begin();
+		Boolean user = false;
+
+		Query q2 = db
+				.createQuery("UPDATE Account SET lastname = \"" + lastname + "\" WHERE username = \"" + username);
+
+		q2.executeUpdate();
+		db.getTransaction().commit();
+
+		user = true;
+
+		return user;
 	}
 			
 		

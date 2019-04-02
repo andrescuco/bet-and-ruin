@@ -59,12 +59,9 @@ public interface BLFacade  {
 	//@WebMethod public boolean Register(String username, String password);
 	@WebMethod public boolean Register(String fname, String lname, String em, String d, String uname, String passw, String gender, int funds);
 	@WebMethod	public boolean UsernameAvailable(String username);
-	@WebMethod public  boolean UpdateUsername(String username);
-	@WebMethod public Boolean UpdatePassword(String password);
-	@WebMethod public boolean UpdateEmailAddress(String email);
-	@WebMethod public boolean UpdateFirstname(String firstname);
-	@WebMethod public boolean UpdateLastname(String lastname);
-	  @WebMethod public boolean UpdateGender(String gender);
+
+	
+	 
 	@WebMethod Event createEvent(Date date, String inputQuery);
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
@@ -74,6 +71,33 @@ public interface BLFacade  {
 
 	@WebMethod Event deleteEvent(Event event);
 
+
+
+
+	
+
+
+	
+
+	boolean UpdateFirstname(String firstname, String username);
+
+
+	boolean UpdateLastname(String lastname, String username);
+
+
+	boolean UpdateEmailAddress(String email, String username);
+
+
+	boolean UpdateUsername(String username, String usernamedefault);
+
+
+	Boolean UpdatePassword(String password, String username);
+
+
+	boolean UpdateGender(String gender, String username);
+
+
+	
 
 	//@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds;
 	

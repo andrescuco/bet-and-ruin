@@ -12,6 +12,8 @@ import domain.Account;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
@@ -25,9 +27,17 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JRadioButton;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class EditAccountGUI extends JFrame {
 
@@ -70,7 +80,7 @@ public class EditAccountGUI extends JFrame {
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		BLFacade facade = MainGUI.getBusinessLogic();
+		final BLFacade facade = MainGUI.getBusinessLogic();
 
 		JLabel Genderlbl = new JLabel("Gender");
 		Genderlbl.setFont(new Font("Roboto", Font.PLAIN, 15));
@@ -127,12 +137,16 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Usernamelbl, gbc_Usernamelbl);
 
 		final JTextField Usernamefield = new JTextField(facade.getCurrentUser().getUsername());
-		Usernamefield.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		Usernamefield.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Component frame = null;
+				JOptionPane.showMessageDialog(frame,
+					    "Not editable because it is a primary key");
 			}
 		});
-
-		Usernamefield.setEditable(true);
+		
+		Usernamefield.setEditable(false);
 		Usernamefield.setFont(new Font("Roboto", Font.PLAIN, 12));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -150,12 +164,19 @@ public class EditAccountGUI extends JFrame {
 		gbc_Passwordlbl.gridy = 4;
 		contentPane.add(Passwordlbl, gbc_Passwordlbl);
 
+		
 		final JTextField PasswordDB = new JTextField(facade.getCurrentUser().getPassword());
-		PasswordDB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
+		PasswordDB.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				
+				if (PasswordDB.getText().length() < 4) 
+					WarningLabel.setText("Password should be at least 5 characters long");
+				else
+					WarningLabel.setText("");
 			}
 		});
+		
 		GridBagConstraints gbc_PasswordDB = new GridBagConstraints();
 		gbc_PasswordDB.fill = GridBagConstraints.BOTH;
 		gbc_PasswordDB.insets = new Insets(0, 0, 5, 5);
@@ -217,11 +238,11 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Firstnamelbl, gbc_Firstnamelbl);
 
 		final JTextField FirstnameDB = new JTextField(facade.getCurrentUser().getFirstname());
-		FirstnameDB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String fname = FirstnameDB.getText();
-			}
+		FirstnameDB.addFocusListener(new FocusAdapter() {
+			
 		});
+		
+		
 		GridBagConstraints gbc_FirstnameDB = new GridBagConstraints();
 		gbc_FirstnameDB.fill = GridBagConstraints.BOTH;
 		gbc_FirstnameDB.insets = new Insets(0, 0, 5, 5);
@@ -272,21 +293,32 @@ public class EditAccountGUI extends JFrame {
 		JButton FinishButton = new JButton(" Update and Finish");
 		FinishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				
+				
 				BLFacade facade = MainGUI.getBusinessLogic();
-
-				if (Usernamefield.getText() != facade.getCurrentUser().getUsername())
-					facade.UpdateUsername(Usernamefield.getText());
-				if (FirstnameDB.getText() != facade.getCurrentUser().getPassword())
-					facade.UpdateFirstname(FirstnameDB.getText());
-				if (LastnameDB.getText() != facade.getCurrentUser().getLastname())
-					facade.UpdateLastname(LastnameDB.getText());
-				if (PasswordDB.getText() != facade.getCurrentUser().getPassword())
-					facade.UpdatePassword(PasswordDB.getText());
-				if (EmailAddressDB.getText() != facade.getCurrentUser().getUsername())
-					facade.UpdateEmailAddress(EmailAddressDB.getText());
-				if (GenderDB.getSelectedItem() != facade.getCurrentUser().getGender().toString())
-					facade.UpdateGender(GenderDB.getSelectedItem().toString());
+				Account a = facade.getCurrentUser();
+				/*if (Usernamefield.getText() != facade.getCurrentUser().getUsername()) {
+					facade.UpdateUsername(Usernamefield.getText(), a.getUsername());              THIS IS JUST IN CASE BUT NOT USED BECAUSE USERNAME IS PRIMARY KEY AND CANNOT BE OVERWRITTEN
+				}
+				*/
+				if (FirstnameDB.getText() != facade.getCurrentUser().getFirstname()) {
+					 facade.UpdateFirstname(FirstnameDB.getText(), a.getUsername());
+				 }
+				
+				 if (LastnameDB.getText() != facade.getCurrentUser().getLastname()) {
+					facade.UpdateLastname(LastnameDB.getText(), a.getUsername());
+				 }
+				
+				if (PasswordDB.getText() != facade.getCurrentUser().getPassword()) {
+					facade.UpdatePassword(PasswordDB.getText(), a.getUsername());
+				}
+				
+				 if (EmailAddressDB.getText() != facade.getCurrentUser().getAddressEmail()) {
+					facade.UpdateEmailAddress(EmailAddressDB.getText(), a.getUsername());
+				 }
+					
+				 if (GenderDB.getSelectedItem() != facade.getCurrentUser().getGender().toString())
+					facade.UpdateGender(GenderDB.getSelectedItem().toString(), a.getUsername());
 
 				System.out.println("Information Updated");
 				WarningLabel.setForeground(Color.GREEN);
@@ -296,6 +328,7 @@ public class EditAccountGUI extends JFrame {
 				dispose();
 
 			}
+			
 		});
 
 		GridBagConstraints gbc_FinishButton = new GridBagConstraints();

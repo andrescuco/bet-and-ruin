@@ -114,19 +114,9 @@ public class BLFacadeImplementation  implements BLFacade {
 		return created;
 	} 
     
-    @WebMethod public boolean UpdateUsername(String username) {
-    	DataAccess dBManager = new DataAccess();
-    	boolean update1 = dBManager.updateUsername(username);
-    	dBManager.close();
-    	return update1;
-    }
+   
     
-    @WebMethod public Boolean UpdatePassword(String password) {
-    	DataAccess dBManager = new DataAccess();
-    	boolean update2 = dBManager.updatePassword(password);
-    	dBManager.close();
-    	return update2;
-    }
+  
     
     @WebMethod	
 	 public boolean UsernameAvailable(String username){
@@ -136,13 +126,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		return !notAvailable;
 	}
     
-    @WebMethod
-    public boolean UpdateEmailAddress(String email) {
-    	DataAccess dBManager = new DataAccess();
-    	boolean update3 = dBManager.updatePassword(email);
-    	dBManager.close();
-    	return update3;
-    }
+ 
     
     @Override
 	public boolean isValidUser(String username, String password) {
@@ -163,7 +147,7 @@ public class BLFacadeImplementation  implements BLFacade {
     public boolean checkPassword(Account a, String password) {
     	if (a.getPassword().equals(password)) {
     		currentUser = a;
-    		System.out.print("blabla" + currentUser);
+    		System.out.print("The user is " + currentUser);
     		return true;
     	} else {
     		return false;
@@ -171,14 +155,7 @@ public class BLFacadeImplementation  implements BLFacade {
     	
     }
     
-    @WebMethod
-    public String RetrieveUsername(String username) {
-    	DataAccess dBManager = new DataAccess();
-    	String getUsername = dBManager.getUsername(username);
-    	dBManager.close();
-    	return getUsername;
-    }
-    
+  
     @WebMethod
 	public Event deleteEvent(Event event) {
     	DataAccess dBManager = new DataAccess();
@@ -187,21 +164,56 @@ public class BLFacadeImplementation  implements BLFacade {
     }
 
 	@Override
-	public boolean UpdateFirstname(String firstname) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean UpdateFirstname(String firstname, String username) {
+		DataAccess dBManager = new DataAccess();
+    	boolean update2 = dBManager.updateFirstname(firstname, username);
+    	dBManager.close();
+    	return update2;
+		
 	}
 
 	@Override
-	public boolean UpdateLastname(String lastname) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean UpdateLastname(String lastname, String username) {
+		DataAccess dBManager = new DataAccess();
+    	boolean update3 = dBManager.updateLastname(lastname, username);
+    	dBManager.close();
+    	return update3;
 	}
 
 	@Override
-	public boolean UpdateGender(String gender) {
+	public boolean UpdateGender(String gender, String username) {
 		// TODO Auto-generated method stub
-		return false;
+		DataAccess dBManager = new DataAccess();
+    	boolean update6 = dBManager.updateGender(gender, username);
+    	dBManager.close();
+    	return update6;
+	}
+
+	@Override
+	public boolean UpdateUsername(String username, String usernamedefault) {
+		// TODO Auto-generated method stub
+		DataAccess dBManager = new DataAccess();
+    	boolean update1 = dBManager.updateUsername(username, usernamedefault);
+    	dBManager.close();
+    	return update1;
+	}
+
+	@Override
+	public Boolean UpdatePassword(String password, String username) {
+		// TODO Auto-generated method stub
+		DataAccess dBManager = new DataAccess();
+    	boolean update5 = dBManager.updatePassword(password, username);
+    	dBManager.close();
+    	return update5;
+	}
+
+	@Override
+	public boolean UpdateEmailAddress(String email, String username) {
+		// TODO Auto-generated method stub
+		DataAccess dBManager = new DataAccess();
+    	boolean update4 = dBManager.updateEmailAddress(email, username);
+    	dBManager.close();
+    	return update4;
 	}
     
  /*   @WebMethod
