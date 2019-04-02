@@ -110,6 +110,8 @@ public class BLFacadeImplementation  implements BLFacade {
 	 public boolean Register(String fname, String lname, String em, String d, String uname, String passw, String gender, int funds){
 		DataAccess dBManager=new DataAccess();
 		boolean created = dBManager.createAccount(fname,lname,em,d,uname, passw, gender, funds);
+		// Sets current user when registering a new account
+		currentUser = dBManager.findAccount(uname);;
 		dBManager.close();
 		return created;
 	} 

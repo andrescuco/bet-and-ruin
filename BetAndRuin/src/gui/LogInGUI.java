@@ -76,12 +76,12 @@ public class LogInGUI extends JFrame {
 		final JLabel label = new JLabel("");
 		label.setBounds(77, 274, 0, 0);
 		
-		JButton btnNewButton = new JButton("Log In\r\n");
-		btnNewButton.setBackground(new Color(255, 215, 0));
-		btnNewButton.setBounds(77, 210, 133, 41);
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
+		JButton btnLogIn = new JButton("Log In\r\n");
+		btnLogIn.setBackground(new Color(255, 215, 0));
+		btnLogIn.setBounds(77, 210, 133, 41);
+		btnLogIn.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String username = textField.getText();
 				String password = new String(passwordField.getPassword());
@@ -137,7 +137,7 @@ public class LogInGUI extends JFrame {
 		contentPane.add(lblPassword);
 		contentPane.add(passwordField);
 		contentPane.add(textField);
-		contentPane.add(btnNewButton);
+		contentPane.add(btnLogIn);
 		contentPane.add(label);
 		contentPane.add(btnReturn);
 		contentPane.add(lblPleaseLogIn);

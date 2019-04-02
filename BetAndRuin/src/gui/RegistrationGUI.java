@@ -279,7 +279,7 @@ public class RegistrationGUI extends JFrame  {
 					System.out.println("registration successful");
 					long start = System.currentTimeMillis(); /* 3 SECONDS TIMER*/
 					try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
