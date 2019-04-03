@@ -14,7 +14,7 @@ import domain.Account;
 import domain.Bet;
 import domain.Event;
 import exceptions.EventFinished;
-
+import exceptions.InsuficientFunds;
 import exceptions.QuestionAlreadyExist;
 
 import javax.jws.WebMethod;
@@ -100,6 +100,6 @@ public interface BLFacade  {
 
 	
 
-	//@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds;
+	@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds;
 	
 }

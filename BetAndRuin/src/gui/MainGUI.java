@@ -24,7 +24,6 @@ import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import com.objectdb.o.BTS;
