@@ -26,6 +26,9 @@ import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.GroupLayout.Alignment;
+
+import com.objectdb.o.BTS;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -93,7 +96,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(534, 322);
+		this.setSize(534, 420);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -180,9 +183,11 @@ public class MainGUI extends JFrame {
 	private JButton getEventButton() {
 		if (jButtonCreateEvent == null) {
 			jButtonCreateEvent = new JButton();
-			jButtonCreateEvent.setBackground(Color.DARK_GRAY);
+			jButtonCreateEvent.setBackground(Color.WHITE);
 			jButtonCreateEvent.setForeground(Color.BLACK);
 			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\type.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			jButtonCreateEvent.setIcon(imageIcon);
 			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
@@ -207,6 +212,8 @@ public class MainGUI extends JFrame {
 			jButtonCreateQuery.setBackground(Color.WHITE);
 			jButtonCreateQuery.setForeground(Color.BLACK);
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\question.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			jButtonCreateQuery.setIcon(imageIcon);
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					BLFacade facade=MainGUI.getBusinessLogic();
@@ -228,9 +235,11 @@ public class MainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
-			jButtonQueryQueries.setBackground(Color.DARK_GRAY);
+			jButtonQueryQueries.setBackground(Color.WHITE);
 			jButtonQueryQueries.setForeground(Color.BLACK);
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\download.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			jButtonQueryQueries.setIcon(imageIcon);
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					JFrame FindQuestionsGUI = new FindQuestionsGUI();
@@ -316,6 +325,7 @@ public class MainGUI extends JFrame {
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		lblAccountSettings.setText(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 		jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
+		btnBetHistorywButton.setText(ResourceBundle.getBundle("Etiquetas").getString("BettingHistory"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
@@ -356,7 +366,7 @@ public class MainGUI extends JFrame {
 			System.out.print(facade.getCurrentUser());
 		}*/
 
-			lblAccountSettings.setBackground(Color.BLACK);
+			lblAccountSettings.setBackground(Color.WHITE);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
 			lblAccountSettings.setForeground(Color.BLACK);
 			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
@@ -370,7 +380,9 @@ public class MainGUI extends JFrame {
 		
 	private JButton getBtnBetHistorywButton() {
 		if (btnBetHistorywButton == null) {
-			btnBetHistorywButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text"));
+			btnBetHistorywButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BettingHistory"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\betting_3.jpg").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			btnBetHistorywButton.setIcon(imageIcon);
 			btnBetHistorywButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					BettingHistoryGUI enter = new BettingHistoryGUI();
