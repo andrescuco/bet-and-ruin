@@ -10,6 +10,7 @@ public class Bet {
 	@Id @GeneratedValue
 	private int betNumber;
 	private float betAmount;
+	private boolean isFinished;
 	private Account account;
 	private Question question;
 	
@@ -21,6 +22,10 @@ public class Bet {
 
 	public float getBetAmount() {
 		return betAmount;
+	}
+	
+	public Boolean isBetFinished() {
+		return this.isFinished;
 	}
 	
 }

@@ -14,6 +14,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import businessLogic.BLFacade;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -24,6 +26,7 @@ import java.net.URL;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.JRadioButton;
@@ -161,12 +164,15 @@ public class WalletGUI extends JFrame {
 				boolean isPaypalSelected = PaypalButt.isSelected();
 				 
 				if (isPaypalSelected) {
-				 
-				    // the Paypal option is selected
+				 Component frame = null;
+					JOptionPane.showMessageDialog(frame,
+						    "Paypal payment will be soon implemented, we are sorry for the inconvenience",
+						    "Whooops",
+						    JOptionPane.WARNING_MESSAGE);// the Paypal option is selected
 				 
 				} else {
 				 
-				    // the Visa/mastercard option is deselected
+				    // the Visa/mastercard option is selected
 				 
 				}
 			}

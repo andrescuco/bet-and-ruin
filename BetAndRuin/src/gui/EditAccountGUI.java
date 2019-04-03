@@ -54,6 +54,7 @@ public class EditAccountGUI extends JFrame {
 					EditAccountGUI frame = new EditAccountGUI();
 					frame.setVisible(true);
 					frame.setTitle("My Information");
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

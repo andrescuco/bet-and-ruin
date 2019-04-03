@@ -24,6 +24,12 @@ import java.util.Vector;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import net.miginfocom.swing.MigLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.CardLayout;
 
 
 public class MainGUI extends JFrame {
@@ -52,6 +58,8 @@ public class MainGUI extends JFrame {
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton lblAccountSettings;
+	private JButton btnBetHistorywButton;
+	
 	
 	/**
 	 * This is the default constructor
@@ -85,7 +93,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(534, 376);
+		this.setSize(534, 322);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -99,13 +107,64 @@ public class MainGUI extends JFrame {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
 			jContentPane.setBackground(Color.BLACK);
-			jContentPane.setLayout(new GridLayout(6, 1, 5, 5));
-			jContentPane.add(getLblNewLabel());
-			jContentPane.add(getBoton3());
-			jContentPane.add(getBoton2());
-			jContentPane.add(getEventButton());
-			jContentPane.add(getLblAccountSettings());
-			jContentPane.add(getPanel());
+			GridBagLayout gbl_jContentPane = new GridBagLayout();
+			gbl_jContentPane.columnWidths = new int[]{173, 140, 205, 0};
+			gbl_jContentPane.rowHeights = new int[]{42, 46, 43, 45, 0, 40, 0, 0};
+			gbl_jContentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_jContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			jContentPane.setLayout(gbl_jContentPane);
+			GridBagConstraints gbc_jLabelSelectOption = new GridBagConstraints();
+			gbc_jLabelSelectOption.gridwidth = 3;
+			gbc_jLabelSelectOption.insets = new Insets(0, 0, 5, 0);
+			gbc_jLabelSelectOption.anchor = GridBagConstraints.WEST;
+			gbc_jLabelSelectOption.fill = GridBagConstraints.BOTH;
+			gbc_jLabelSelectOption.gridx = 0;
+			gbc_jLabelSelectOption.gridy = 0;
+			jContentPane.add(getLblNewLabel(), gbc_jLabelSelectOption);
+			GridBagConstraints gbc_jButtonCreateQuery = new GridBagConstraints();
+			gbc_jButtonCreateQuery.gridwidth = 3;
+			gbc_jButtonCreateQuery.anchor = GridBagConstraints.WEST;
+			gbc_jButtonCreateQuery.fill = GridBagConstraints.BOTH;
+			gbc_jButtonCreateQuery.insets = new Insets(0, 0, 5, 0);
+			gbc_jButtonCreateQuery.gridx = 0;
+			gbc_jButtonCreateQuery.gridy = 1;
+			jContentPane.add(getBoton2(), gbc_jButtonCreateQuery);
+			GridBagConstraints gbc_jButtonCreateEvent = new GridBagConstraints();
+			gbc_jButtonCreateEvent.gridwidth = 3;
+			gbc_jButtonCreateEvent.anchor = GridBagConstraints.WEST;
+			gbc_jButtonCreateEvent.fill = GridBagConstraints.BOTH;
+			gbc_jButtonCreateEvent.insets = new Insets(0, 0, 5, 0);
+			gbc_jButtonCreateEvent.gridx = 0;
+			gbc_jButtonCreateEvent.gridy = 2;
+			jContentPane.add(getEventButton(), gbc_jButtonCreateEvent);
+			GridBagConstraints gbc_jButtonQueryQueries = new GridBagConstraints();
+			gbc_jButtonQueryQueries.gridwidth = 3;
+			gbc_jButtonQueryQueries.insets = new Insets(0, 0, 5, 0);
+			gbc_jButtonQueryQueries.anchor = GridBagConstraints.WEST;
+			gbc_jButtonQueryQueries.fill = GridBagConstraints.BOTH;
+			gbc_jButtonQueryQueries.gridx = 0;
+			gbc_jButtonQueryQueries.gridy = 3;
+			jContentPane.add(getBoton3(), gbc_jButtonQueryQueries);
+			GridBagConstraints gbc_lblAccountSettings = new GridBagConstraints();
+			gbc_lblAccountSettings.gridwidth = 3;
+			gbc_lblAccountSettings.fill = GridBagConstraints.BOTH;
+			gbc_lblAccountSettings.insets = new Insets(0, 0, 5, 0);
+			gbc_lblAccountSettings.gridx = 0;
+			gbc_lblAccountSettings.gridy = 4;
+			jContentPane.add(getLblAccountSettings(), gbc_lblAccountSettings);
+			GridBagConstraints gbc_btnBetHistorywButton = new GridBagConstraints();
+			gbc_btnBetHistorywButton.gridwidth = 3;
+			gbc_btnBetHistorywButton.insets = new Insets(0, 0, 5, 0);
+			gbc_btnBetHistorywButton.anchor = GridBagConstraints.WEST;
+			gbc_btnBetHistorywButton.fill = GridBagConstraints.BOTH;
+			gbc_btnBetHistorywButton.gridx = 0;
+			gbc_btnBetHistorywButton.gridy = 5;
+			jContentPane.add(getBtnBetHistorywButton(), gbc_btnBetHistorywButton);
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.gridwidth = 3;
+			gbc_panel.gridx = 0;
+			gbc_panel.gridy = 6;
+			jContentPane.add(getPanel(), gbc_panel);
 			
 			 
 		}
@@ -122,7 +181,7 @@ public class MainGUI extends JFrame {
 		if (jButtonCreateEvent == null) {
 			jButtonCreateEvent = new JButton();
 			jButtonCreateEvent.setBackground(Color.DARK_GRAY);
-			jButtonCreateEvent.setForeground(Color.ORANGE);
+			jButtonCreateEvent.setForeground(Color.BLACK);
 			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -145,8 +204,8 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (jButtonCreateQuery == null) {
 			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.setBackground(Color.DARK_GRAY);
-			jButtonCreateQuery.setForeground(Color.ORANGE);
+			jButtonCreateQuery.setBackground(Color.WHITE);
+			jButtonCreateQuery.setForeground(Color.BLACK);
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -170,7 +229,7 @@ public class MainGUI extends JFrame {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
 			jButtonQueryQueries.setBackground(Color.DARK_GRAY);
-			jButtonQueryQueries.setForeground(Color.ORANGE);
+			jButtonQueryQueries.setForeground(Color.BLACK);
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -243,12 +302,10 @@ public class MainGUI extends JFrame {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setBackground(Color.GRAY);
-			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-			flowLayout.setVgap(15);
-			flowLayout.setHgap(15);
-			panel.add(getRdbtnNewRadioButton_1());
-			panel.add(getRdbtnNewRadioButton_2());
+			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 			panel.add(getRdbtnNewRadioButton());
+			panel.add(getRdbtnNewRadioButton_2());
+			panel.add(getRdbtnNewRadioButton_1());
 		}
 		return panel;
 	}
@@ -275,7 +332,13 @@ public class MainGUI extends JFrame {
 					EditAccountGUI.setVisible(true);
 					dispose();
 				}
+			
 			});
+			
+	
+			
+		
+	
 		
 		/*if (facade.getCurrentUser() == null) {
 			
@@ -295,12 +358,30 @@ public class MainGUI extends JFrame {
 
 			lblAccountSettings.setBackground(Color.BLACK);
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
-			lblAccountSettings.setForeground(Color.ORANGE);
+			lblAccountSettings.setForeground(Color.BLACK);
 			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\user-3.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 			lblAccountSettings.setIcon(imageIcon);//$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return lblAccountSettings;
 	}
-} // @jve:decl-index=0:visual-constraint="0,0"
+
+		// TODO Auto-generated method stub
+		
+	private JButton getBtnBetHistorywButton() {
+		if (btnBetHistorywButton == null) {
+			btnBetHistorywButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.btnNewButton.text"));
+			btnBetHistorywButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					BettingHistoryGUI enter = new BettingHistoryGUI();
+					enter.createAndShowGUI();
+					dispose();
+				
+				}
+			});
+		}
+		return btnBetHistorywButton;
+	}
+	}
+// @jve:decl-index=0:visual-constraint="0,0"
 
