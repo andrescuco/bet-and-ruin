@@ -4,6 +4,9 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ResourceBundle;
+import java.util.Vector;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
@@ -11,11 +14,16 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
+import javax.swing.table.DefaultTableModel;
+
+import businessLogic.BLFacade;
+
 import javax.swing.ImageIcon;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JFrame;
 
 /* MenuDemo.java requires images/middle.gif. */
@@ -26,7 +34,16 @@ import javax.swing.JFrame;
  */
 public class BettingHistoryGUI implements ActionListener, ItemListener {
     JTextArea output;
-    JScrollPane scrollPane;
+    static JScrollPane scrollPaneBets = new JScrollPane();
+    private static JTable tableBets= new JTable();
+	private static DefaultTableModel tableModelBets;
+	
+	private static String[] columnNamesBets = new String[] {
+			ResourceBundle.getBundle("Etiquetas").getString("BetAmount"), 
+			ResourceBundle.getBundle("Etiquetas").getString("BetDescription"), 
+
+	};
+	
     String newline = "\n";
 
     public JMenuBar createMenuBar() {
@@ -92,16 +109,17 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
         //Create a scrolled text area.
         output = new JTextArea(5, 30);
         output.setEditable(false);
-        scrollPane = new JScrollPane(output);
+        scrollPaneBets = new JScrollPane(output);
 
         //Add the text area to the content pane.
-        contentPane.add(scrollPane, BorderLayout.CENTER);
+        contentPane.add(scrollPaneBets, BorderLayout.CENTER);
 
         return contentPane;
     }
 
     public void actionPerformed(ActionEvent e) {                          /******************************************************************************************************************************************    */
         JMenuItem source = (JMenuItem)(e.getSource());
+        
         String s = "Action event detected."
                    + newline                                              ///////////////////// IMPLEMENT THE BET HISTORY HERE /////////////////////
                    + "    Event source: " + source.getText()
@@ -158,8 +176,38 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
         frame.setJMenuBar(demo.createMenuBar());
         frame.setContentPane(demo.createContentPane());
         frame.setIconImage(new ImageIcon("/img/betting_3.jpg").getImage());
+        
+        
+        //Getting Data
+        scrollPaneBets.setViewportView(tableBets);
+		tableModelBets = new DefaultTableModel(null, columnNamesBets);
 
-        //Display the window.
+		tableBets.setModel(tableModelBets);
+		tableBets.getColumnModel().getColumn(0).setPreferredWidth(25);
+		tableBets.getColumnModel().getColumn(1).setPreferredWidth(268);
+        
+        tableModelBets.setDataVector(null, columnNamesBets);
+		tableModelBets.setColumnCount(2); // another column added to allocate ev objects
+
+		BLFacade facade=MainGUI.getBusinessLogic();
+		Vector<domain.Bet> bets=facade.getAllBets();
+
+		//if (bets.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarMio.getTime()));
+		//else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarMio.getTime()));
+		for (domain.Bet bet:bets){
+			Vector<Object> row = new Vector<Object>();
+
+			System.out.println("Bets "+bet);
+
+			row.add(bet.getBetAmount());
+			row.add(bet.getQuestion().getQuestion());
+			//row.add(bet); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
+			tableModelBets.addRow(row);		
+		}
+		tableBets.getColumnModel().getColumn(0).setPreferredWidth(25);
+		tableBets.getColumnModel().getColumn(1).setPreferredWidth(268);
+		//tableBets.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
+		//Display the window.
         frame.setSize(450, 260);
         frame.setVisible(true);
     }

@@ -24,6 +24,14 @@ public class Bet {
 		return betAmount;
 	}
 	
+	public int getBetNumber() {
+		return betNumber;
+	}
+	
+	public Question getQuestion() {
+		return question;
+	}
+	
 	public Boolean isBetFinished() {
 		return this.isFinished;
 	}

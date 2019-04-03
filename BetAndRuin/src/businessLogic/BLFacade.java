@@ -101,5 +101,5 @@ public interface BLFacade  {
 	
 
 	@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds;
-	
+	@WebMethod public Vector<Bet> getAllBets();
 }

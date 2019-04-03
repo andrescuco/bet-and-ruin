@@ -192,8 +192,8 @@ public class DataAccess {
 
 		db.getTransaction().begin();
 		Question q = ev.addQuestion(question, betMinimum);
-		// db.persist(q);
-		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
+		db.persist(q);
+		//db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
 						// property of Event class
 						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
@@ -456,6 +456,19 @@ public class DataAccess {
 			db.getTransaction().begin();
 			a.setWalletFunds(funds);
 			db.getTransaction().commit();
+		}
+
+		public Vector<Bet> getAllBets(Account acc) {
+			Vector<Bet> res = new Vector<Bet>();
+			TypedQuery<Bet> query = db.createQuery("SELECT bets FROM Bet bets WHERE bets.account=?1", Bet.class);
+			query.setParameter(1, acc);
+			List<Bet> bets = query.getResultList();
+			for (Bet bet : bets) {
+				System.out.println("***" + bet.getBetAmount() + "***");
+				res.add(bet);
+			}
+			return res;
+
 		}
 
 }

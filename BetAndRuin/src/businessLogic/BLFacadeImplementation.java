@@ -242,7 +242,11 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
 		currentUser = dBManager.findAccount(getCurrentUser().getUsername());
 	}
- 
+	@WebMethod public Vector<Bet> getAllBets(){
+		DataAccess dBManager = new DataAccess();
+    	Account acc = getCurrentUser();
+    	return dBManager.getAllBets(acc);
+	}
 
 }
 
