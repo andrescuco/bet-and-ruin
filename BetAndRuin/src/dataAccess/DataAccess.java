@@ -192,8 +192,11 @@ public class DataAccess {
 
 		db.getTransaction().begin();
 		Question q = ev.addQuestion(question, betMinimum);
-		db.persist(q);
-		//db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
+		
+		q.setEvent(ev); //No relation Question -> Event without this
+		
+		//db.persist(q);
+		db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
 						// property of Event class
 						// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 		db.getTransaction().commit();
@@ -440,11 +443,11 @@ public class DataAccess {
 			return ev;
 		}
 
-		public Bet createBet(float amount, Question question, Account account) {
+		public Bet createBet(float amount, Date date, Question question, Account account) {
 			
 			db.getTransaction().begin();
 			//create bet
-			Bet b = new Bet(amount, question, account);
+			Bet b = new Bet(amount, date, question, account);
 			//update account
 			db.persist(b);
 			db.getTransaction().commit();

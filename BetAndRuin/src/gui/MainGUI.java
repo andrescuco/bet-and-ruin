@@ -384,9 +384,10 @@ public class MainGUI extends JFrame {
 			btnBetHistorywButton.setIcon(imageIcon);
 			btnBetHistorywButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					BettingHistoryGUI enter = new BettingHistoryGUI();
-					enter.createAndShowGUI();
-					dispose();
+					JFrame bettingHistoryGUI = new BettingHistoryGUI();
+					bettingHistoryGUI.setLocationRelativeTo(null);
+					bettingHistoryGUI.setVisible(true);
+					//dispose();
 				
 				}
 			});

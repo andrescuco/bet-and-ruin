@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Question;
+import exceptions.EventFinished;
 import exceptions.InsuficientFunds;
 
 import javax.swing.JLabel;
@@ -66,6 +67,12 @@ public class BetGUI extends JFrame {
 						}	
 						catch(InsuficientFunds e1) {
 							warningLabel.setText( ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (EventFinished e1) {
+							warningLabel.setText( ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+							e1.printStackTrace();
 						}
 					}
 				}

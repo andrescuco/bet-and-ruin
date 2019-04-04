@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,13 +13,24 @@ public class Bet {
 	private int betNumber;
 	private float betAmount;
 	private boolean isFinished;
+	private Date betDate;
+	
 	private Account account;
 	private Question question;
 	
-	public Bet(float amount, Question quest, Account acc) {
+	public Bet(float amount, Date date, Question quest, Account acc) {
 		betAmount = amount;
+		betDate = date;
 		question = quest;
 		account = acc;
+	}
+
+	public Date getBetDate() {
+		return betDate;
+	}
+
+	public void setBetDate(Date betDate) {
+		this.betDate = betDate;
 	}
 
 	public float getBetAmount() {

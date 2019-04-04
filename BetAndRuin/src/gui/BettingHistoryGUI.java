@@ -4,6 +4,8 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -14,6 +16,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import businessLogic.BLFacade;
@@ -32,21 +35,23 @@ import javax.swing.JFrame;
  * This class is just like MenuLookDemo, except the menu items
  * actually do something, thanks to event listeners.
  */
-public class BettingHistoryGUI implements ActionListener, ItemListener {
+public class BettingHistoryGUI extends JFrame {
     JTextArea output;
-    static JScrollPane scrollPaneBets = new JScrollPane();
+    JScrollPane scrollPaneBets = new JScrollPane();
     private static JTable tableBets= new JTable();
 	private static DefaultTableModel tableModelBets;
 	
 	private static String[] columnNamesBets = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("BetAmount"), 
-			ResourceBundle.getBundle("Etiquetas").getString("BetDescription"), 
+			ResourceBundle.getBundle("Etiquetas").getString("Event"),
+			ResourceBundle.getBundle("Etiquetas").getString("Question"),
+			ResourceBundle.getBundle("Etiquetas").getString("Date"), 
 
 	};
 	
     String newline = "\n";
 
-    public JMenuBar createMenuBar() {
+    public static JMenuBar createMenuBar() {
         JMenuBar menuBar;
         JMenu menu, submenu;
         JMenuItem menuItem;
@@ -69,13 +74,13 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
         //menuItem.setMnemonic(KeyEvent.VK_T); //used constructor instead
         menuItem.getAccessibleContext().setAccessibleDescription(
                 "This doesn't really do anything");
-        menuItem.addActionListener(this);
+        //menuItem.addActionListener(null);
         menu.add(menuItem);
 
         ImageIcon icon = createImageIcon("img/presentsymbol.png");
         menuItem = new JMenuItem("Current bets", icon);
         menuItem.setMnemonic(KeyEvent.VK_B);
-        menuItem.addActionListener(this);
+        //menuItem.addActionListener(null);
         menu.add(menuItem);
 
 
@@ -101,21 +106,21 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
         return menuBar;
     }
 
-    public Container createContentPane() {
-        //Create the content-pane-to-be.
-        JPanel contentPane = new JPanel(new BorderLayout());
-        contentPane.setOpaque(true);
-
-        //Create a scrolled text area.
-        output = new JTextArea(5, 30);
-        output.setEditable(false);
-        scrollPaneBets = new JScrollPane(output);
-
-        //Add the text area to the content pane.
-        contentPane.add(scrollPaneBets, BorderLayout.CENTER);
-
-        return contentPane;
-    }
+//    public static Container createContentPane() {
+//        //Create the content-pane-to-be.
+//        JPanel contentPane = new JPanel(new BorderLayout());
+//        contentPane.setOpaque(true);
+//
+//        //Create a scrolled text area.
+//        output = new JTextArea(5, 30);
+//        output.setEditable(false);
+//        scrollPaneBets = new JScrollPane(output);
+//
+//        //Add the text area to the content pane.
+//        contentPane.add(scrollPaneBets, BorderLayout.CENTER);
+//
+//        return contentPane;
+//    }
 
     public void actionPerformed(ActionEvent e) {                          /******************************************************************************************************************************************    */
         JMenuItem source = (JMenuItem)(e.getSource());
@@ -160,22 +165,33 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
         }
     }
 
-    /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
-     */
-    static void createAndShowGUI() {           //////////// CALL THIS METHOD TO RUN GUI /////////////////////
-        //Create and set up the window.
-        JFrame frame = new JFrame("My Betting History");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setForeground(Color.BLACK);
+    
+    
+    public BettingHistoryGUI() throws HeadlessException {
+		super();
+		
+		//Create the content-pane-to-be.
+        JPanel contentPane = new JPanel(new BorderLayout());
+        contentPane.setOpaque(true);
+
+        //Create a scrolled text area.
+        output = new JTextArea(5, 30);
+        output.setEditable(false);
+        scrollPaneBets = new JScrollPane(output);
+
+        //Add the text area to the content pane.
+        contentPane.add(scrollPaneBets, BorderLayout.CENTER);
+        
+      //Create and set up the window.
+        //JFrame frame = new JFrame("My Betting History");
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setForeground(Color.BLACK);
 
         //Create and set up the content pane.
-        BettingHistoryGUI demo = new BettingHistoryGUI();
-        frame.setJMenuBar(demo.createMenuBar());
-        frame.setContentPane(demo.createContentPane());
-        frame.setIconImage(new ImageIcon("/img/betting_3.jpg").getImage());
+        //BettingHistoryGUI demo = new BettingHistoryGUI();
+        setJMenuBar(createMenuBar());
+        setContentPane(contentPane);
+        setIconImage(new ImageIcon("/img/betting_3.jpg").getImage());
         
         
         //Getting Data
@@ -184,10 +200,12 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
 
 		tableBets.setModel(tableModelBets);
 		tableBets.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tableBets.getColumnModel().getColumn(1).setPreferredWidth(268);
+		tableBets.getColumnModel().getColumn(1).setPreferredWidth(100);
+		tableBets.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tableBets.getColumnModel().getColumn(3).setPreferredWidth(100);
         
         tableModelBets.setDataVector(null, columnNamesBets);
-		tableModelBets.setColumnCount(2); // another column added to allocate ev objects
+		tableModelBets.setColumnCount(4); // another column added to allocate ev objects
 
 		BLFacade facade=MainGUI.getBusinessLogic();
 		Vector<domain.Bet> bets=facade.getAllBets();
@@ -200,25 +218,20 @@ public class BettingHistoryGUI implements ActionListener, ItemListener {
 			System.out.println("Bets "+bet);
 
 			row.add(bet.getBetAmount());
+			row.add(bet.getQuestion().getEvent().getDescription());
 			row.add(bet.getQuestion().getQuestion());
+			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			row.add(sdf.format(bet.getBetDate()));
 			//row.add(bet); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
 			tableModelBets.addRow(row);		
 		}
-		tableBets.getColumnModel().getColumn(0).setPreferredWidth(25);
-		tableBets.getColumnModel().getColumn(1).setPreferredWidth(268);
+		tableBets.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tableBets.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tableBets.getColumnModel().getColumn(2).setPreferredWidth(200);
+		tableBets.getColumnModel().getColumn(3).setPreferredWidth(200);
 		//tableBets.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
 		//Display the window.
-        frame.setSize(450, 260);
-        frame.setVisible(true);
-    }
-
-    	public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+        setSize(625, 300);
+        setVisible(true);
+	}
 }
