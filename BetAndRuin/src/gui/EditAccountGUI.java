@@ -324,7 +324,7 @@ public class EditAccountGUI extends JFrame {
 				System.out.println("Information Updated");
 				WarningLabel.setForeground(Color.GREEN);
 				WarningLabel.setText("Changed Saved");
-				HomepageGUI back = new HomepageGUI(); //
+				MainGUI back = new MainGUI(); //
 				back.setVisible(true);
 				dispose();
 
