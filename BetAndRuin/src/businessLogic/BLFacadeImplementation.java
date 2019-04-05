@@ -222,6 +222,17 @@ public class BLFacadeImplementation  implements BLFacade {
     	dBManager.close();
     	return update4;
 	}
+	
+	@Override
+	public float addFunds(float funds) {
+		DataAccess dBManager = new DataAccess();
+		float update7 = dBManager.updateFunds(funds + getCurrentUser().getAccountFunds(), getCurrentUser());
+		dBManager.close();
+		updateCurrentUser();
+		return update7;
+	}
+
+	
     
     @WebMethod
     public Bet placeBet(float amount, Question question) throws InsuficientFunds, EventFinished {

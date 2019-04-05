@@ -111,7 +111,7 @@ public class WalletGUI extends JFrame {
 		gbc_lblAvalaibleCredit.gridy = 2;
 		contentPane.add(lblAvailableCredit, gbc_lblAvalaibleCredit);
 		
-		JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getAccountFunds()+ " Betcoins");
+		final JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getAccountFunds()+ " Betcoins");
 		lblWalletFunds.setForeground(Color.RED);
 		lblWalletFunds.setFont(new Font("Roboto", Font.BOLD, 14));
 		GridBagConstraints gbc_lblWalletFunds = new GridBagConstraints();
@@ -158,27 +158,27 @@ public class WalletGUI extends JFrame {
 		gbc_VisaButt.gridy = 6;
 		contentPane.add(VisaButt, gbc_VisaButt);
 		
+		final JComboBox fundsToAdd = new JComboBox();
 		JButton btnContinue = new JButton("Continue");
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isPaypalSelected = PaypalButt.isSelected();
 				 
-				if (isPaypalSelected) {
-				 Component frame = null;
-					JOptionPane.showMessageDialog(frame,
-						    "Paypal payment will be soon implemented, we are sorry for the inconvenience",
-						    "Whooops",
-						    JOptionPane.WARNING_MESSAGE);// the Paypal option is selected
-				 
-				} else {
-				 
+				float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
+				BLFacade facade = MainGUI.getBusinessLogic();
+				Account b = facade.getCurrentUser();
+				funds = facade.addFunds(funds);
+				lblWalletFunds.setText(Float.toString(funds));
+				
+				
+				
 				    // the Visa/mastercard option is selected
 				 
-				}
+				
 			}
 		});
 		
-		JComboBox fundsToAdd = new JComboBox();
+		
 		fundsToAdd.addItem(100);
 		fundsToAdd.addItem(500);
 		fundsToAdd.addItem(1000);

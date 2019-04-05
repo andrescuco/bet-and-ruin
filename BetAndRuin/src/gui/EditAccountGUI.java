@@ -66,9 +66,19 @@ public class EditAccountGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public EditAccountGUI() {
+		final BLFacade facade = MainGUI.getBusinessLogic();
+		final JLabel CreditValue = new JLabel(facade.getCurrentUser().getAccountFunds() + " Betcoins");
+		addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.getCurrentUser().getAccountFunds();
+				CreditValue.setText(Float.toString(facade.getCurrentUser().getAccountFunds()));
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 595, 676);
+		setBounds(100, 100, 595, 376);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,7 +91,7 @@ public class EditAccountGUI extends JFrame {
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
-		final BLFacade facade = MainGUI.getBusinessLogic();
+		
 
 		JLabel Genderlbl = new JLabel("Gender");
 		Genderlbl.setFont(new Font("Roboto", Font.PLAIN, 15));
@@ -282,7 +292,10 @@ public class EditAccountGUI extends JFrame {
 		gbc_CreditLbl.gridy = 16;
 		contentPane.add(CreditLbl, gbc_CreditLbl);
 
-		JLabel CreditValue = new JLabel(facade.getCurrentUser().getAccountFunds() + " Betcoins");
+		
+		
+
+	
 		CreditValue.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		CreditValue.setForeground(Color.WHITE);
 		GridBagConstraints gbc_CreditValue = new GridBagConstraints();

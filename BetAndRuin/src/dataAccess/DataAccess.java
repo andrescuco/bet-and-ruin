@@ -454,11 +454,13 @@ public class DataAccess {
 			return b;
 		}
 
-		public void updateFunds(float funds, Account acc) {
+		public float updateFunds(float funds, Account acc) {
 			Account a = db.find(Account.class, acc.getUsername());
 			db.getTransaction().begin();
 			a.setWalletFunds(funds);
+			
 			db.getTransaction().commit();
+			return funds;
 		}
 
 		public Vector<Bet> getAllBets(Account acc) {
