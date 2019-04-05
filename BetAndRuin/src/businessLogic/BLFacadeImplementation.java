@@ -236,8 +236,8 @@ public class BLFacadeImplementation  implements BLFacade {
     	System.out.println("*************" + new Date());
     	Bet bet = dBManager.createBet(amount, new Date(), question, acc);
     	dBManager.updateFunds(acc.getAccountFunds()-amount, acc);
-    	updateCurrentUser();
     	dBManager.close();
+    	updateCurrentUser();
     	return bet;
     	
     }
