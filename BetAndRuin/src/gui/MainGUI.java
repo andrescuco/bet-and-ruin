@@ -97,6 +97,7 @@ public class MainGUI extends JFrame {
 		// this.setSize(271, 295);
 		this.setSize(534, 420);
 		this.setContentPane(getJContentPane());
+		this.setResizable(false);
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 
@@ -110,7 +111,7 @@ public class MainGUI extends JFrame {
 			jContentPane = new JPanel();
 			jContentPane.setBackground(Color.BLACK);
 			GridBagLayout gbl_jContentPane = new GridBagLayout();
-			gbl_jContentPane.columnWidths = new int[]{173, 140, 205, 0};
+			gbl_jContentPane.columnWidths = new int[]{173, 140, 220, 0};
 			gbl_jContentPane.rowHeights = new int[]{42, 46, 43, 45, 0, 40, 0, 0};
 			gbl_jContentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 			gbl_jContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
