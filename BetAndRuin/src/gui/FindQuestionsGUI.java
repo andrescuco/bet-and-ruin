@@ -152,14 +152,17 @@ public class FindQuestionsGUI extends JFrame {
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(3);
-
-				if (queries.isEmpty()) {
-					makeBetButton.setEnabled(false);
-					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
-				}
-				else {
-					makeBetButton.setEnabled(true);
-					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
+				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				if (facade.getCurrentUser() != null) {
+					if (queries.isEmpty()) {
+						makeBetButton.setEnabled(false);
+						jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());
+					}
+					else {
+						makeBetButton.setEnabled(true);
+						jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
+					}
 				}
 
 				for (domain.Question q:queries){
@@ -197,9 +200,9 @@ public class FindQuestionsGUI extends JFrame {
 				int i=tableQueries.getSelectedRow();
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,2); // obtain question object
 				
-				JFrame CreateQuestionGUI = new BetGUI(question);
-				CreateQuestionGUI.setLocationRelativeTo(null);
-				CreateQuestionGUI.setVisible(true);
+				JFrame betGUI = new BetGUI(question);
+				betGUI.setLocationRelativeTo(null);
+				betGUI.setVisible(true);
 			}
 		});
 		
