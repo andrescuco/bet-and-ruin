@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,6 +15,7 @@ import exceptions.InsuficientFunds;
 
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
@@ -22,6 +24,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class BetGUI extends JFrame {
 
@@ -34,6 +37,7 @@ public class BetGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -42,13 +46,16 @@ public class BetGUI extends JFrame {
 		
 		
 		JLabel questionLabel = new JLabel(question.getQuestion());
+		questionLabel.setForeground(Color.ORANGE);
 		
 		JLabel lblEnterYourBet = new JLabel("Enter your bet:");
+		lblEnterYourBet.setForeground(Color.ORANGE);
 		
 		BetAmountField = new JTextField();
 		BetAmountField.setColumns(10);
 		
 		JLabel minBetLabel = new JLabel("Minimum Bet: " + question.getBetMinimum());
+		minBetLabel.setForeground(Color.ORANGE);
 		final JLabel warningLabel = new JLabel("");
 		
 		JButton betButton = new JButton("Place Bet");
@@ -90,13 +97,19 @@ public class BetGUI extends JFrame {
 		});
 		closeButton.setBounds(new Rectangle(138, 420, 130, 30));
 		
+		JLabel Symbol = new JLabel("New label");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\putmoney.png").getImage().getScaledInstance(250, 140, Image.SCALE_DEFAULT));
+		Symbol.setIcon(imageIcon);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(169)
+							.addGap(29)
+							.addComponent(Symbol)
+							.addGap(94)
 							.addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
@@ -112,16 +125,18 @@ public class BetGUI extends JFrame {
 					.addGap(37)
 					.addComponent(betButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(71, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(144)
 					.addComponent(warningLabel)
-					.addContainerGap(164, Short.MAX_VALUE))
+					.addContainerGap(280, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(14)
-					.addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Symbol))
 					.addGap(39)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEnterYourBet, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
@@ -133,7 +148,7 @@ public class BetGUI extends JFrame {
 						.addComponent(betButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(warningLabel)
-					.addContainerGap(27, Short.MAX_VALUE))
+					.addContainerGap(41, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

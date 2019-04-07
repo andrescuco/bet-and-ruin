@@ -42,7 +42,7 @@ import java.awt.event.MouseEvent;
 public class EditAccountGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JComboBox GenderDB;
+	private JComboBox<String> GenderDB;
 
 	/**
 	 * Launch the application.
@@ -76,6 +76,22 @@ public class EditAccountGUI extends JFrame {
 				CreditValue.setText(Float.toString(facade.getCurrentUser().getAccountFunds()));
 			}
 		});
+		
+		GenderDB = new JComboBox<String>();
+		GenderDB.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.getCurrentUser().getGender();	
+			}
+		});
+		/*GenderDB.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				GenderDB.getSelectedItem();
+			}
+		});*/
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 595, 376);
@@ -102,17 +118,13 @@ public class EditAccountGUI extends JFrame {
 		gbc_Genderlbl.gridy = 14;
 		contentPane.add(Genderlbl, gbc_Genderlbl);
 
-		GenderDB = new JComboBox();
+		
+			
 		GenderDB.addItem(facade.getCurrentUser().getGender());
-		if (facade.getCurrentUser().getGender().toString() != "female")
+		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female")
+			GenderDB.addItem("male");
+		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male")
 			GenderDB.addItem("female");
-
-		GenderDB.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent arg0) {
-				GenderDB.getSelectedItem();
-			}
-		});
-
 		GridBagConstraints gbc_GenderDB = new GridBagConstraints();
 		gbc_GenderDB.insets = new Insets(0, 0, 5, 5);
 		gbc_GenderDB.fill = GridBagConstraints.HORIZONTAL;
@@ -333,6 +345,7 @@ public class EditAccountGUI extends JFrame {
 					
 				 if (GenderDB.getSelectedItem() != facade.getCurrentUser().getGender().toString())
 					facade.UpdateGender(GenderDB.getSelectedItem().toString(), a.getUsername());
+				 	
 
 				System.out.println("Information Updated");
 				WarningLabel.setForeground(Color.GREEN);

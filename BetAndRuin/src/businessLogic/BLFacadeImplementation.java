@@ -175,6 +175,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update2 = dBManager.updateFirstname(firstname, username);
     	dBManager.close();
+    	updateCurrentUser();
     	return update2;
 		
 	}
@@ -184,6 +185,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update3 = dBManager.updateLastname(lastname, username);
     	dBManager.close();
+    	updateCurrentUser();
     	return update3;
 	}
 
@@ -193,6 +195,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update6 = dBManager.updateGender(gender, username);
     	dBManager.close();
+    	updateCurrentUser();
     	return update6;
 	}
 
@@ -211,6 +214,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update5 = dBManager.updatePassword(password, username);
     	dBManager.close();
+    	updateCurrentUser();
     	return update5;
 	}
 
@@ -258,6 +262,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		currentUser = dBManager.findAccount(getCurrentUser().getUsername());
 		dBManager.close();
 	}
+	
 	@WebMethod public Vector<Bet> getAllBets(){
 		DataAccess dBManager = new DataAccess();
     	Account acc = getCurrentUser();
