@@ -319,6 +319,8 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(CreditValue, gbc_CreditValue);
 
 		JButton FinishButton = new JButton(" Update and Finish");
+		FinishButton.setForeground(new Color(0, 0, 0));
+		FinishButton.setBackground(Color.ORANGE);
 		FinishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -353,6 +355,8 @@ public class EditAccountGUI extends JFrame {
 				WarningLabel.setForeground(Color.GREEN);
 				WarningLabel.setText("Changed Saved");
 				facade.getCurrentUser().getGender();
+				GenderDB.removeAllItems();
+				GenderDB.addItem(facade.getCurrentUser().getGender());
 				MainGUI back = new MainGUI(); //
 				back.setVisible(true);
 				back.setLocationRelativeTo(null);

@@ -50,6 +50,8 @@ public class FindQuestionsGUI extends JFrame {
 	};
 
 	public FindQuestionsGUI() {
+		getContentPane().setBackground(Color.BLACK);
+		setBackground(Color.WHITE);
 		try {
 			jbInit();
 		}
@@ -64,14 +66,21 @@ public class FindQuestionsGUI extends JFrame {
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
+		jLabelEventDate.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
+		jLabelEventDate.setForeground(Color.ORANGE);
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
+		jLabelQueries.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
+		jLabelQueries.setForeground(Color.ORANGE);
 		jLabelQueries.setBounds(138, 248, 406, 14);
+		jLabelEvents.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
+		jLabelEvents.setForeground(Color.ORANGE);
 		jLabelEvents.setBounds(295, 19, 259, 16);
 
 		this.getContentPane().add(jLabelEventDate, null);
 		this.getContentPane().add(jLabelQueries);
 		this.getContentPane().add(jLabelEvents);
+		makeBetButton.setBackground(Color.ORANGE);
 		
 		
 		makeBetButton.setEnabled(false);
