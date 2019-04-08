@@ -31,8 +31,6 @@ public class MainGuestGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	private JButton jButtonCreateQuery = null;
-	private JButton jButtonCreateEvent = null;
 	private JButton jButtonQueryQueries = null;
 
     private static BLFacade appFacadeInterface;
@@ -102,8 +100,6 @@ public class MainGuestGUI extends JFrame {
 			jContentPane.setLayout(new GridLayout(6, 1, 5, 5));
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getBoton3());
-			jContentPane.add(getBoton2());
-			jContentPane.add(getEventButton());
 			jContentPane.add(getLblLogin());
 			jContentPane.add(getPanel());
 			
@@ -112,54 +108,6 @@ public class MainGuestGUI extends JFrame {
 		return jContentPane;
 	}
 
-
-
-
-		
-	
-
-	private JButton getEventButton() {
-		if (jButtonCreateEvent == null) {
-			jButtonCreateEvent = new JButton();
-			jButtonCreateEvent.setBackground(Color.DARK_GRAY);
-			jButtonCreateEvent.setForeground(Color.ORANGE);
-			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
-			jButtonCreateEvent.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					BLFacade facade=MainGuestGUI.getBusinessLogic();
-					//Vector<Event> events=facade.getAllEvents();
-					JFrame CreateEventGUI = new CreateEventGUI(new Vector<Event>());
-					CreateEventGUI.setLocationRelativeTo(null);
-					CreateEventGUI.setVisible(true);
-				}
-			});
-		}
-		return jButtonCreateEvent;
-	}
-
-	/**
-	 * This method initializes boton1
-	 * 
-	 * @return javax.swing.JButton
-	 */
-	private JButton getBoton2() {
-		if (jButtonCreateQuery == null) {
-			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.setBackground(Color.DARK_GRAY);
-			jButtonCreateQuery.setForeground(Color.ORANGE);
-			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
-			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					BLFacade facade=MainGuestGUI.getBusinessLogic();
-					//Vector<Event> events=facade.getAllEvents();
-					JFrame CreateQuestionGUI = new CreateQuestionGUI(new Vector<Event>());
-					CreateQuestionGUI.setLocationRelativeTo(null);
-					CreateQuestionGUI.setVisible(true);
-				}
-			});
-		}
-		return jButtonCreateQuery;
-	}
 	
 	/**
 	 * This method initializes boton2
@@ -256,9 +204,7 @@ public class MainGuestGUI extends JFrame {
 	private void redibujar() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("Account"));
-		jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	

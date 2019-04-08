@@ -67,7 +67,7 @@ public class BetGUI extends JFrame {
 		betButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!BetAmountField.getText().isEmpty()) {
-					if(Float.parseFloat(BetAmountField.getText()) <= question.getBetMinimum()) {
+					if(Float.parseFloat(BetAmountField.getText()) < question.getBetMinimum()) {
 						warningLabel.setText("Your bet has to be bigger");
 					}
 					else {
