@@ -119,12 +119,14 @@ public class EditAccountGUI extends JFrame {
 		contentPane.add(Genderlbl, gbc_Genderlbl);
 
 		
-			
-		GenderDB.addItem(facade.getCurrentUser().getGender());
-		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female")
+		
+		//GenderDB.addItem(facade.getCurrentUser().getGender());
+		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female") {
 			GenderDB.addItem("male");
-		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male")
+			GenderDB.addItem("female");}
+		else if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male") {
 			GenderDB.addItem("female");
+			GenderDB.addItem("male");}
 		GridBagConstraints gbc_GenderDB = new GridBagConstraints();
 		gbc_GenderDB.insets = new Insets(0, 0, 5, 5);
 		gbc_GenderDB.fill = GridBagConstraints.HORIZONTAL;
@@ -350,10 +352,12 @@ public class EditAccountGUI extends JFrame {
 				System.out.println("Information Updated");
 				WarningLabel.setForeground(Color.GREEN);
 				WarningLabel.setText("Changed Saved");
+				facade.getCurrentUser().getGender();
 				MainGUI back = new MainGUI(); //
 				back.setVisible(true);
+				back.setLocationRelativeTo(null);
 				dispose();
-
+				
 			}
 			
 		});

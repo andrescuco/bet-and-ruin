@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.KeyStroke;
@@ -22,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import businessLogic.BLFacade;
 
 import javax.swing.ImageIcon;
-
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -40,6 +41,7 @@ public class BettingHistoryGUI extends JFrame {
     JScrollPane scrollPaneBets = new JScrollPane();
     private static JTable tableBets= new JTable();
 	private static DefaultTableModel tableModelBets;
+	private static final JButton backbutton = new JButton("Back");
 	
 	private static String[] columnNamesBets = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("BetAmount"), 
@@ -50,6 +52,14 @@ public class BettingHistoryGUI extends JFrame {
 	};
 	
     String newline = "\n";
+    /**
+     * @wbp.nonvisual location=147,239
+     */
+   
+
+ 
+    
+    
 
     public static JMenuBar createMenuBar() {
         JMenuBar menuBar;
@@ -60,9 +70,11 @@ public class BettingHistoryGUI extends JFrame {
 
         //Create the menu bar.
         menuBar = new JMenuBar();
+        menuBar.setBackground(Color.black);
 
         //Build the first menu.
         menu = new JMenu("Bet Status");
+        menu.setForeground(Color.ORANGE);
         menu.setMnemonic(KeyEvent.VK_A);
         menu.getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
@@ -77,17 +89,14 @@ public class BettingHistoryGUI extends JFrame {
         //menuItem.addActionListener(null);
         menu.add(menuItem);
 
-        ImageIcon icon = createImageIcon("img/presentsymbol.png");
-        menuItem = new JMenuItem("Current bets", icon);
-        menuItem.setMnemonic(KeyEvent.VK_B);
-        //menuItem.addActionListener(null);
-        menu.add(menuItem);
+       
 
 
         
 
         //Build second menu in the menu bar.
         menu = new JMenu("Date filter");
+        menu.setForeground(Color.ORANGE);
         menu.setMnemonic(KeyEvent.VK_N);
         menu.getAccessibleContext().setAccessibleDescription(
                 "This menu does nothing");
@@ -155,16 +164,7 @@ public class BettingHistoryGUI extends JFrame {
     }
 
     /** Returns an ImageIcon, or null if the path was invalid. */
-    protected static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = BettingHistoryGUI.class.getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
-
+   
     
     
     public BettingHistoryGUI() throws HeadlessException {
@@ -185,7 +185,8 @@ public class BettingHistoryGUI extends JFrame {
       //Create and set up the window.
         //JFrame frame = new JFrame("My Betting History");
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setForeground(Color.BLACK);
+        setForeground(Color.ORANGE);
+        setBackground(Color.BLACK);
 
         //Create and set up the content pane.
         //BettingHistoryGUI demo = new BettingHistoryGUI();
@@ -233,5 +234,10 @@ public class BettingHistoryGUI extends JFrame {
 		//Display the window.
         setSize(625, 300);
         setVisible(true);
+        
+        backbutton.setVerticalTextPosition(AbstractButton.BOTTOM);
+        backbutton.setHorizontalTextPosition(AbstractButton.CENTER);
+        contentPane.add(backbutton, BorderLayout.CENTER);
+        
 	}
 }

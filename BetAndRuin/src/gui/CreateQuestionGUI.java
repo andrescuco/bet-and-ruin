@@ -56,6 +56,7 @@ private static final long serialVersionUID = 1L;
   
   public CreateQuestionGUI(Vector<domain.Event> v)
   {
+  	getContentPane().setBackground(Color.BLACK);
     try
     {
       jbInit(v);
@@ -76,9 +77,15 @@ private static final long serialVersionUID = 1L;
     
     jComboBoxEvents.setModel(modelEvents);
     jComboBoxEvents.setBounds(new Rectangle(275, 47, 250, 20));
+    jLabelListOfEvents.setFont(new Font("Roboto Cn", Font.PLAIN, 14));
+    jLabelListOfEvents.setForeground(Color.ORANGE);
     jLabelListOfEvents.setBounds(new Rectangle(290, 18, 277, 20));
+    jLabelQuery.setFont(new Font("Roboto Cn", Font.PLAIN, 14));
+    jLabelQuery.setForeground(Color.ORANGE);
     jLabelQuery.setBounds(new Rectangle(25, 211, 75, 20));
     jTextFieldQuery.setBounds(new Rectangle(100, 211, 429, 20));
+    jLabelMinBet.setFont(new Font("Roboto Cn", Font.PLAIN, 14));
+    jLabelMinBet.setForeground(Color.ORANGE);
     jLabelMinBet.setBounds(new Rectangle(25, 243, 75, 20));
     jTextFieldPrice.setBounds(new Rectangle(100, 243, 60, 20));
     
@@ -126,6 +133,8 @@ private static final long serialVersionUID = 1L;
     this.getContentPane().add(jComboBoxEvents, null);
     
     this.getContentPane().add(jCalendar, null);
+    jLabelEventDate.setFont(new Font("Roboto Cn", Font.PLAIN, 14));
+    jLabelEventDate.setForeground(Color.ORANGE);
 
     jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
     jLabelEventDate.setBounds(40, 16, 140, 25);

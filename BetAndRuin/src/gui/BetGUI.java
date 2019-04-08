@@ -45,7 +45,7 @@ public class BetGUI extends JFrame {
 		
 		
 		
-		JLabel questionLabel = new JLabel(question.getQuestion());
+		JLabel questionLabel = new JLabel(" Question:  " + question.getQuestion());
 		questionLabel.setForeground(Color.ORANGE);
 		
 		JLabel lblEnterYourBet = new JLabel("Enter your bet:");
@@ -97,23 +97,21 @@ public class BetGUI extends JFrame {
 		});
 		closeButton.setBounds(new Rectangle(138, 420, 130, 30));
 		
-		JLabel Symbol = new JLabel("New label");
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\putmoney.png").getImage().getScaledInstance(250, 140, Image.SCALE_DEFAULT));
+		JLabel Symbol = new JLabel("");
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\putmoney.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT));
 		Symbol.setIcon(imageIcon);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(29)
-							.addComponent(Symbol)
-							.addGap(94)
-							.addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
+							.addComponent(Symbol))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblEnterYourBet, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+							.addComponent(lblEnterYourBet, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addGap(67)
 							.addComponent(BetAmountField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -124,19 +122,22 @@ public class BetGUI extends JFrame {
 					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 					.addGap(37)
 					.addComponent(betButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(71, Short.MAX_VALUE))
+					.addContainerGap(122, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(144)
 					.addComponent(warningLabel)
-					.addContainerGap(280, Short.MAX_VALUE))
+					.addContainerGap(331, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(259)
+					.addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(14)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(Symbol))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(Symbol)
+						.addComponent(questionLabel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(39)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEnterYourBet, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
