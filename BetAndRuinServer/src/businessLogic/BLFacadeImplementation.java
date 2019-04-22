@@ -230,7 +230,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	@Override
 	public float addFunds(float funds) {
 		DataAccess dBManager = new DataAccess();
-		float update7 = dBManager.updateFunds(funds + getCurrentUser().getAccountFunds(), getCurrentUser());
+		float update7 = dBManager.updateFunds(funds + getCurrentUser().getWalletFunds(), getCurrentUser());
 		dBManager.close();
 		updateCurrentUser();
 		return update7;
@@ -243,14 +243,17 @@ public class BLFacadeImplementation  implements BLFacade {
     	DataAccess dBManager = new DataAccess();
     	Account acc = getCurrentUser(); // Needs to update information
     	//Checking if there is enough money on wallet
-    	if(acc.getAccountFunds() < amount) {
+    	if(acc.getWalletFunds() < amount) {
     		throw new InsuficientFunds(ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));
     	}
-    	if(new Date().compareTo(question.getEvent().getEventDate())>0)
-			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+    	
+    	//TODO FIX RELATION HERE ALSO 
+    	//System.out.println(question.getEvent().getEventDate());
+    	//if(new Date().compareTo(question.getEvent().getEventDate())>0)
+			//throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
     	System.out.println("*************" + new Date());
     	Bet bet = dBManager.createBet(amount, new Date(), question, acc);
-    	dBManager.updateFunds(acc.getAccountFunds()-amount, acc);
+    	dBManager.updateFunds(acc.getWalletFunds()-amount, acc);
     	dBManager.close();
     	updateCurrentUser();
     	return bet;

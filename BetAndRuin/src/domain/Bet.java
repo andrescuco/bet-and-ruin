@@ -5,8 +5,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Bet {
 	
 	@Id @GeneratedValue
@@ -18,11 +23,39 @@ public class Bet {
 	private Account account;
 	private Question question;
 	
+	public Bet() {
+		super();
+	}
+	
 	public Bet(float amount, Date date, Question quest, Account acc) {
 		betAmount = amount;
 		betDate = date;
 		question = quest;
 		account = acc;
+	}
+
+	public int getBetNumber() {
+		return betNumber;
+	}
+
+	public void setBetNumber(int betNumber) {
+		this.betNumber = betNumber;
+	}
+
+	public float getBetAmount() {
+		return betAmount;
+	}
+
+	public void setBetAmount(float betAmount) {
+		this.betAmount = betAmount;
+	}
+
+	public boolean isFinished() {
+		return isFinished;
+	}
+
+	public void setFinished(boolean isFinished) {
+		this.isFinished = isFinished;
 	}
 
 	public Date getBetDate() {
@@ -33,20 +66,22 @@ public class Bet {
 		this.betDate = betDate;
 	}
 
-	public float getBetAmount() {
-		return betAmount;
+	public Account getAccount() {
+		return account;
 	}
-	
-	public int getBetNumber() {
-		return betNumber;
+
+	public void setAccount(Account account) {
+		this.account = account;
 	}
-	
+
 	public Question getQuestion() {
 		return question;
 	}
-	
-	public Boolean isBetFinished() {
-		return this.isFinished;
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
+
+	
 	
 }

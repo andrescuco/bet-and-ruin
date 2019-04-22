@@ -45,7 +45,7 @@ public class BettingHistoryGUI extends JFrame {
 	
 	private static String[] columnNamesBets = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("BetAmount"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Event"),
+			//ResourceBundle.getBundle("Etiquetas").getString("Event"),
 			ResourceBundle.getBundle("Etiquetas").getString("Question"),
 			ResourceBundle.getBundle("Etiquetas").getString("Date"), 
 
@@ -203,10 +203,10 @@ public class BettingHistoryGUI extends JFrame {
 		tableBets.getColumnModel().getColumn(0).setPreferredWidth(25);
 		tableBets.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tableBets.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tableBets.getColumnModel().getColumn(3).setPreferredWidth(100);
+		//tableBets.getColumnModel().getColumn(3).setPreferredWidth(100);
         
         tableModelBets.setDataVector(null, columnNamesBets);
-		tableModelBets.setColumnCount(4); // another column added to allocate ev objects
+		tableModelBets.setColumnCount(3); // another column added to allocate ev objects
 
 		BLFacade facade=MainGUI.getBusinessLogic();
 		Vector<domain.Bet> bets=facade.getAllBets();
@@ -219,7 +219,10 @@ public class BettingHistoryGUI extends JFrame {
 			System.out.println("Bets "+bet);
 
 			row.add(bet.getBetAmount());
-			row.add(bet.getQuestion().getEvent().getDescription());
+			
+			//TODO: FIX RELATION Bet -> Question -> Event
+			
+			//row.add(bet.getQuestion().getEvent().getDescription()); 
 			row.add(bet.getQuestion().getQuestion());
 			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			row.add(sdf.format(bet.getBetDate()));
@@ -229,7 +232,7 @@ public class BettingHistoryGUI extends JFrame {
 		tableBets.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tableBets.getColumnModel().getColumn(1).setPreferredWidth(200);
 		tableBets.getColumnModel().getColumn(2).setPreferredWidth(200);
-		tableBets.getColumnModel().getColumn(3).setPreferredWidth(200);
+		//tableBets.getColumnModel().getColumn(3).setPreferredWidth(200);
 		//tableBets.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
 		//Display the window.
         setSize(625, 300);

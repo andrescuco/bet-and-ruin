@@ -67,13 +67,13 @@ public class EditAccountGUI extends JFrame {
 	 */
 	public EditAccountGUI() {
 		final BLFacade facade = MainGUI.getBusinessLogic();
-		final JLabel CreditValue = new JLabel(facade.getCurrentUser().getAccountFunds() + " Betcoins");
+		final JLabel CreditValue = new JLabel(facade.getCurrentUser().getWalletFunds() + " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.getCurrentUser().getAccountFunds();
-				CreditValue.setText(Float.toString(facade.getCurrentUser().getAccountFunds()));
+				facade.getCurrentUser().getWalletFunds();
+				CreditValue.setText(Float.toString(facade.getCurrentUser().getWalletFunds()));
 			}
 		});
 		
@@ -121,12 +121,15 @@ public class EditAccountGUI extends JFrame {
 		
 		
 		//GenderDB.addItem(facade.getCurrentUser().getGender());
+		facade.getCurrentUser();
 		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female") {
 			GenderDB.addItem("male");
-			GenderDB.addItem("female");}
+			GenderDB.addItem("female");
+		}
 		else if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male") {
 			GenderDB.addItem("female");
-			GenderDB.addItem("male");}
+			GenderDB.addItem("male");
+		}
 		GridBagConstraints gbc_GenderDB = new GridBagConstraints();
 		gbc_GenderDB.insets = new Insets(0, 0, 5, 5);
 		gbc_GenderDB.fill = GridBagConstraints.HORIZONTAL;
@@ -218,7 +221,7 @@ public class EditAccountGUI extends JFrame {
 		gbc_Birthdatelbl.gridy = 6;
 		contentPane.add(Birthdatelbl, gbc_Birthdatelbl);
 
-		JTextField BirthdateDB = new JTextField(facade.getCurrentUser().getBirthdayDate());
+		JTextField BirthdateDB = new JTextField(facade.getCurrentUser().getBirthday());
 		BirthdateDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -240,7 +243,7 @@ public class EditAccountGUI extends JFrame {
 		gbc_EmailAddresslbl.gridy = 8;
 		contentPane.add(EmailAddresslbl, gbc_EmailAddresslbl);
 
-		final JTextField EmailAddressDB = new JTextField(facade.getCurrentUser().getAddressEmail());
+		final JTextField EmailAddressDB = new JTextField(facade.getCurrentUser().getEmail());
 		EmailAddressDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -343,7 +346,7 @@ public class EditAccountGUI extends JFrame {
 					facade.UpdatePassword(PasswordDB.getText(), a.getUsername());
 				}
 				
-				 if (EmailAddressDB.getText() != facade.getCurrentUser().getAddressEmail()) {
+				 if (EmailAddressDB.getText() != facade.getCurrentUser().getEmail()) {
 					facade.UpdateEmailAddress(EmailAddressDB.getText(), a.getUsername());
 				 }
 					

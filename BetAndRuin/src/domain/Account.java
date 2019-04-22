@@ -7,10 +7,10 @@ public class Account {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private String date;
+	private String birthday;
 	private Boolean isLogged;
 	private Boolean isAdmin;
-	private int walletFunds;
+	private float walletFunds;
 	@Id
 	private String username;
 
@@ -18,17 +18,16 @@ public class Account {
 
 	private String gender;
 
-	// For testing purpose
-	/*
-	 * public Account(String uname, String passw) { username = uname; password =
-	 * passw; }
-	 */
+	public Account() {
+		super();
+	}
+	
 	public Account(String fname, String lname, String em, String d, String uname, String passw, String gend, int funds,
 			Boolean logged, Boolean admin) {
 		firstname = fname;
 		lastname = lname;
 		email = em;
-		date = d;
+		birthday = d;
 		username = uname;
 		password = passw;
 		gender = gend;
@@ -37,59 +36,89 @@ public class Account {
 		isAdmin = admin;
 	}
 
-	public String getPassword() {
-		return this.password;
-	}
-
-	public String getUsername() {
-		return this.username;
-	}
-
-	public String getAddressEmail() {
-		return this.email;
-	}
-
-	public String getBirthdayDate() {
-		return this.date;
-	}
+	
 
 	public String getFirstname() {
-		return this.firstname;
+		return firstname;
 	}
-	
-	public void setFirstname(String fname) {
-		firstname = fname;
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getLastname() {
-		return this.lastname;
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public Boolean getIsLogged() {
+		return isLogged;
+	}
+
+	public void setIsLogged(Boolean isLogged) {
+		this.isLogged = isLogged;
+	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public float getWalletFunds() {
+		return walletFunds;
+	}
+
+	public void setWalletFunds(float walletFunds) {
+		this.walletFunds = walletFunds;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getGender() {
-		return this.gender;
+		return gender;
 	}
 
-	public int getAccountFunds() {
-		return this.walletFunds;
-	}
-
-	public Boolean isAdmin() {
-		return this.isAdmin;
-	}
-
-	public Boolean getLoginStatus() {
-		return this.isLogged;
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public void changeToLogout() {
 		isLogged = false;
 	}
-
-	public void setWalletFunds(float funds) {
-		walletFunds = (int) funds;
-
-	}
-
-	
-
 }

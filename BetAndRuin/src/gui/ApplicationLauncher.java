@@ -9,9 +9,7 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
-import dataAccess.DataAccess;
 import businessLogic.BLFacade;
-import businessLogic.BLFacadeImplementation;
 
 public class ApplicationLauncher {
 	
@@ -37,19 +35,19 @@ public class ApplicationLauncher {
 
 		try {
 			
-			BLFacade appFacadeInterface;
+			BLFacade appFacadeInterface = null;
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			
 			if (c.isBusinessLogicLocal()) {
 				
-			 appFacadeInterface=new BLFacadeImplementation();
+			 //appFacadeInterface=new BLFacadeImplementation();
 				
 				
 			}
 			
-			else { //Si es remoto
+			else { //Business is remote
 				
 				//String serviceName="http://localhost:9999/ws/ruralHouses?wsdl";
 				 String serviceName= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName()+"?wsdl";
@@ -64,7 +62,7 @@ public class ApplicationLauncher {
 		 
 		        Service service = Service.create(url, qname);
 		 
-		         appFacadeInterface = service.getPort(BLFacade.class);
+		        appFacadeInterface = service.getPort(BLFacade.class);
 			} 
 			/*if (c.getDataBaseOpenMode().equals("initialize")) 
 				appFacadeInterface.initializeBD();

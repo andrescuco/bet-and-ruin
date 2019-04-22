@@ -111,7 +111,7 @@ public class WalletGUI extends JFrame {
 		gbc_lblAvalaibleCredit.gridy = 2;
 		contentPane.add(lblAvailableCredit, gbc_lblAvalaibleCredit);
 		
-		final JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getAccountFunds()+ " Betcoins");
+		final JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getWalletFunds()+ " Betcoins");
 		lblWalletFunds.setForeground(Color.RED);
 		lblWalletFunds.setFont(new Font("Roboto", Font.BOLD, 14));
 		GridBagConstraints gbc_lblWalletFunds = new GridBagConstraints();
