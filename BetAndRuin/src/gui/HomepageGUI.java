@@ -50,6 +50,12 @@ public class HomepageGUI {
 	 */
 	public HomepageGUI() {
 		initialize();
+		updateData();
+	}
+	
+	public void updateData() {
+		BLFacade facade=MainGUI.getBusinessLogic();
+		//facade.updateData();
 	}
 
 	/**

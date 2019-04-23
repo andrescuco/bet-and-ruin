@@ -53,9 +53,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	    DataAccess dBManager=new DataAccess();
 		Question qry=null;
 		
-	    
-		if(new Date().compareTo(event.getEventDate())>0)
-			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+	    //TODO Uncomment after testing
+//		if(new Date().compareTo(event.getEventDate())>0)
+//			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
 		
 		 qry=dBManager.createQuestion(event,question,betMinimum);		
@@ -273,6 +273,31 @@ public class BLFacadeImplementation  implements BLFacade {
     	Vector<Bet> bets = dBManager.getAllBets(acc);
     	dBManager.close();
     	return bets;
+	}
+	
+	@WebMethod public void updateData() {
+		DataAccess dBManager = new DataAccess();
+		
+		Vector<Event>  events;
+		
+		events = dBManager.getPassedEvents(new Date());
+		
+		for(Event e : events) {
+			Vector<Question> questions = e.getQuestions();
+			for(Question q : questions){
+				System.out.println(q);
+				//Account funds updated here
+				if(q.isCorrect()) {
+					Vector<Bet> bets = dBManager.getBetsByQuestion(q);
+					for(Bet b: bets) {
+						dBManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*2, b.getAccount()); //TODO Change 2, to question ratio
+					}
+				}
+			}
+			dBManager.markEventAsFinished(e);
+		}
+		
+		dBManager.close();
 	}
 
 }

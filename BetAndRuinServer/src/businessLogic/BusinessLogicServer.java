@@ -86,7 +86,16 @@ public class BusinessLogicServer extends JDialog {
 		}
 		else {
 		try {
-
+			/*
+			 * 
+			 * PLACE FOR TESTING 
+			 * 
+			 */
+			
+			BLFacade bl = new BLFacadeImplementation();
+			bl.updateData();
+			
+			
 			try{
 				 service= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName();
 				

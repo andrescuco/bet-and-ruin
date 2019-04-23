@@ -476,4 +476,37 @@ public class DataAccess {
 
 		}
 
+		public Vector<Event> getPassedEvents(Date date) {
+			Vector<Event> res = new Vector<Event>();
+			TypedQuery<Event> query = db.createQuery("SELECT ev FROM Event ev WHERE ev.eventDate<=?1 AND ev.finished ==?2", Event.class);
+			query.setParameter(1, date);
+			query.setParameter(2, false);
+			List<Event> events = query.getResultList();
+			for (Event ev : events) {
+				System.out.println(ev.toString());
+				res.add(ev);
+			}
+			return res;
+		}
+
+		public Vector<Bet> getBetsByQuestion(Question q) {
+			Vector<Bet> res = new Vector<Bet>();
+			TypedQuery<Bet> query = db.createQuery("SELECT bet FROM Bet bet WHERE bet.question==?1", Bet.class);
+			query.setParameter(1, q);
+			List<Bet> bets = query.getResultList();
+			for (Bet b : bets) {
+				System.out.println(b.toString());
+				res.add(b);
+			}
+			return res;
+		}
+
+		public void markEventAsFinished(Event e) {
+			db.getTransaction().begin();
+//			Event ev = new Event(description, date);
+//			db.persist(ev);
+			e.setFinished(true);
+			db.getTransaction().commit();
+		}
+
 }
