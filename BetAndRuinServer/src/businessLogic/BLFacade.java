@@ -9,6 +9,7 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.Transaction;
 import domain.Wallet;
 import domain.Account;
 import domain.Bet;
@@ -97,4 +98,6 @@ public interface BLFacade  {
 	float addFunds(float funds);
 	
 	@WebMethod public void updateData();
+	@WebMethod public Transaction  createTransaction(float amount, Date date, String description);
+	@WebMethod public Vector<Transaction> getTransactions();
 }

@@ -9,6 +9,7 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.Transaction;
 import domain.Wallet;
 import domain.Account;
 import domain.Bet;
@@ -71,6 +72,7 @@ public interface BLFacade  {
 
 
 	@WebMethod Event deleteEvent(Event event);
+	
 
 	boolean UpdateFirstname(String firstname, String username);
 
@@ -90,12 +92,12 @@ public interface BLFacade  {
 	boolean UpdateGender(String gender, String username);
 
 
-	
-
 	@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds, EventFinished;
 	@WebMethod public Vector<Bet> getAllBets();
 
-
-
 	float addFunds(float funds);
+	
+	@WebMethod public void updateData();
+	@WebMethod public Transaction  createTransaction(float amount, Date date, String description);
+	@WebMethod public Vector<Transaction> getTransactions();
 }

@@ -24,6 +24,7 @@ import domain.Account;
 import domain.Bet;
 import domain.Event;
 import domain.Question;
+import domain.Transaction;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
@@ -507,6 +508,28 @@ public class DataAccess {
 //			db.persist(ev);
 			e.setFinished(true);
 			db.getTransaction().commit();
+		}
+
+		public Transaction createTransaction(float amount, Date date, String description, Account acc) {
+			db.getTransaction().begin();
+			Transaction trans = new Transaction(amount, date, description, acc);
+			db.persist(trans); 
+			db.getTransaction().commit();
+			
+			return trans;
+		}
+
+		public Vector<Transaction> getTransactions(Account currentUser) {
+			System.out.println(">> DataAccess: getTransactions");
+			Vector<Transaction> trans = new Vector<Transaction>();
+			TypedQuery<Transaction> query = db.createQuery("SELECT trans FROM Transaction trans WHERE trans.account=?1", Transaction.class);
+			query.setParameter(1, currentUser);
+			List<Transaction> transactions = query.getResultList();
+			for (Transaction t : transactions) {
+//				System.out.println(ev.toString());
+				trans.add(t);
+			}
+			return trans;
 		}
 
 }

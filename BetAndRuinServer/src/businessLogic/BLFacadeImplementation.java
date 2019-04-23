@@ -10,6 +10,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Question;
+import domain.Transaction;
 import domain.Account;
 import domain.Bet;
 import domain.Event;
@@ -231,6 +232,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	public float addFunds(float funds) {
 		DataAccess dBManager = new DataAccess();
 		float update7 = dBManager.updateFunds(funds + getCurrentUser().getWalletFunds(), getCurrentUser());
+		dBManager.createTransaction(funds, new Date(), "Added funds", getCurrentUser());
 		dBManager.close();
 		updateCurrentUser();
 		return update7;
@@ -254,6 +256,7 @@ public class BLFacadeImplementation  implements BLFacade {
     	System.out.println("*************" + new Date());
     	Bet bet = dBManager.createBet(amount, new Date(), question, acc);
     	dBManager.updateFunds(acc.getWalletFunds()-amount, acc);
+    	dBManager.createTransaction(amount*(-1),new Date(), bet.getQuestion().getQuestion(), acc);
     	dBManager.close();
     	updateCurrentUser();
     	return bet;
@@ -291,6 +294,7 @@ public class BLFacadeImplementation  implements BLFacade {
 					Vector<Bet> bets = dBManager.getBetsByQuestion(q);
 					for(Bet b: bets) {
 						dBManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*2, b.getAccount()); //TODO Change 2, to question ratio
+						dBManager.createTransaction(b.getBetAmount()*2, new Date(), "Bet " + b, b.getAccount());
 					}
 				}
 			}
@@ -300,5 +304,24 @@ public class BLFacadeImplementation  implements BLFacade {
 		dBManager.close();
 	}
 
+	@WebMethod
+   public Transaction createTransaction(float amount, Date date, String description) {
+	    DataAccess dBManager=new DataAccess();
+		Transaction trans=null;
+		
+		trans = dBManager.createTransaction(amount, date, description, getCurrentUser());		
+
+		dBManager.close();
+		
+		return trans;
+   }
+	
+	@WebMethod	
+	public Vector<Transaction> getTransactions()  {
+		DataAccess dbManager=new DataAccess();
+		Vector<Transaction>  trans=dbManager.getTransactions(getCurrentUser());
+		dbManager.close();
+		return trans;
+	}
 }
 

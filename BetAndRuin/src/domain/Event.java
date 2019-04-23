@@ -23,6 +23,8 @@ public class Event implements Serializable {
 	private Integer eventNumber;
 	private String description; 
 	private Date eventDate;
+	private boolean finished;
+	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Vector<Question> questions=new Vector<Question>();
 	
@@ -34,11 +36,13 @@ public class Event implements Serializable {
 		this.eventNumber = eventNumber;
 		this.description = description;
 		this.eventDate = eventDate;
+		this.finished = false;
 	}
 	
 	public Event(String description,Date eventDate) {
 		this.description = description;
 		this.eventDate = eventDate;
+		this.finished = false;
 	}
 
 	public Integer getEventNumber() {
@@ -63,6 +67,14 @@ public class Event implements Serializable {
 
 	public void setEventDate(Date eventDate) {
 		this.eventDate = eventDate;
+	}
+	
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 
 	public Vector<Question> getQuestions() {

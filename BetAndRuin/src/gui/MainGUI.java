@@ -61,6 +61,7 @@ public class MainGUI extends JFrame {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton lblAccountSettings;
 	private JButton btnBetHistorywButton;
+	private JButton transactionsButton;
 	
 	
 	/**
@@ -163,6 +164,14 @@ public class MainGUI extends JFrame {
 			gbc_btnBetHistorywButton.gridx = 0;
 			gbc_btnBetHistorywButton.gridy = 5;
 			jContentPane.add(getBtnBetHistorywButton(), gbc_btnBetHistorywButton);
+			GridBagConstraints gbc_transactionsButton = new GridBagConstraints();
+			gbc_transactionsButton.gridwidth = 3;
+			gbc_transactionsButton.insets = new Insets(0, 0, 5, 0);
+			gbc_transactionsButton.anchor = GridBagConstraints.WEST;
+			gbc_transactionsButton.fill = GridBagConstraints.BOTH;
+			gbc_transactionsButton.gridx = 0;
+			gbc_transactionsButton.gridy = 6;
+			jContentPane.add(getTransactionButton(), gbc_transactionsButton);
 			GridBagConstraints gbc_panel = new GridBagConstraints();
 			gbc_panel.gridwidth = 3;
 			gbc_panel.gridx = 0;
@@ -179,6 +188,23 @@ public class MainGUI extends JFrame {
 	
 		
 	
+
+	private Component getTransactionButton() {
+		if (transactionsButton == null) {
+			transactionsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Transactions"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\betting_3.jpg").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+			transactionsButton.setIcon(imageIcon);
+			transactionsButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame transactionsGUI = new TransactionsGUI();
+					transactionsGUI.setLocationRelativeTo(null);
+					transactionsGUI.setVisible(true);
+				
+				}
+			});
+		}
+		return transactionsButton;
+	}
 
 	private JButton getEventButton() {
 		if (jButtonCreateEvent == null) {
@@ -395,6 +421,6 @@ public class MainGUI extends JFrame {
 		}
 		return btnBetHistorywButton;
 	}
-	}
+}
 // @jve:decl-index=0:visual-constraint="0,0"
 
