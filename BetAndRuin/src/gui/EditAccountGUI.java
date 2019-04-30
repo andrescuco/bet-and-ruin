@@ -146,7 +146,7 @@ public class EditAccountGUI extends JFrame {
 		gbc_WarningLabel.gridy = 19;
 		contentPane.add(WarningLabel, gbc_WarningLabel);
 
-		JLabel titleNewLabel = new JLabel("Please, modify the fields and press Update button");
+		JLabel titleNewLabel = new JLabel("Please, modify the fields and press the \"Update\" button");
 		titleNewLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
 		titleNewLabel.setForeground(Color.ORANGE);
 		GridBagConstraints gbc_titleNewLabel = new GridBagConstraints();
