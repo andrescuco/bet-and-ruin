@@ -96,6 +96,7 @@ public interface BLFacade  {
 	@WebMethod public Vector<Bet> getAllBets();
 
 	float addFunds(float funds);
+	float withdrawFunds(float funds);
 	
 	@WebMethod public void updateData();
 	@WebMethod public Transaction  createTransaction(float amount, Date date, String description);

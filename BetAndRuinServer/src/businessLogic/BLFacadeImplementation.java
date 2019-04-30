@@ -237,6 +237,16 @@ public class BLFacadeImplementation  implements BLFacade {
 		updateCurrentUser();
 		return update7;
 	}
+	
+	@Override
+	public float withdrawFunds(float funds) {
+		DataAccess dBManager = new DataAccess();
+		float update8 = dBManager.updateFunds(getCurrentUser().getWalletFunds() - funds, getCurrentUser());
+		dBManager.createTransaction(funds, new Date(), "Withdrawn funds", getCurrentUser());
+		dBManager.close();
+		updateCurrentUser();
+		return update8;
+	}
 
 	
     
