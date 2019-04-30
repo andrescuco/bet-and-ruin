@@ -34,11 +34,12 @@ public interface BLFacade  {
 	 * @param event to which question is added
 	 * @param question text of the question
 	 * @param betMinimum minimum quantity of the bet
+	 * @param odds TODO
 	 * @return the created question, or null, or an exception
 	 * @throws EventFinished if current data is after data of the event
  	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
-	@WebMethod Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist;
+	@WebMethod Question createQuestion(Event event, String question, float betMinimum, float odds) throws EventFinished, QuestionAlreadyExist;
 	
 	
 	/**

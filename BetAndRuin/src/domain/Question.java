@@ -21,6 +21,7 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private boolean correct;
+	private float odds;
 	
 	
 	public boolean isCorrect() {
@@ -47,12 +48,13 @@ public class Question implements Serializable {
 		this.correct = false;
 	}
 	
-	public Question(String query, float betMinimum,  Event event) {
+	public Question(String query, float betMinimum,  Event event, float odds) {
 		super();
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.correct = false;
 		this.event = event;
+		this.odds = odds; 
 	}
 
 	
@@ -78,6 +80,14 @@ public class Question implements Serializable {
 
 	public void setBetMinimum(float betMinimum) {
 		this.betMinimum = betMinimum;
+	}
+	
+	public float getOdds() {
+		return odds;
+	}
+
+	public void setOdds(float odds) {
+		this.odds = odds;
 	}
 
 	public Event getEvent() {

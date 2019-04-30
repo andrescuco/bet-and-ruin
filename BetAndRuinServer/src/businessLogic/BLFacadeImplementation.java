@@ -48,7 +48,7 @@ public class BLFacadeImplementation  implements BLFacade {
  	 * @throws QuestionAlreadyExist if the same question already exists for the event
 	 */
    @WebMethod
-   public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
+   public Question createQuestion(Event event, String question, float betMinimum, float odds) throws EventFinished, QuestionAlreadyExist{
 	   
 	    //The minimum bed must be greater than 0
 	    DataAccess dBManager=new DataAccess();
@@ -59,7 +59,9 @@ public class BLFacadeImplementation  implements BLFacade {
 //			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
 				
 		
-		 qry=dBManager.createQuestion(event,question,betMinimum);		
+		 qry=dBManager.createQuestion(event,question,betMinimum);
+		 
+		System.out.println(" The odds are: " + qry.getOdds());
 
 		dBManager.close();
 		
