@@ -34,6 +34,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class WalletGUI extends JFrame {
 
@@ -48,6 +51,7 @@ public class WalletGUI extends JFrame {
 			public void run() {
 				try {
 					WalletGUI frame = new WalletGUI();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 					frame.setTitle("My digital wallet");
 				
@@ -63,28 +67,22 @@ public class WalletGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WalletGUI() {
+		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(100, 100, 609, 512);
+		setBounds(100, 100, 592, 463);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{16, 96, 122, 134, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{1.0, 0.0, 1.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\wallet.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+		
 		
 		BLFacade facade=MainGUI.getBusinessLogic(); 
 		
 		JLabel lblMyWallet = new JLabel("My Wallet");
-		lblMyWallet.setFont(new Font("Roboto", Font.PLAIN, 16));
-		GridBagConstraints gbc_lblMyWallet = new GridBagConstraints();
-		gbc_lblMyWallet.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMyWallet.gridx = 2;
-		gbc_lblMyWallet.gridy = 0;
-		contentPane.add(lblMyWallet, gbc_lblMyWallet);
+		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\Wallet-Free-PNG-Image.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+		lblMyWallet.setIcon(imageIcon);
+		lblMyWallet.setForeground(Color.ORANGE);
+		lblMyWallet.setFont(new Font("Roboto", Font.BOLD, 20));
 		lblMyWallet.setIcon(imageIcon);
 		
 		JButton btnBack = new JButton("Back");
@@ -95,71 +93,52 @@ public class WalletGUI extends JFrame {
 				dispose();
 			}
 		});
-		GridBagConstraints gbc_btnBack = new GridBagConstraints();
-		gbc_btnBack.anchor = GridBagConstraints.EAST;
-		gbc_btnBack.insets = new Insets(0, 0, 5, 0);
-		gbc_btnBack.gridx = 3;
-		gbc_btnBack.gridy = 0;
-		contentPane.add(btnBack, gbc_btnBack);
 		
 		JLabel lblAvailableCredit = new JLabel("Available credit:");
-		lblAvailableCredit.setFont(new Font("Roboto", Font.PLAIN, 15));
-		GridBagConstraints gbc_lblAvalaibleCredit = new GridBagConstraints();
-		gbc_lblAvalaibleCredit.fill = GridBagConstraints.BOTH;
-		gbc_lblAvalaibleCredit.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAvalaibleCredit.gridx = 1;
-		gbc_lblAvalaibleCredit.gridy = 2;
-		contentPane.add(lblAvailableCredit, gbc_lblAvalaibleCredit);
+		lblAvailableCredit.setForeground(Color.ORANGE);
+		lblAvailableCredit.setFont(new Font("Roboto", Font.PLAIN, 21));
 		
 		final JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getWalletFunds()+ " Betcoins");
 		lblWalletFunds.setForeground(Color.RED);
-		lblWalletFunds.setFont(new Font("Roboto", Font.BOLD, 14));
-		GridBagConstraints gbc_lblWalletFunds = new GridBagConstraints();
-		gbc_lblWalletFunds.insets = new Insets(0, 0, 5, 5);
-		gbc_lblWalletFunds.gridx = 2;
-		gbc_lblWalletFunds.gridy = 2;
-		contentPane.add(lblWalletFunds, gbc_lblWalletFunds);
+		lblWalletFunds.setFont(new Font("Roboto Cn", Font.BOLD, 21));
+		
+		JButton btnWithdrawFunds = new JButton("Withdraw funds");
+		btnWithdrawFunds.setForeground(new Color(255, 255, 255));
+		btnWithdrawFunds.setBackground(new Color(0, 128, 0));
+		btnWithdrawFunds.setFont(new Font("Roboto", Font.ITALIC, 18));
+		btnWithdrawFunds.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				WithdrawGUI open = new WithdrawGUI();
+				open.setVisible(true);
+				dispose();
+			}
+		});
 		
 		JLabel lblGetMoreCredits = new JLabel("Get more credits");
-		lblGetMoreCredits.setFont(new Font("Roboto", Font.BOLD, 14));
-		GridBagConstraints gbc_lblGetMoreCredits = new GridBagConstraints();
-		gbc_lblGetMoreCredits.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGetMoreCredits.gridx = 2;
-		gbc_lblGetMoreCredits.gridy = 4;
-		contentPane.add(lblGetMoreCredits, gbc_lblGetMoreCredits);
+		lblGetMoreCredits.setForeground(Color.ORANGE);
+		lblGetMoreCredits.setFont(new Font("Roboto", Font.BOLD, 16));
 		
 		JLabel lblMoreCreditsChoose = new JLabel(" Choose an option below:");
+		lblMoreCreditsChoose.setForeground(Color.ORANGE);
 		lblMoreCreditsChoose.setFont(new Font("Roboto", Font.PLAIN, 13));
-		GridBagConstraints gbc_lblMoreCreditsChoose = new GridBagConstraints();
-		gbc_lblMoreCreditsChoose.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMoreCreditsChoose.gridx = 2;
-		gbc_lblMoreCreditsChoose.gridy = 5;
-		contentPane.add(lblMoreCreditsChoose, gbc_lblMoreCreditsChoose);
 		
 		final JRadioButton PaypalButt = new JRadioButton("Paypal");
-		GridBagConstraints gbc_PaypalButt = new GridBagConstraints();
-		gbc_PaypalButt.insets = new Insets(0, 0, 5, 5);
-		gbc_PaypalButt.gridx = 1;
-		gbc_PaypalButt.gridy = 6;
-		contentPane.add(PaypalButt, gbc_PaypalButt);
+		PaypalButt.setBackground(Color.BLACK);
+		PaypalButt.setForeground(Color.ORANGE);
 		
 		JLabel lblOr = new JLabel("or");
+		lblOr.setForeground(Color.ORANGE);
 		lblOr.setFont(new Font("Roboto", Font.PLAIN, 14));
-		GridBagConstraints gbc_lblOr = new GridBagConstraints();
-		gbc_lblOr.insets = new Insets(0, 0, 5, 5);
-		gbc_lblOr.gridx = 2;
-		gbc_lblOr.gridy = 6;
-		contentPane.add(lblOr, gbc_lblOr);
 		
 		final JRadioButton VisaButt = new JRadioButton("Visa/Mastercard");
-		GridBagConstraints gbc_VisaButt = new GridBagConstraints();
-		gbc_VisaButt.insets = new Insets(0, 0, 5, 0);
-		gbc_VisaButt.gridx = 3;
-		gbc_VisaButt.gridy = 6;
-		contentPane.add(VisaButt, gbc_VisaButt);
+		VisaButt.setBackground(Color.BLACK);
+		VisaButt.setForeground(Color.ORANGE);
 		
 		final JComboBox fundsToAdd = new JComboBox();
 		JButton btnContinue = new JButton("Continue");
+		btnContinue.setForeground(new Color(255, 255, 255));
+		btnContinue.setFont(new Font("Roboto", Font.ITALIC, 18));
+		btnContinue.setBackground(new Color(0, 128, 0));
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isPaypalSelected = PaypalButt.isSelected();
@@ -168,7 +147,7 @@ public class WalletGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				Account b = facade.getCurrentUser();
 				funds = facade.addFunds(funds);
-				lblWalletFunds.setText(Float.toString(funds));
+				lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
 				
 				
 				
@@ -182,21 +161,91 @@ public class WalletGUI extends JFrame {
 		fundsToAdd.addItem(100);
 		fundsToAdd.addItem(500);
 		fundsToAdd.addItem(1000);
-		GridBagConstraints gbc_fundsToAdd = new GridBagConstraints();
-		gbc_fundsToAdd.insets = new Insets(0, 0, 5, 5);
-		gbc_fundsToAdd.fill = GridBagConstraints.HORIZONTAL;
-		gbc_fundsToAdd.gridx = 2;
-		gbc_fundsToAdd.gridy = 7;
-		contentPane.add(fundsToAdd, gbc_fundsToAdd);
-		GridBagConstraints gbc_btnContinue = new GridBagConstraints();
-		gbc_btnContinue.insets = new Insets(0, 0, 0, 5);
-		gbc_btnContinue.gridx = 2;
-		gbc_btnContinue.gridy = 9;
-		contentPane.add(btnContinue, gbc_btnContinue);
 		
 		ButtonGroup group = new ButtonGroup();
         group.add(PaypalButt);
         group.add(VisaButt);
+        
+        JSeparator separator = new JSeparator();
+        GroupLayout gl_contentPane = new GroupLayout(contentPane);
+        gl_contentPane.setHorizontalGroup(
+        	gl_contentPane.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(112)
+        					.addComponent(lblAvailableCredit, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+        					.addGap(18)
+        					.addComponent(lblWalletFunds)
+        					.addPreferredGap(ComponentPlacement.RELATED))
+        				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+        					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addComponent(lblMyWallet)
+        					.addGap(72)))
+        			.addPreferredGap(ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+        			.addComponent(btnBack))
+        		.addComponent(separator, GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap(243, Short.MAX_VALUE)
+        			.addComponent(lblGetMoreCredits)
+        			.addGap(221))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap(209, Short.MAX_VALUE)
+        			.addComponent(btnWithdrawFunds)
+        			.addGap(203))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap(216, Short.MAX_VALUE)
+        			.addComponent(lblMoreCreditsChoose)
+        			.addGap(209))
+        		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+        			.addGap(178)
+        			.addComponent(PaypalButt)
+        			.addGap(49)
+        			.addComponent(lblOr)
+        			.addGap(41)
+        			.addComponent(VisaButt)
+        			.addContainerGap(116, Short.MAX_VALUE))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap(193, Short.MAX_VALUE)
+        			.addComponent(fundsToAdd, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
+        			.addGap(179))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap(240, Short.MAX_VALUE)
+        			.addComponent(btnContinue)
+        			.addGap(227))
+        );
+        gl_contentPane.setVerticalGroup(
+        	gl_contentPane.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(14)
+        					.addComponent(lblMyWallet)
+        					.addGap(18)
+        					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(lblWalletFunds)
+        						.addComponent(lblAvailableCredit, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)))
+        				.addComponent(btnBack))
+        			.addGap(18)
+        			.addComponent(btnWithdrawFunds)
+        			.addGap(33)
+        			.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(lblGetMoreCredits)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(lblMoreCreditsChoose)
+        			.addGap(19)
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(lblOr)
+        				.addComponent(PaypalButt)
+        				.addComponent(VisaButt))
+        			.addGap(18)
+        			.addComponent(fundsToAdd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(btnContinue)
+        			.addGap(64))
+        );
+        contentPane.setLayout(gl_contentPane);
 		
 		
 		
@@ -204,5 +253,4 @@ public class WalletGUI extends JFrame {
 		
 		
 	}
-
 }

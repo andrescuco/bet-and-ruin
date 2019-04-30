@@ -32,6 +32,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.CardLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class MainGUI extends JFrame {
@@ -62,6 +63,7 @@ public class MainGUI extends JFrame {
 	private JButton lblAccountSettings;
 	private JButton btnBetHistorywButton;
 	private JButton transactionsButton;
+	private JSeparator separator_1;
 	
 	
 	/**
@@ -69,6 +71,7 @@ public class MainGUI extends JFrame {
 	 */
 	public MainGUI() {
 		super();
+		setResizable(false);
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -96,9 +99,8 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(534, 420);
+		this.setSize(729, 441);
 		this.setContentPane(getJContentPane());
-		this.setResizable(false);
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 
@@ -111,72 +113,78 @@ public class MainGUI extends JFrame {
 		if (jContentPane == null) {
 			jContentPane = new JPanel();
 			jContentPane.setBackground(Color.BLACK);
-			GridBagLayout gbl_jContentPane = new GridBagLayout();
-			gbl_jContentPane.columnWidths = new int[]{173, 140, 220, 0};
-			gbl_jContentPane.rowHeights = new int[]{42, 46, 43, 45, 0, 40, 0, 0};
-			gbl_jContentPane.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_jContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			jContentPane.setLayout(gbl_jContentPane);
-			GridBagConstraints gbc_jLabelSelectOption = new GridBagConstraints();
-			gbc_jLabelSelectOption.gridwidth = 3;
-			gbc_jLabelSelectOption.insets = new Insets(0, 0, 5, 0);
-			gbc_jLabelSelectOption.anchor = GridBagConstraints.WEST;
-			gbc_jLabelSelectOption.fill = GridBagConstraints.BOTH;
-			gbc_jLabelSelectOption.gridx = 0;
-			gbc_jLabelSelectOption.gridy = 0;
-			jContentPane.add(getLblNewLabel(), gbc_jLabelSelectOption);
-			GridBagConstraints gbc_jButtonCreateQuery = new GridBagConstraints();
-			gbc_jButtonCreateQuery.gridwidth = 3;
-			gbc_jButtonCreateQuery.anchor = GridBagConstraints.WEST;
-			gbc_jButtonCreateQuery.fill = GridBagConstraints.BOTH;
-			gbc_jButtonCreateQuery.insets = new Insets(0, 0, 5, 0);
-			gbc_jButtonCreateQuery.gridx = 0;
-			gbc_jButtonCreateQuery.gridy = 1;
-			jContentPane.add(getBoton2(), gbc_jButtonCreateQuery);
-			GridBagConstraints gbc_jButtonCreateEvent = new GridBagConstraints();
-			gbc_jButtonCreateEvent.gridwidth = 3;
-			gbc_jButtonCreateEvent.anchor = GridBagConstraints.WEST;
-			gbc_jButtonCreateEvent.fill = GridBagConstraints.BOTH;
-			gbc_jButtonCreateEvent.insets = new Insets(0, 0, 5, 0);
-			gbc_jButtonCreateEvent.gridx = 0;
-			gbc_jButtonCreateEvent.gridy = 2;
-			jContentPane.add(getEventButton(), gbc_jButtonCreateEvent);
-			GridBagConstraints gbc_jButtonQueryQueries = new GridBagConstraints();
-			gbc_jButtonQueryQueries.gridwidth = 3;
-			gbc_jButtonQueryQueries.insets = new Insets(0, 0, 5, 0);
-			gbc_jButtonQueryQueries.anchor = GridBagConstraints.WEST;
-			gbc_jButtonQueryQueries.fill = GridBagConstraints.BOTH;
-			gbc_jButtonQueryQueries.gridx = 0;
-			gbc_jButtonQueryQueries.gridy = 3;
-			jContentPane.add(getBoton3(), gbc_jButtonQueryQueries);
-			GridBagConstraints gbc_lblAccountSettings = new GridBagConstraints();
-			gbc_lblAccountSettings.gridwidth = 3;
-			gbc_lblAccountSettings.fill = GridBagConstraints.BOTH;
-			gbc_lblAccountSettings.insets = new Insets(0, 0, 5, 0);
-			gbc_lblAccountSettings.gridx = 0;
-			gbc_lblAccountSettings.gridy = 4;
-			jContentPane.add(getLblAccountSettings(), gbc_lblAccountSettings);
-			GridBagConstraints gbc_btnBetHistorywButton = new GridBagConstraints();
-			gbc_btnBetHistorywButton.gridwidth = 3;
-			gbc_btnBetHistorywButton.insets = new Insets(0, 0, 5, 0);
-			gbc_btnBetHistorywButton.anchor = GridBagConstraints.WEST;
-			gbc_btnBetHistorywButton.fill = GridBagConstraints.BOTH;
-			gbc_btnBetHistorywButton.gridx = 0;
-			gbc_btnBetHistorywButton.gridy = 5;
-			jContentPane.add(getBtnBetHistorywButton(), gbc_btnBetHistorywButton);
-			GridBagConstraints gbc_transactionsButton = new GridBagConstraints();
-			gbc_transactionsButton.gridwidth = 3;
-			gbc_transactionsButton.insets = new Insets(0, 0, 5, 0);
-			gbc_transactionsButton.anchor = GridBagConstraints.WEST;
-			gbc_transactionsButton.fill = GridBagConstraints.BOTH;
-			gbc_transactionsButton.gridx = 0;
-			gbc_transactionsButton.gridy = 6;
-			jContentPane.add(getTransactionButton(), gbc_transactionsButton);
-			GridBagConstraints gbc_panel = new GridBagConstraints();
-			gbc_panel.gridwidth = 3;
-			gbc_panel.gridx = 0;
-			gbc_panel.gridy = 6;
-			jContentPane.add(getPanel(), gbc_panel);
+			
+			JSeparator separator = new JSeparator();
+			GroupLayout gl_jContentPane = new GroupLayout(jContentPane);
+			gl_jContentPane.setHorizontalGroup(
+				gl_jContentPane.createParallelGroup(Alignment.LEADING)
+					.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(getEventButton(), GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
+							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap())
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addContainerGap(95, Short.MAX_VALUE)
+						.addComponent(getTransactionButton(), GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
+						.addGap(53)
+						.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(52))
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addComponent(separator, GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+						.addContainerGap())
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addComponent(getSeparator_1(), GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+						.addContainerGap())
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addGap(185)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_jContentPane.createSequentialGroup()
+								.addComponent(getRdbtnNewRadioButton())
+								.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+								.addComponent(getRdbtnNewRadioButton_2())
+								.addGap(66)
+								.addComponent(getRdbtnNewRadioButton_1()))
+							.addComponent(getLblAccountSettings(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
+						.addGap(182))
+			);
+			gl_jContentPane.setVerticalGroup(
+				gl_jContentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addGap(18)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getEventButton(), GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+						.addGap(28)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_jContentPane.createSequentialGroup()
+								.addGap(66)
+								.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_jContentPane.createSequentialGroup()
+								.addGap(18)
+								.addComponent(getTransactionButton(), GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)))
+						.addGap(18)
+						.addComponent(getSeparator_1(), GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(getLblAccountSettings(), GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+						.addGap(38)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getRdbtnNewRadioButton())
+							.addComponent(getRdbtnNewRadioButton_1())
+							.addComponent(getRdbtnNewRadioButton_2()))
+						.addGap(238))
+			);
+			jContentPane.setLayout(gl_jContentPane);
 			
 			 
 		}
@@ -192,6 +200,7 @@ public class MainGUI extends JFrame {
 	private Component getTransactionButton() {
 		if (transactionsButton == null) {
 			transactionsButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Transactions"));
+			transactionsButton.setBackground(new Color(152, 251, 152));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\betting_3.jpg").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 			transactionsButton.setIcon(imageIcon);
 			transactionsButton.addActionListener(new ActionListener() {
@@ -209,7 +218,7 @@ public class MainGUI extends JFrame {
 	private JButton getEventButton() {
 		if (jButtonCreateEvent == null) {
 			jButtonCreateEvent = new JButton();
-			jButtonCreateEvent.setBackground(Color.WHITE);
+			jButtonCreateEvent.setBackground(new Color(240, 230, 140));
 			jButtonCreateEvent.setForeground(Color.BLACK);
 			jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\type.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
@@ -235,7 +244,7 @@ public class MainGUI extends JFrame {
 	private JButton getBoton2() {
 		if (jButtonCreateQuery == null) {
 			jButtonCreateQuery = new JButton();
-			jButtonCreateQuery.setBackground(Color.WHITE);
+			jButtonCreateQuery.setBackground(new Color(240, 230, 140));
 			jButtonCreateQuery.setForeground(Color.BLACK);
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\question.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
@@ -261,7 +270,7 @@ public class MainGUI extends JFrame {
 	private JButton getBoton3() {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
-			jButtonQueryQueries.setBackground(Color.WHITE);
+			jButtonQueryQueries.setBackground(new Color(240, 230, 140));
 			jButtonQueryQueries.setForeground(Color.BLACK);
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\download.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
@@ -290,7 +299,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
 			rdbtnNewRadioButton = new JRadioButton("English");
-			rdbtnNewRadioButton.setBackground(Color.GRAY);
+			rdbtnNewRadioButton.setBackground(new Color(0, 0, 0));
 			rdbtnNewRadioButton.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -305,7 +314,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_1() {
 		if (rdbtnNewRadioButton_1 == null) {
 			rdbtnNewRadioButton_1 = new JRadioButton("Euskara");
-			rdbtnNewRadioButton_1.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_1.setBackground(new Color(0, 0, 0));
 			rdbtnNewRadioButton_1.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -320,7 +329,7 @@ public class MainGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_2() {
 		if (rdbtnNewRadioButton_2 == null) {
 			rdbtnNewRadioButton_2 = new JRadioButton("Castellano");
-			rdbtnNewRadioButton_2.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_2.setBackground(new Color(0, 0, 0));
 			rdbtnNewRadioButton_2.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -338,9 +347,6 @@ public class MainGUI extends JFrame {
 			panel = new JPanel();
 			panel.setBackground(Color.GRAY);
 			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			panel.add(getRdbtnNewRadioButton());
-			panel.add(getRdbtnNewRadioButton_2());
-			panel.add(getRdbtnNewRadioButton_1());
 		}
 		return panel;
 	}
@@ -392,7 +398,7 @@ public class MainGUI extends JFrame {
 			System.out.print(facade.getCurrentUser());
 		}*/
 
-			lblAccountSettings.setBackground(Color.WHITE);
+			lblAccountSettings.setBackground(new Color(0, 255, 255));
 			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
 			lblAccountSettings.setForeground(Color.BLACK);
 			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
@@ -407,6 +413,7 @@ public class MainGUI extends JFrame {
 	private JButton getBtnBetHistorywButton() {
 		if (btnBetHistorywButton == null) {
 			btnBetHistorywButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("BettingHistory"));
+			btnBetHistorywButton.setBackground(new Color(240, 230, 140));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\betting_3.jpg").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 			btnBetHistorywButton.setIcon(imageIcon);
 			btnBetHistorywButton.addActionListener(new ActionListener() {
@@ -420,6 +427,12 @@ public class MainGUI extends JFrame {
 			});
 		}
 		return btnBetHistorywButton;
+	}
+	private JSeparator getSeparator_1() {
+		if (separator_1 == null) {
+			separator_1 = new JSeparator();
+		}
+		return separator_1;
 	}
 }
 // @jve:decl-index=0:visual-constraint="0,0"
