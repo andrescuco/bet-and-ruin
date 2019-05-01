@@ -20,14 +20,19 @@ import businessLogic.BLFacade;
 
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class HomepageGUI {
 
 	private JFrame frame;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -70,7 +75,7 @@ public class HomepageGUI {
 		frame.setLocationRelativeTo(null); 
 		frame.setVisible(true);
 
-		JButton btnRegister = new JButton("Register");
+		final JButton btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
@@ -84,7 +89,7 @@ public class HomepageGUI {
 			
 		});
 		
-		JButton btnEnterAsA = new JButton("Enter as a guest");
+		final JButton btnEnterAsA = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Enterasaguest"));
 
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -96,12 +101,13 @@ public class HomepageGUI {
 			}
 			});
 		
-		JLabel lblOr = new JLabel("or");
+		final JLabel lblOr = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("or"));
+		lblOr.setForeground(new Color(255, 255, 0));
 		
-		JLabel lblAlreadyHaveAn = new JLabel("Already have an account?");
-		lblAlreadyHaveAn.setForeground(Color.WHITE);
+		final JLabel lblAlreadyHaveAn = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
+		lblAlreadyHaveAn.setForeground(new Color(255, 255, 0));
 		
-		JButton btnSignIn = new JButton("Sign in");
+		final JButton btnSignIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
 		
 		btnSignIn.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) 
@@ -123,25 +129,70 @@ public class HomepageGUI {
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\ATG.png").getImage().getScaledInstance(250, 140, Image.SCALE_DEFAULT));
 		logo.setIcon(imageIcon);
 		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("English");
+		rdbtnNewRadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("en"));
+				System.out.println("Locale: "+Locale.getDefault());
+				btnRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
+				btnEnterAsA.setText(ResourceBundle.getBundle("Etiquetas").getString("Enterasaguest"));
+				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
+				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
+				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+			}
+		});
+		buttonGroup.add(rdbtnNewRadioButton);
+		rdbtnNewRadioButton.setForeground(new Color(255, 255, 0));
+		rdbtnNewRadioButton.setBackground(new Color(0, 0, 0));
+		
+		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Castillano");
+		rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("es"));
+				System.out.println("Locale: "+Locale.getDefault());
+				btnRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
+				btnEnterAsA.setText(ResourceBundle.getBundle("Etiquetas").getString("Enterasaguest"));
+				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
+				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
+				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+				
+			}
+		});
+		buttonGroup.add(rdbtnNewRadioButton_1);
+		rdbtnNewRadioButton_1.setBackground(new Color(0, 0, 0));
+		rdbtnNewRadioButton_1.setForeground(new Color(255, 255, 0));
+		
+		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Euskara");
+		rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Locale.setDefault(new Locale("eus"));
+				System.out.println("Locale: "+Locale.getDefault());
+				btnRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("Register"));
+				btnEnterAsA.setText(ResourceBundle.getBundle("Etiquetas").getString("Enterasaguest"));
+				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
+				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
+				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+			}
+		});
+		buttonGroup.add(rdbtnNewRadioButton_2);
+		rdbtnNewRadioButton_2.setBackground(new Color(0, 0, 0));
+		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 0));
+		
 		
 		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(97, Short.MAX_VALUE)
+					.addContainerGap(147, Short.MAX_VALUE)
 					.addComponent(lblAlreadyHaveAn)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(48)
 					.addComponent(btnSignIn)
-					.addGap(139))
+					.addGap(97))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(211)
-					.addComponent(lblOr)
-					.addContainerGap(213, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(26)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(31, Short.MAX_VALUE))
+					.addGap(156)
+					.addComponent(btnEnterAsA)
+					.addContainerGap(191, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(46)
 					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE)
@@ -149,30 +200,46 @@ public class HomepageGUI {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(175)
 					.addComponent(btnRegister)
-					.addContainerGap(186, Short.MAX_VALUE))
+					.addContainerGap(172, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(156)
-					.addComponent(btnEnterAsA)
-					.addContainerGap(167, Short.MAX_VALUE))
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(rdbtnNewRadioButton)
+							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(rdbtnNewRadioButton_1)
+							.addGap(78)
+							.addComponent(rdbtnNewRadioButton_2))
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(31, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(208)
+					.addComponent(lblOr)
+					.addContainerGap(171, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(19)
 					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
 					.addComponent(btnRegister)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(1)
 					.addComponent(lblOr)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnEnterAsA)
-					.addGap(24)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnEnterAsA)
+					.addGap(18)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnSignIn)
 						.addComponent(lblAlreadyHaveAn))
-					.addGap(34))
+					.addGap(13)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(rdbtnNewRadioButton)
+						.addComponent(rdbtnNewRadioButton_2)
+						.addComponent(rdbtnNewRadioButton_1))
+					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}

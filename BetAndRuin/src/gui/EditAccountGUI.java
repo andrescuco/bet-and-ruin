@@ -60,8 +60,9 @@ public class EditAccountGUI extends JFrame {
 			public void run() {
 				try {
 					EditAccountGUI frame = new EditAccountGUI();
+					//frame.setTitle("My Information");
 					frame.setVisible(true);
-					frame.setTitle("My Information");
+					
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -76,6 +77,7 @@ public class EditAccountGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public EditAccountGUI() {
+		setTitle("My Information");
 		final BLFacade facade = MainGUI.getBusinessLogic();
 		final JLabel CreditValue = new JLabel(facade.getCurrentUser().getWalletFunds() + " Betcoins");
 		addFocusListener(new FocusAdapter() {
