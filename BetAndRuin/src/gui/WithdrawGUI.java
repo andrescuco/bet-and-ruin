@@ -50,8 +50,9 @@ public class WithdrawGUI extends JFrame {
 					
 					frame.pack();
 					frame.setLocationRelativeTo(null);
-					frame.setVisible(true);
 					frame.setTitle("Withdraw");
+					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
