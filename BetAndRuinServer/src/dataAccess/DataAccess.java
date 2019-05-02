@@ -182,9 +182,9 @@ public class DataAccess {
 	 * @throws QuestionAlreadyExist if the same question already exists for the
 	 *                              event
 	 */
-	public Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist {
+	public Question createQuestion(Event event, String question, float betMinimum, float odds) throws QuestionAlreadyExist {
 		System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
-				+ betMinimum);
+				+ betMinimum + " odds: " + odds);
 
 		Event ev = db.find(Event.class, event.getEventNumber());
 
@@ -192,7 +192,7 @@ public class DataAccess {
 			throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
 
 		db.getTransaction().begin();
-		Question q = ev.addQuestion(question, betMinimum, 0);
+		Question q = ev.addQuestion(question, betMinimum, odds);
 		
 		q.setEvent(ev); //No relation Question -> Event without this
 		

@@ -262,7 +262,7 @@ private static final long serialVersionUID = 1L;
 	  			//Obtain the business logic from a StartWindow class (local or remote)
 	  			BLFacade facade=MainGUI.getBusinessLogic();
 
-	  			facade.createQuestion(event, inputQuery, inputPrice, 0); 
+	  			facade.createQuestion(event, inputQuery, inputPrice, 54); 
 
 	  			jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCreated"));
 	  			}

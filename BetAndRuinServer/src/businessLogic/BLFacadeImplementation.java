@@ -54,14 +54,15 @@ public class BLFacadeImplementation  implements BLFacade {
 	    DataAccess dBManager=new DataAccess();
 		Question qry=null;
 		
-	    //TODO Uncomment after testing
+	    //TODO Uncomment after testing	
 //		if(new Date().compareTo(event.getEventDate())>0)
 //			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
-				
-		
-		 qry=dBManager.createQuestion(event,question,betMinimum);
 		 
-		System.out.println(" The odds are: " + qry.getOdds());
+		odds = 1/odds*100;
+		
+		qry=dBManager.createQuestion(event,question,betMinimum, odds);
+		 
+		System.out.println(" The odds are: " + odds);
 
 		dBManager.close();
 		
@@ -293,7 +294,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	@WebMethod public void updateData() {
 		DataAccess dBManager = new DataAccess();
 		
-		Vector<Event>  events;
+		Vector<Event> events;
 		
 		events = dBManager.getPassedEvents(new Date());
 		
@@ -305,8 +306,8 @@ public class BLFacadeImplementation  implements BLFacade {
 				if(q.isCorrect()) {
 					Vector<Bet> bets = dBManager.getBetsByQuestion(q);
 					for(Bet b: bets) {
-						dBManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*2, b.getAccount()); //TODO Change 2, to question ratio
-						dBManager.createTransaction(b.getBetAmount()*2, new Date(), "Bet " + b, b.getAccount());
+						dBManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*q.getOdds(), b.getAccount());
+						dBManager.createTransaction(b.getBetAmount()*q.getOdds(), new Date(), "Bet " + b, b.getAccount());
 					}
 				}
 			}

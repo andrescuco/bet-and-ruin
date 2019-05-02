@@ -98,6 +98,7 @@ public class Event implements Serializable {
 	 * @return Bet
 	 */
 	public Question addQuestion(String question, float betMinimum, float odds)  {
+		System.out.println("The odds on the Event object in domain on Server are :" + odds);
         Question q=new Question(question,betMinimum, this, odds);
         questions.add(q);
         return q;

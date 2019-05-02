@@ -54,6 +54,7 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.correct = false;
 		this.event = event;
+		this.odds = odds;
 	}
 
 	
