@@ -106,9 +106,12 @@ public class BetGUI extends JFrame {
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\putmoney.png").getImage().getScaledInstance(150, 75, Image.SCALE_DEFAULT));
 		Symbol.setIcon(imageIcon);
 		
+		JLabel lblCalculatedWin = new JLabel("If you win, you'll get " + String.format("%.02f", question.getOdds()) + " of what you bet!");
+		lblCalculatedWin.setForeground(Color.ORANGE);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -127,15 +130,19 @@ public class BetGUI extends JFrame {
 					.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
 					.addGap(37)
 					.addComponent(betButton, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(122, Short.MAX_VALUE))
+					.addContainerGap(219, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(225)
-					.addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+					.addComponent(questionLabel, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
 					.addGap(34))
-				.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(91)
 					.addComponent(warningLabel, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(108, Short.MAX_VALUE))
+					.addContainerGap(239, Short.MAX_VALUE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblCalculatedWin)
+					.addContainerGap(206, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -149,13 +156,15 @@ public class BetGUI extends JFrame {
 						.addComponent(lblEnterYourBet, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 						.addComponent(BetAmountField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(minBetLabel))
-					.addGap(52)
+					.addGap(16)
+					.addComponent(lblCalculatedWin)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 						.addComponent(betButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(warningLabel, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(16, Short.MAX_VALUE))
+					.addContainerGap(49, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

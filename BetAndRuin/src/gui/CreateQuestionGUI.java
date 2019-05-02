@@ -50,6 +50,8 @@ private static final long serialVersionUID = 1L;
   private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
   private JLabel jLabelMsg = new JLabel();
   private JLabel jLabelError = new JLabel();
+  private final JLabel labelOdds = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.labelOdds.text")); //$NON-NLS-1$ //$NON-NLS-2$
+  private JTextField textFieldOdds;
 
   
   
@@ -71,7 +73,7 @@ private static final long serialVersionUID = 1L;
   {
 	  
     this.getContentPane().setLayout(null);
-    this.setSize(new Dimension(604, 370));
+    this.setSize(new Dimension(611, 412));
     this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
     
     
@@ -92,7 +94,7 @@ private static final long serialVersionUID = 1L;
     jCalendar.setBounds(new Rectangle(40, 50, 225, 150));
     scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
     
-    jButtonCreate.setBounds(new Rectangle(100, 275, 130, 30));
+    jButtonCreate.setBounds(new Rectangle(100, 310, 130, 30));
     jButtonCreate.setEnabled(false);
     
     jButtonCreate.addActionListener(new ActionListener()
@@ -102,7 +104,7 @@ private static final long serialVersionUID = 1L;
           jButtonCreate_actionPerformed(e);
         }
       });
-    jButtonClose.setBounds(new Rectangle(275, 275, 130, 30));
+    jButtonClose.setBounds(new Rectangle(275, 310, 130, 30));
     jButtonClose.addActionListener(new ActionListener()
       {
         public void actionPerformed(ActionEvent e)
@@ -139,6 +141,24 @@ private static final long serialVersionUID = 1L;
     jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
     jLabelEventDate.setBounds(40, 16, 140, 25);
     getContentPane().add(jLabelEventDate);
+    labelOdds.setForeground(Color.ORANGE);
+    labelOdds.setFont(new Font("Dialog", Font.PLAIN, 14));
+    labelOdds.setBounds(new Rectangle(25, 243, 75, 20));
+    labelOdds.setBounds(25, 274, 75, 20);
+    
+    getContentPane().add(labelOdds);
+    
+    textFieldOdds = new JTextField();
+    textFieldOdds.setBounds(new Rectangle(100, 243, 60, 20));
+    textFieldOdds.setBounds(100, 274, 60, 20);
+    getContentPane().add(textFieldOdds);
+    
+    JLabel label = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.label.text")); //$NON-NLS-1$ //$NON-NLS-2$
+    label.setForeground(Color.ORANGE);
+    label.setFont(new Font("Dialog", Font.PLAIN, 14));
+    label.setBounds(new Rectangle(25, 243, 75, 20));
+    label.setBounds(167, 274, 39, 20);
+    getContentPane().add(label);
     
 
     
@@ -232,7 +252,7 @@ private static final long serialVersionUID = 1L;
 				    		  // Obtain the component of the day in the panel of the DayChooser of the JCalendar.
 				    		  // The component is located after the decorator buttons of "Sun", "Mon",... or "Lun", "Mar"...,
 				    		  // the empty days before day 1 of month, and all the days previous to each day.
-				    		  // That number of components is calculated with "offset" and is different in English and Spanish
+				    		  // That number ot components is calculated with "offset" and is different in English and Spanish
 				    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(calendar.get(Calendar.DAY_OF_MONTH)+offset);; 
 				    		  o.setBackground(Color.CYAN);
 				    	  }
@@ -254,7 +274,8 @@ private static final long serialVersionUID = 1L;
 	  		if (inputQuery.length()>0) {
 	  		    
 	  			//It could be to trigger an exception if the introduced string is not a number
-	  			float inputPrice= Float.parseFloat(jTextFieldPrice.getText());
+	  			float inputPrice = Float.parseFloat(jTextFieldPrice.getText());
+	  			float odds = Float.parseFloat(textFieldOdds.getText());
 	  			
 	  			if (inputPrice<=0) jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber"));
 	  			else {
@@ -262,7 +283,7 @@ private static final long serialVersionUID = 1L;
 	  			//Obtain the business logic from a StartWindow class (local or remote)
 	  			BLFacade facade=MainGUI.getBusinessLogic();
 
-	  			facade.createQuestion(event, inputQuery, inputPrice, 54); 
+	  			facade.createQuestion(event, inputQuery, inputPrice, odds); 
 
 	  			jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryCreated"));
 	  			}
