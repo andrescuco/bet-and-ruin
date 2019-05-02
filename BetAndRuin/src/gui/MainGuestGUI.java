@@ -50,6 +50,7 @@ public class MainGuestGUI extends JFrame {
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton lblLogin;
+	private JButton BackButton;
 	
 	/**
 	 * This is the default constructor
@@ -101,6 +102,7 @@ public class MainGuestGUI extends JFrame {
 			jContentPane.add(getLblNewLabel());
 			jContentPane.add(getBoton3());
 			jContentPane.add(getLblLogin());
+			jContentPane.add(getBackButton());
 			jContentPane.add(getPanel());
 			
 			 
@@ -117,8 +119,11 @@ public class MainGuestGUI extends JFrame {
 	private JButton getBoton3() {
 		if (jButtonQueryQueries == null) {
 			jButtonQueryQueries = new JButton();
+			jButtonQueryQueries.setFont(new Font("Roboto", Font.BOLD, 15));
 			jButtonQueryQueries.setBackground(Color.DARK_GRAY);
 			jButtonQueryQueries.setForeground(Color.ORANGE);
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\search.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+			jButtonQueryQueries.setIcon(imageIcon);//$NON-NLS-1$ //$NON-NLS-2$
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -228,14 +233,32 @@ public class MainGuestGUI extends JFrame {
 				}
 			});
 
-			lblLogin.setBackground(Color.BLACK);
-			lblLogin.setFont(new Font("Roboto", Font.BOLD, 13));
+			lblLogin.setBackground(Color.DARK_GRAY);
+			lblLogin.setFont(new Font("Roboto", Font.BOLD, 15));
 			lblLogin.setForeground(Color.ORANGE);
 			lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\user-3.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 			lblLogin.setIcon(imageIcon);//$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return lblLogin;
+	}
+	private JButton getBackButton() {
+		if (BackButton == null) {
+			BackButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGuestGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			BackButton.setForeground(Color.ORANGE);
+			BackButton.setBackground(Color.DARK_GRAY);
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\return.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+			BackButton.setIcon(imageIcon);
+			BackButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					HomepageGUI back = new HomepageGUI();
+					back.setVisible(true);
+					dispose();
+				}
+			});
+			BackButton.setFont(new Font("Roboto", Font.BOLD, 15));
+		}
+		return BackButton;
 	}
 } // @jve:decl-index=0:visual-constraint="0,0"
 

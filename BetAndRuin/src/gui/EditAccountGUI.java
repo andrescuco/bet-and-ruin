@@ -315,6 +315,7 @@ public class EditAccountGUI extends JFrame {
 				titleNewLabel.setText(ResourceBundle.getBundle("Etiquetas").getString("EditAccountTitle"));
 				Passwordlbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
+				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
 			}
 		});
 		buttonGroup.add(englishButton);
@@ -362,6 +363,8 @@ public class EditAccountGUI extends JFrame {
 				btnGetMoreCoins.setText(ResourceBundle.getBundle("Etiquetas").getString("Getmorecoins"));
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 				Birthdatelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Birthdate"));
+				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
+				
 			}
 		});
 		buttonGroup.add(EspanolButton);
