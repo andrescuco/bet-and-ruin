@@ -532,4 +532,24 @@ public class DataAccess {
 			return trans;
 		}
 
+		public boolean updateQuestionAnswer(Question question, boolean ans) {
+			TypedQuery<Question> query = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber=?1", Question.class);
+			query.setParameter(1, question.getQuestionNumber());
+			Question q = query.getSingleResult();
+			db.getTransaction().begin();
+			q.setCorrect(ans);
+			System.out.println(q.toString() + "set" + ans);
+			db.getTransaction().commit();
+			return true;
+		}
+
+		public boolean updateEventFinished(Event event, boolean ans) {
+			Event ev = db.find(Event.class, event);
+			db.getTransaction().begin();
+
+			ev.setFinished(ans);
+			db.getTransaction().commit();
+			return true;
+		}
+
 }
