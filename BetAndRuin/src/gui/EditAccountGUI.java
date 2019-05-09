@@ -124,14 +124,10 @@ public class EditAccountGUI extends JFrame {
 		
 		//GenderDB.addItem(facade.getCurrentUser().getGender());
 		facade.getCurrentUser();
-		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female") {
-			GenderDB.addItem("male");
-			GenderDB.addItem("female");
-		}
-		else if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male") {
-			GenderDB.addItem("female");
-			GenderDB.addItem("male");
-		}
+			System.out.println(facade.getCurrentUser().getGender());
+			GenderDB.addItem(facade.getCurrentUser().getGender());
+			
+		
 
 		final JLabel WarningLabel = new JLabel("");
 		WarningLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
