@@ -38,7 +38,7 @@ import javax.swing.JFrame;
  */
 public class TransactionsGUI extends JFrame {
     JTextArea output;
-    JScrollPane scrollPaneBets = new JScrollPane();
+    static JScrollPane scrollPaneBets = new JScrollPane();
     private static JTable tableBets= new JTable();
 	private static DefaultTableModel tableModelBets;
 	private static final JButton backbutton = new JButton("Back");
@@ -87,13 +87,33 @@ public class TransactionsGUI extends JFrame {
         menu = new JMenu("Date filter");
         menu.setForeground(Color.ORANGE);
         menu.setMnemonic(KeyEvent.VK_N);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "This menu does nothing");
         menuBar.add(menu);
         
         menuItem = new JMenuItem("This year", KeyEvent.VK_I);
         menu.getAccessibleContext();
         menu.add(menuItem);
+        menuItem.addActionListener(new ActionListener(){
+        	public void actionPerformed(ActionEvent ev) {
+        		
+        		  scrollPaneBets.setViewportView(tableBets);
+        			tableModelBets = new DefaultTableModel(null, columnNamesBets);
+        		BLFacade facade=MainGUI.getBusinessLogic();
+        		Vector<domain.Transaction> transactions=facade.getTransactions();
+        		
+        		for (domain.Transaction trans:transactions){
+        			Vector<Object> row = new Vector<Object>();
+        			row.add(trans.getAmount());
+        			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        			row.add(sdf.format(trans.getDate()));
+        			row.add(trans.getDescription());
+        			tableModelBets.addRow(row);		
+        		}
+        		tableBets.getColumnModel().getColumn(0).setPreferredWidth(100);
+        		tableBets.getColumnModel().getColumn(1).setPreferredWidth(200);
+        		tableBets.getColumnModel().getColumn(2).setPreferredWidth(200);
+        		
+        	}
+        });
         menuItem = new JMenuItem("This Month", KeyEvent.VK_X);
         menu.getAccessibleContext();
         menu.add(menuItem);
