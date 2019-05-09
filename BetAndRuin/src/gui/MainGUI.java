@@ -100,7 +100,7 @@ public class MainGUI extends JFrame {
 	 */
 	private void initialize() {
 		// this.setSize(271, 295);
-		this.setSize(729, 441);
+		this.setSize(700, 527);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
@@ -120,35 +120,37 @@ public class MainGUI extends JFrame {
 			gl_jContentPane.setHorizontalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addContainerGap()
-						.addComponent(getSetResultButton())
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE))
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(getEventButton(), GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
-							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
-							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 351, GroupLayout.PREFERRED_SIZE))
-						.addContainerGap())
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addContainerGap(95, Short.MAX_VALUE)
-						.addComponent(getTransactionButton(), GroupLayout.PREFERRED_SIZE, 533, GroupLayout.PREFERRED_SIZE)
-						.addGap(53)
-<<<<<<< HEAD
-						.addComponent(getRdbtnNewRadioButton_1())
-						.addGap(181))
-=======
+						.addContainerGap(642, Short.MAX_VALUE)
 						.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGap(52))
->>>>>>> parent of bbe4842... GUI modifs
 					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addComponent(separator, GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+						.addGap(69)
+						.addComponent(getTransactionButton(), GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+						.addGap(92))
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(getEventButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
+						.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
+							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+							.addComponent(getBoton3(), GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
 						.addContainerGap())
+					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+					.addComponent(getSeparator_1(), GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+					.addGroup(Alignment.TRAILING, gl_jContentPane.createSequentialGroup()
+						.addContainerGap(178, Short.MAX_VALUE)
+						.addComponent(getRdbtnNewRadioButton())
+						.addGap(59)
+						.addComponent(getRdbtnNewRadioButton_2())
+						.addGap(53)
+						.addComponent(getRdbtnNewRadioButton_1())
+						.addGap(181))
 					.addGroup(gl_jContentPane.createSequentialGroup()
-<<<<<<< HEAD
+						.addGap(197)
+						.addComponent(getLblAccountSettings(), GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(201, Short.MAX_VALUE))
+					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addGap(242)
 						.addComponent(getSetResultButton(), GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
 						.addGap(260))
@@ -156,55 +158,38 @@ public class MainGUI extends JFrame {
 						.addGap(49)
 						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
 						.addGap(71))
-=======
-						.addComponent(getSeparator_1(), GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
-						.addContainerGap())
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGap(185)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_jContentPane.createSequentialGroup()
-								.addComponent(getRdbtnNewRadioButton())
-								.addPreferredGap(ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-								.addComponent(getRdbtnNewRadioButton_2())
-								.addGap(66)
-								.addComponent(getRdbtnNewRadioButton_1()))
-							.addComponent(getLblAccountSettings(), Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE))
-						.addGap(182))
->>>>>>> parent of bbe4842... GUI modifs
 			);
 			gl_jContentPane.setVerticalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.TRAILING)
-							.addComponent(getSetResultButton())
-							.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+						.addGap(17)
+						.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(getEventButton(), GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
-							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
-						.addGap(28)
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getBoton3(), GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getEventButton(), GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+							.addComponent(getBtnBetHistorywButton(), GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_jContentPane.createSequentialGroup()
-								.addGap(66)
-								.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_jContentPane.createSequentialGroup()
-								.addGap(18)
-								.addComponent(getTransactionButton(), GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(getSetResultButton(), GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
+						.addGap(18)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
+						.addGap(18)
+						.addComponent(getTransactionButton(), GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addComponent(getSeparator_1(), GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGap(18)
 						.addComponent(getLblAccountSettings(), GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-						.addGap(38)
+						.addGap(18)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(getRdbtnNewRadioButton())
+							.addComponent(getRdbtnNewRadioButton_2())
 							.addComponent(getRdbtnNewRadioButton_1())
-							.addComponent(getRdbtnNewRadioButton_2()))
-						.addGap(238))
+							.addComponent(getRdbtnNewRadioButton()))
+						.addGap(26))
 			);
 			jContentPane.setLayout(gl_jContentPane);
 			
@@ -312,7 +297,7 @@ public class MainGUI extends JFrame {
 	private JLabel getLblNewLabel() {
 		if (jLabelSelectOption == null) {
 			jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
-			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
+			jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 16));
 			jLabelSelectOption.setForeground(Color.ORANGE);
 			jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		}
@@ -380,6 +365,7 @@ public class MainGUI extends JFrame {
 		lblAccountSettings.setText(ResourceBundle.getBundle("Etiquetas").getString("Account"));
 		jButtonCreateEvent.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateOrDeleteEvent"));
 		btnBetHistorywButton.setText(ResourceBundle.getBundle("Etiquetas").getString("BettingHistory"));
+		setResultButton.setText(ResourceBundle.getBundle("Etiquetas").getString("SetEventResult"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
@@ -459,6 +445,9 @@ public class MainGUI extends JFrame {
 	private JButton getSetResultButton() {
 		if (setResultButton == null) {
 			setResultButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetEventResult")); //$NON-NLS-1$ //$NON-NLS-2$
+			setResultButton.setBackground(new Color(240, 230, 140));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\result.jpg").getImage().getScaledInstance(85, 65, Image.SCALE_SMOOTH));
+			getSetResultButton().setIcon(imageIcon);
 			setResultButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					JFrame setResultGUI	= new SetResultGUI();
