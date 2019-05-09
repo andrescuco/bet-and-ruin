@@ -146,6 +146,10 @@ public class MainGUI extends JFrame {
 						.addGap(53)
 						.addComponent(getRdbtnNewRadioButton_1())
 						.addGap(181))
+					.addGroup(Alignment.TRAILING, gl_jContentPane.createSequentialGroup()
+						.addGap(63)
+						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+						.addGap(57))
 					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addGap(197)
 						.addComponent(getLblAccountSettings(), GroupLayout.PREFERRED_SIZE, 296, GroupLayout.PREFERRED_SIZE)
@@ -154,10 +158,6 @@ public class MainGUI extends JFrame {
 						.addGap(242)
 						.addComponent(getSetResultButton(), GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
 						.addGap(260))
-					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGap(49)
-						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
-						.addGap(71))
 			);
 			gl_jContentPane.setVerticalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
