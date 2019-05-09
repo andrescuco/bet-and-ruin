@@ -336,21 +336,5 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return trans;
 	}
-
-	@WebMethod
-	public boolean updateQuestionAnswer(Question question, boolean ans) {
-		DataAccess dbManager=new DataAccess();
-		boolean a=dbManager.updateQuestionAnswer(question, ans);
-		dbManager.close();
-		return a;
-	}
-
-	@WebMethod
-	public boolean updateEventFinished(Event event, boolean ans) {
-		DataAccess dbManager=new DataAccess();
-		boolean ev=dbManager.updateEventFinished(event, ans);
-		dbManager.close();
-		return ev;
-	}
 }
 
