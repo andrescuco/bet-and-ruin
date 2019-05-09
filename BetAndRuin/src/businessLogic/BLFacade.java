@@ -103,4 +103,7 @@ public interface BLFacade  {
 	@WebMethod public void updateData();
 	@WebMethod public Transaction  createTransaction(float amount, Date date, String description);
 	@WebMethod public Vector<Transaction> getTransactions();
+
+	@WebMethod boolean updateQuestionAnswer(Question question, boolean ans);
+	@WebMethod boolean updateEventFinished(Event event, boolean ans);
 }

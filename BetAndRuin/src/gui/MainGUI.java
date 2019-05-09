@@ -64,6 +64,7 @@ public class MainGUI extends JFrame {
 	private JButton btnBetHistorywButton;
 	private JButton transactionsButton;
 	private JSeparator separator_1;
+	private JButton setResultButton;
 	
 	
 	/**
@@ -118,7 +119,11 @@ public class MainGUI extends JFrame {
 			GroupLayout gl_jContentPane = new GroupLayout(jContentPane);
 			gl_jContentPane.setHorizontalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
-					.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+					.addGroup(gl_jContentPane.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(getSetResultButton())
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE))
 					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
 							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -159,7 +164,7 @@ public class MainGUI extends JFrame {
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
 							.addGroup(gl_jContentPane.createSequentialGroup()
 								.addComponent(getRdbtnNewRadioButton())
-								.addPreferredGap(ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+								.addPreferredGap(ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
 								.addComponent(getRdbtnNewRadioButton_2())
 								.addGap(66)
 								.addComponent(getRdbtnNewRadioButton_1()))
@@ -170,7 +175,9 @@ public class MainGUI extends JFrame {
 			gl_jContentPane.setVerticalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_jContentPane.createParallelGroup(Alignment.TRAILING)
+							.addComponent(getSetResultButton())
+							.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
 						.addGap(18)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
 							.addComponent(getEventButton(), GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
@@ -448,6 +455,19 @@ public class MainGUI extends JFrame {
 			separator_1 = new JSeparator();
 		}
 		return separator_1;
+	}
+	private JButton getSetResultButton() {
+		if (setResultButton == null) {
+			setResultButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetEventResult")); //$NON-NLS-1$ //$NON-NLS-2$
+			setResultButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JFrame setResultGUI	= new SetResultGUI();
+					setResultGUI.setLocationRelativeTo(null);
+					setResultGUI.setVisible(true);
+				}
+			});
+		}
+		return setResultButton;
 	}
 }
 // @jve:decl-index=0:visual-constraint="0,0"
