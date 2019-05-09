@@ -1,12 +1,6 @@
 package domain;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,8 +53,6 @@ public class Transaction {
 	public Date getDate() {
 		return date;
 	}
-	
-	
 
 	public void setDate(Date date) {
 		this.date = date;
