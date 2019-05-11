@@ -11,6 +11,7 @@ import java.beans.*;
 import java.text.DateFormat;
 import java.util.*;
 
+
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -126,7 +127,17 @@ public class FindQuestionsGUI extends JFrame {
 							Vector<Object> row = new Vector<Object>();
 
 							System.out.println("Events "+ev);
-
+							Calendar calendarDate = Calendar.getInstance();
+							Date c1 = calendarDate.getTime();
+							System.out.println("Current date: " + c1);
+							Date c2 = ev.getEventDate();
+							System.out.println("The event date: "+ c2);
+							int verdict = c1.compareTo(c2);
+							System.out.println(verdict);
+							
+							if (verdict > 0)
+								JOptionPane.showMessageDialog(rootPane, "Sorry the event date is past, you cannot bet on it","Too late!", JOptionPane.ERROR_MESSAGE);
+							else {
 							row.add(ev.getEventNumber());
 							row.add(ev.getDescription());
 							row.add(ev); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
@@ -135,7 +146,7 @@ public class FindQuestionsGUI extends JFrame {
 						tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 						tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
 						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
-					} catch (Exception e1) {
+					}} catch (Exception e1) {
 
 						jLabelQueries.setText(e1.getMessage());
 					}
@@ -158,6 +169,7 @@ public class FindQuestionsGUI extends JFrame {
 				int i=tableEvents.getSelectedRow();
 				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
 				Vector<Question> queries=ev.getQuestions();
+				System.out.println(ev.getEventDate().toString());
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(3);
@@ -206,6 +218,9 @@ public class FindQuestionsGUI extends JFrame {
 
 		makeBetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+			
 				int i=tableQueries.getSelectedRow();
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,2); // obtain question object
 				

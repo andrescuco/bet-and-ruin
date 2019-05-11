@@ -14,7 +14,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import businessLogic.BLFacade;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;

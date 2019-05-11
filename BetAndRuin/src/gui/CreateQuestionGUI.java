@@ -117,7 +117,7 @@ private static final long serialVersionUID = 1L;
     jLabelMsg.setForeground(Color.red);
     //jLabelMsg.setSize(new Dimension(305, 20));
     
-    jLabelError.setBounds(new Rectangle(175, 240, 305, 20));
+    jLabelError.setBounds(new Rectangle(262, 243, 305, 20));
     jLabelError.setForeground(Color.red);
     
     
@@ -159,6 +159,12 @@ private static final long serialVersionUID = 1L;
     label.setBounds(new Rectangle(25, 243, 75, 20));
     label.setBounds(167, 274, 39, 20);
     getContentPane().add(label);
+    
+    JLabel lblBetcoins = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateQuestionGUI.lblBetcoins.text")); //$NON-NLS-1$ //$NON-NLS-2$
+    lblBetcoins.setFont(new Font("Roboto Cn", Font.PLAIN, 14));
+    lblBetcoins.setForeground(Color.ORANGE);
+    lblBetcoins.setBounds(167, 246, 63, 14);
+    getContentPane().add(lblBetcoins);
     
 
     
@@ -257,6 +263,7 @@ private static final long serialVersionUID = 1L;
 				    		  o.setBackground(Color.CYAN);
 				    	  }
 				    	  calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)+1);
+				    	  
 				      }
 			}
 	
