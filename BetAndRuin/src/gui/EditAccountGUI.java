@@ -316,6 +316,7 @@ public class EditAccountGUI extends JFrame {
 				Passwordlbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Password"));
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
+				Birthdatelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Birthdate"));
 			}
 		});
 		buttonGroup.add(englishButton);
