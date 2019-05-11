@@ -118,7 +118,7 @@ public class MainGUI extends JFrame {
 			JSeparator separator = new JSeparator();
 			GroupLayout gl_jContentPane = new GroupLayout(jContentPane);
 			gl_jContentPane.setHorizontalGroup(
-				gl_jContentPane.createParallelGroup(Alignment.LEADING)
+				gl_jContentPane.createParallelGroup(Alignment.TRAILING)
 					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addContainerGap(642, Short.MAX_VALUE)
 						.addComponent(getPanel(), GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -131,14 +131,14 @@ public class MainGUI extends JFrame {
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING, false)
 							.addComponent(getEventButton(), GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(getBoton2(), GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
-						.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.LEADING)
-							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-							.addComponent(getBoton3(), GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
+							.addComponent(getBtnBetHistorywButton(), GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+							.addComponent(getBoton3(), GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
 						.addContainerGap())
 					.addComponent(separator, GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
 					.addComponent(getSeparator_1(), GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
-					.addGroup(Alignment.TRAILING, gl_jContentPane.createSequentialGroup()
+					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addContainerGap(178, Short.MAX_VALUE)
 						.addComponent(getRdbtnNewRadioButton())
 						.addGap(59)
@@ -146,7 +146,7 @@ public class MainGUI extends JFrame {
 						.addGap(53)
 						.addComponent(getRdbtnNewRadioButton_1())
 						.addGap(181))
-					.addGroup(Alignment.TRAILING, gl_jContentPane.createSequentialGroup()
+					.addGroup(gl_jContentPane.createSequentialGroup()
 						.addGap(63)
 						.addComponent(getLblNewLabel(), GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
 						.addGap(57))
@@ -162,7 +162,7 @@ public class MainGUI extends JFrame {
 			gl_jContentPane.setVerticalGroup(
 				gl_jContentPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_jContentPane.createSequentialGroup()
-						.addGap(17)
+						.addGap(32)
 						.addComponent(getLblNewLabel(), GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 						.addGap(18)
 						.addGroup(gl_jContentPane.createParallelGroup(Alignment.BASELINE)
@@ -407,7 +407,7 @@ public class MainGUI extends JFrame {
 		}*/
 
 			lblAccountSettings.setBackground(new Color(0, 255, 255));
-			lblAccountSettings.setFont(new Font("Roboto", Font.BOLD, 13));
+			lblAccountSettings.setFont(new Font("Dialog", Font.BOLD, 12));
 			lblAccountSettings.setForeground(Color.BLACK);
 			lblAccountSettings.setHorizontalAlignment(SwingConstants.CENTER);
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\user-3.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));

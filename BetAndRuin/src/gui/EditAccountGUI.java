@@ -108,7 +108,7 @@ public class EditAccountGUI extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 666, 647);
+		setBounds(100, 100, 698, 647);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -299,6 +299,18 @@ public class EditAccountGUI extends JFrame {
 			}
 		});
 		
+		JButton btnBack = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Return")); //$NON-NLS-1$ //$NON-NLS-2$
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MainGUI back = new MainGUI();
+				back.setLocationRelativeTo(null);
+				back.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnBack.setBackground(Color.ORANGE);
+		
 		
 		
 		JRadioButton englishButton = new JRadioButton("English");
@@ -317,11 +329,15 @@ public class EditAccountGUI extends JFrame {
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
 				Birthdatelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Birthdate"));
+				btnBack.setText(ResourceBundle.getBundle("Etiquetas").getString("Return"));
+				
 			}
 		});
 		buttonGroup.add(englishButton);
 		englishButton.setForeground(Color.ORANGE);
 		englishButton.setBackground(Color.BLACK);
+		
+	
 		
 		
 		
@@ -342,6 +358,8 @@ public class EditAccountGUI extends JFrame {
 				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 				btnGetMoreCoins.setText(ResourceBundle.getBundle("Etiquetas").getString("Getmorecoins"));
+				btnBack.setText(ResourceBundle.getBundle("Etiquetas").getString("Return"));
+				
 			}
 		});
 		buttonGroup.add(EuskaraButton);
@@ -365,6 +383,7 @@ public class EditAccountGUI extends JFrame {
 				btnLogOut.setText(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 				Birthdatelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Birthdate"));
 				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
+				btnBack.setText(ResourceBundle.getBundle("Etiquetas").getString("Return"));
 				
 			}
 		});
@@ -375,67 +394,74 @@ public class EditAccountGUI extends JFrame {
 		
 		
 		
+		
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(45)
-							.addComponent(titleNewLabel))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(53)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(Birthdatelbl)
-										.addComponent(EmailAddresslbl)
-										.addComponent(Usernamelbl)
-										.addComponent(Genderlbl)
-										.addComponent(Lastnamelbl)
-										.addComponent(CreditLbl)
-										.addComponent(Firstnamelbl)
-										.addComponent(Passwordlbl))
-									.addPreferredGap(ComponentPlacement.RELATED))
-								.addComponent(englishButton)
-								.addComponent(FinishButton))
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(44)
-									.addComponent(btnGetMoreCoins)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(10)
-											.addComponent(CreditValue, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addGap(51)
-											.addComponent(btnLogOut))))
-								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(45)
-									.addComponent(EuskaraButton)
-									.addGap(18)
-									.addComponent(EspanolButton))
+									.addComponent(titleNewLabel))
 								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(69)
+									.addGap(53)
+									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(Birthdatelbl)
+												.addComponent(EmailAddresslbl)
+												.addComponent(Usernamelbl)
+												.addComponent(Genderlbl)
+												.addComponent(Lastnamelbl)
+												.addComponent(CreditLbl)
+												.addComponent(Firstnamelbl)
+												.addComponent(Passwordlbl))
+											.addPreferredGap(ComponentPlacement.RELATED))
+										.addComponent(englishButton)
+										.addComponent(FinishButton))
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(PasswordDB)
-										.addComponent(Usernamefield, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-										.addComponent(BirthdateDB)
-										.addComponent(EmailAddressDB)
-										.addComponent(FirstnameDB)
-										.addComponent(LastnameDB)
-										.addComponent(GenderDB, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-					.addContainerGap(118, Short.MAX_VALUE))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap(216, Short.MAX_VALUE)
-					.addComponent(WarningLabel, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(44)
+											.addComponent(btnGetMoreCoins)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addGroup(gl_contentPane.createSequentialGroup()
+													.addGap(10)
+													.addComponent(CreditValue, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE))
+												.addGroup(gl_contentPane.createSequentialGroup()
+													.addGap(51)
+													.addComponent(btnLogOut))))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(45)
+											.addComponent(EuskaraButton)
+											.addGap(18)
+											.addComponent(EspanolButton))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addGap(69)
+											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+												.addComponent(PasswordDB, 244, 244, 244)
+												.addComponent(Usernamefield, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+												.addComponent(BirthdateDB, 244, 244, 244)
+												.addComponent(EmailAddressDB, 244, 244, 244)
+												.addComponent(FirstnameDB, 244, 244, 244)
+												.addComponent(LastnameDB, 244, 244, 244)
+												.addComponent(GenderDB, 0, 244, Short.MAX_VALUE))))))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnBack))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap(333, Short.MAX_VALUE)
+							.addComponent(WarningLabel, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)))
 					.addGap(138))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(5)
-					.addComponent(titleNewLabel)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(titleNewLabel)
+						.addComponent(btnBack))
 					.addGap(35)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(Usernamelbl)
@@ -479,24 +505,11 @@ public class EditAccountGUI extends JFrame {
 						.addComponent(EspanolButton)
 						.addComponent(englishButton))
 					.addGap(7)
-					.addComponent(WarningLabel, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+					.addComponent(WarningLabel, GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 		
 		
 
 	}
-
-
-
-	
-
-
-	
-
-	
-	
-	
-
-	
 }
