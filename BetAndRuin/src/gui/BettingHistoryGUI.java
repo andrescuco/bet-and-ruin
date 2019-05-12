@@ -209,7 +209,7 @@ public class BettingHistoryGUI extends JFrame {
 		tableModelBets.setColumnCount(3); // another column added to allocate ev objects
 
 		BLFacade facade=MainGUI.getBusinessLogic();
-		Vector<domain.Bet> bets=facade.getAllBets();
+		Vector<domain.Bet> bets=facade.getAllBets(MainGUI.getCurrentUser());
 
 		//if (bets.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarMio.getTime()));
 		//else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarMio.getTime()));

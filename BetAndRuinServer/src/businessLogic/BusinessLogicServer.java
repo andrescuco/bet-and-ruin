@@ -93,7 +93,7 @@ public class BusinessLogicServer extends JDialog {
 			 */
 			
 			BLFacade bl = new BLFacadeImplementation();
-			bl.updateData();
+			//bl.updateData();
 			
 			
 			try{

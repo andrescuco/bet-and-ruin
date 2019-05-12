@@ -135,18 +135,19 @@ public class FindQuestionsGUI extends JFrame {
 							int verdict = c1.compareTo(c2);
 							System.out.println(verdict);
 							
-							if (verdict > 0)
-								JOptionPane.showMessageDialog(rootPane, "Sorry the event date is past, you cannot bet on it","Too late!", JOptionPane.ERROR_MESSAGE);
-							else {
+							//TODO uncomment to forbid bet in past
+							//if (verdict > 0)
+							//	JOptionPane.showMessageDialog(rootPane, "Sorry the event date is past, you cannot bet on it","Too late!", JOptionPane.ERROR_MESSAGE);
+							//else {
 							row.add(ev.getEventNumber());
 							row.add(ev.getDescription());
 							row.add(ev); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
-							tableModelEvents.addRow(row);		
+							tableModelEvents.addRow(row);
 						}
 						tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 						tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
 						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
-					}} catch (Exception e1) {
+					} catch (Exception e1) {
 
 						jLabelQueries.setText(e1.getMessage());
 					}
@@ -174,8 +175,7 @@ public class FindQuestionsGUI extends JFrame {
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(3);
 				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				if (facade.getCurrentUser() != null) {
+				if (MainGUI.getCurrentUser() != null) {
 					if (queries.isEmpty()) {
 						makeBetButton.setEnabled(false);
 						jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("NoQueries")+": "+ev.getDescription());

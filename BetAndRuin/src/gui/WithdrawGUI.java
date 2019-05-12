@@ -64,14 +64,12 @@ public class WithdrawGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WithdrawGUI() {
-		final BLFacade facade = MainGUI.getBusinessLogic();
-		fundsLabel = new JLabel(facade.getCurrentUser().getWalletFunds()+ " Betcoins");
+		fundsLabel = new JLabel(MainGUI.getCurrentUser().getWalletFunds()+ " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.getCurrentUser().getWalletFunds();
-				fundsLabel.setText(Float.toString(facade.getCurrentUser().getWalletFunds()));
+				MainGUI.getCurrentUser().getWalletFunds();
+				fundsLabel.setText(Float.toString(MainGUI.getCurrentUser().getWalletFunds()));
 			}
 		});
 		setResizable(false);
@@ -116,8 +114,8 @@ public class WithdrawGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				float funds = Float.parseFloat(AmountChosen.getText().toString());
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Account b = facade.getCurrentUser();
-				funds = facade.withdrawFunds(funds);
+				Account b = MainGUI.getCurrentUser();
+				funds = facade.withdrawFunds(b, funds);
 				fundsLabel.setText(Float.toString(funds) + " Betcoins");
 			}
 		});

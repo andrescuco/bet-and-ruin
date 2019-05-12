@@ -47,7 +47,7 @@ public class ApplicationLauncher {
 				
 			}
 			
-			else { //Business is remote
+			else { //Business logic is remote
 				
 				//String serviceName="http://localhost:9999/ws/ruralHouses?wsdl";
 				 String serviceName= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName()+"?wsdl";

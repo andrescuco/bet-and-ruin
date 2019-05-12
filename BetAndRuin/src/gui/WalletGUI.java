@@ -97,7 +97,7 @@ public class WalletGUI extends JFrame {
 		lblAvailableCredit.setForeground(Color.ORANGE);
 		lblAvailableCredit.setFont(new Font("Roboto", Font.PLAIN, 21));
 		
-		final JLabel lblWalletFunds = new JLabel(facade.getCurrentUser().getWalletFunds()+ " Betcoins");
+		final JLabel lblWalletFunds = new JLabel(MainGUI.getCurrentUser().getWalletFunds()+ " Betcoins");
 		lblWalletFunds.setForeground(Color.RED);
 		lblWalletFunds.setFont(new Font("Roboto Cn", Font.BOLD, 21));
 		
@@ -143,9 +143,8 @@ public class WalletGUI extends JFrame {
 				boolean isPaypalSelected = PaypalButt.isSelected();
 				 
 				float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
-				BLFacade facade = MainGUI.getBusinessLogic();
-				Account b = facade.getCurrentUser();
-				funds = facade.addFunds(funds);
+				Account acc = MainGUI.getCurrentUser();
+				funds = facade.addFunds(acc, funds);
 				lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
 				
 				

@@ -7,6 +7,7 @@ package gui;
 
 import javax.swing.*;
 
+import domain.Account;
 import domain.Event;
 import businessLogic.BLFacade;
 
@@ -45,6 +46,7 @@ public class MainGUI extends JFrame {
 	private JButton jButtonQueryQueries = null;
 
     private static BLFacade appFacadeInterface;
+    static Account currentUser = null;
 	
 	public static BLFacade getBusinessLogic(){
 		return appFacadeInterface;
@@ -53,6 +55,24 @@ public class MainGUI extends JFrame {
 	public static void setBussinessLogic (BLFacade afi){
 		appFacadeInterface=afi;
 	}
+	
+	public static Account getCurrentUser() {
+		updateCurrentUser(currentUser.getUsername());
+		return currentUser;
+	}
+	public static void updateCurrentUser(String username) {
+		BLFacade facade = getBusinessLogic();
+		currentUser = facade.findAccount(username);
+	}
+
+	public static void setCurrentUser(Account curr) {
+		currentUser = curr;
+	}
+	public static void deleteCurrentUser() {
+		currentUser = null;
+	}
+	
+
 	protected JLabel jLabelSelectOption;
 	protected JLabel Icon;
 	private JRadioButton rdbtnNewRadioButton;

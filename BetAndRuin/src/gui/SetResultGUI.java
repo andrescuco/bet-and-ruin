@@ -170,8 +170,7 @@ public class SetResultGUI extends JFrame {
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 				tableModelQueries.setColumnCount(4);
 				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				if (facade.getCurrentUser() != null) {
+				if (MainGUI.getCurrentUser() != null) {
 					if (queries.isEmpty()) {
 						answerNoButton.setEnabled(false);
 						answerYesButton.setEnabled(false);
@@ -222,8 +221,10 @@ public class SetResultGUI extends JFrame {
 				int i=tableEvents.getSelectedRow();
 				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
 				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.updateData();
-				facade.updateEventFinished(ev, true);
+				//facade.updateData();
+				facade.finalizeEvent(ev);
+				//facade.updateEventFinished(ev, true);
+				JOptionPane.showMessageDialog(rootPane, "The Event Finished with success");
 			}
 		});
 		

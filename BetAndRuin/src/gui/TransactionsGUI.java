@@ -48,81 +48,7 @@ public class TransactionsGUI extends JFrame {
 			ResourceBundle.getBundle("Etiquetas").getString("Date"),
 			ResourceBundle.getBundle("Etiquetas").getString("Description"), 
 
-	};    
-
-    public static JMenuBar createMenuBar() {
-        JMenuBar menuBar;
-        JMenu menu, submenu;
-        JMenuItem menuItem;
-        JRadioButtonMenuItem rbMenuItem;
-        JCheckBoxMenuItem cbMenuItem;
-
-        //Create the menu bar.
-        menuBar = new JMenuBar();
-        menuBar.setBackground(Color.black);
-
-        //Build the first menu.
-        menu = new JMenu("Bet Status");
-        menu.setForeground(Color.ORANGE);
-        menu.setMnemonic(KeyEvent.VK_A);
-        menu.getAccessibleContext().setAccessibleDescription(
-                "The only menu in this program that has menu items");
-        menuBar.add(menu);
-
-        //a group of JMenuItems
-        menuItem = new JMenuItem("Past bets",
-                                 KeyEvent.VK_T);
-        //menuItem.setMnemonic(KeyEvent.VK_T); //used constructor instead
-        menuItem.getAccessibleContext().setAccessibleDescription(
-                "This doesn't really do anything");
-        //menuItem.addActionListener(null);
-        menu.add(menuItem);
-
-       
-
-
-        
-
-        //Build second menu in the menu bar.
-        menu = new JMenu("Date filter");
-        menu.setForeground(Color.ORANGE);
-        menu.setMnemonic(KeyEvent.VK_N);
-        menuBar.add(menu);
-        
-        menuItem = new JMenuItem("This year", KeyEvent.VK_I);
-        menu.getAccessibleContext();
-        menu.add(menuItem);
-        menuItem.addActionListener(new ActionListener(){
-        	public void actionPerformed(ActionEvent ev) {
-        		
-        		  scrollPaneBets.setViewportView(tableBets);
-        			tableModelBets = new DefaultTableModel(null, columnNamesBets);
-        		BLFacade facade=MainGUI.getBusinessLogic();
-        		Vector<domain.Transaction> transactions=facade.getTransactions();
-        		
-        		for (domain.Transaction trans:transactions){
-        			Vector<Object> row = new Vector<Object>();
-        			row.add(trans.getAmount());
-        			final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        			row.add(sdf.format(trans.getDate()));
-        			row.add(trans.getDescription());
-        			tableModelBets.addRow(row);		
-        		}
-        		tableBets.getColumnModel().getColumn(0).setPreferredWidth(100);
-        		tableBets.getColumnModel().getColumn(1).setPreferredWidth(200);
-        		tableBets.getColumnModel().getColumn(2).setPreferredWidth(200);
-        		
-        	}
-        });
-        menuItem = new JMenuItem("This Month", KeyEvent.VK_X);
-        menu.getAccessibleContext();
-        menu.add(menuItem);
-        menuItem = new JMenuItem("This Week", KeyEvent.VK_9);
-        menu.getAccessibleContext();
-        menu.add(menuItem);
-
-        return menuBar;
-    }
+	};
     
     public TransactionsGUI() throws HeadlessException {
 		super();
@@ -145,7 +71,6 @@ public class TransactionsGUI extends JFrame {
         setForeground(Color.ORANGE);
         setBackground(Color.BLACK);
 
-        setJMenuBar(createMenuBar());
         setContentPane(contentPane);
         setIconImage(new ImageIcon("/img/betting_3.jpg").getImage());
         
@@ -164,7 +89,7 @@ public class TransactionsGUI extends JFrame {
 		tableModelBets.setColumnCount(3); // another column added to allocate ev objects
 
 		BLFacade facade=MainGUI.getBusinessLogic();
-		Vector<domain.Transaction> transactions=facade.getTransactions();
+		Vector<domain.Transaction> transactions=facade.getTransactions(MainGUI.getCurrentUser());
 		
 		for (domain.Transaction trans:transactions){
 			Vector<Object> row = new Vector<Object>();

@@ -67,10 +67,6 @@ public interface BLFacade  {
 	@WebMethod Event createEvent(Date date, String inputQuery);
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
-	@WebMethod	public Account getCurrentUser();
-	@WebMethod	public boolean deleteCurrentUser();
-	
-
 
 	@WebMethod Event deleteEvent(Event event);
 	
@@ -93,17 +89,20 @@ public interface BLFacade  {
 	boolean UpdateGender(String gender, String username);
 
 
-	@WebMethod public Bet placeBet(float amount, Question question) throws InsuficientFunds, EventFinished;
-	@WebMethod public Vector<Bet> getAllBets();
+	@WebMethod public Bet placeBet(Account acc, float amount, Question question) throws InsuficientFunds, EventFinished;
+	@WebMethod public Vector<Bet> getAllBets(Account acc);
 
-	float addFunds(float funds);
+	float addFunds(Account acc, float funds);
 	
-	float withdrawFunds(float funds);
+	float withdrawFunds(Account acc, float funds);
 	
 	@WebMethod public void updateData();
-	@WebMethod public Transaction  createTransaction(float amount, Date date, String description);
-	@WebMethod public Vector<Transaction> getTransactions();
+	@WebMethod public Transaction  createTransaction(Account acc, float amount, Date date, String description);
+	@WebMethod public Vector<Transaction> getTransactions(Account acc);
 
 	@WebMethod boolean updateQuestionAnswer(Question question, boolean ans);
 	@WebMethod boolean updateEventFinished(Event event, boolean ans);
+	
+	@WebMethod Account findAccount(String username);
+	@WebMethod public void finalizeEvent(Event ev);
 }

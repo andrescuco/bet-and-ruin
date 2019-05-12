@@ -23,7 +23,7 @@ import exceptions.QuestionAlreadyExist;
  */
 @WebService(endpointInterface = "businessLogic.BLFacade")
 public class BLFacadeImplementation  implements BLFacade {
-	Account currentUser = null;
+	//Account currentUser = null;
 
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
@@ -115,7 +115,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager=new DataAccess();
 		boolean created = dBManager.createAccount(fname,lname,em,d,uname, passw, gender, funds);
 		// Sets current user when registering a new account
-		currentUser = dBManager.findAccount(uname);;
+		//currentUser = dBManager.findAccount(uname);;
 		dBManager.close();
 		return created;
 	} 
@@ -145,20 +145,11 @@ public class BLFacadeImplementation  implements BLFacade {
 			return checkPassword(a, password);
 		}
 	}
-    
-    public Account getCurrentUser() {
-    	return currentUser;
-    }
-    
-    public boolean deleteCurrentUser() {
-    	currentUser = null;
-    	return true;
-    }
-    
+        
     public boolean checkPassword(Account a, String password) {
     	if (a.getPassword().equals(password)) {
-    		currentUser = a;
-    		System.out.print("The user is " + currentUser);
+    		//currentUser = a;
+    		//System.out.print("The user is " + currentUser);
     		return true;
     	} else {
     		return false;
@@ -179,7 +170,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update2 = dBManager.updateFirstname(firstname, username);
     	dBManager.close();
-    	updateCurrentUser();
+    	//updateCurrentUser();
     	return update2;
 		
 	}
@@ -189,7 +180,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update3 = dBManager.updateLastname(lastname, username);
     	dBManager.close();
-    	updateCurrentUser();
+    	//updateCurrentUser();
     	return update3;
 	}
 
@@ -199,7 +190,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		DataAccess dBManager = new DataAccess();
     	boolean update6 = dBManager.updateGender(gender, username);
     	dBManager.close();
-    	updateCurrentUser();
+    	//updateCurrentUser();
     	return update6;
 	}
 
@@ -214,17 +205,15 @@ public class BLFacadeImplementation  implements BLFacade {
 
 	@Override
 	public Boolean UpdatePassword(String password, String username) {
-		// TODO Auto-generated method stub
 		DataAccess dBManager = new DataAccess();
     	boolean update5 = dBManager.updatePassword(password, username);
     	dBManager.close();
-    	updateCurrentUser();
+    	//updateCurrentUser();
     	return update5;
 	}
 
 	@Override
 	public boolean UpdateEmailAddress(String email, String username) {
-		// TODO Auto-generated method stub
 		DataAccess dBManager = new DataAccess();
     	boolean update4 = dBManager.updateEmailAddress(email, username);
     	dBManager.close();
@@ -232,31 +221,33 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 	
 	@Override
-	public float addFunds(float funds) {
+	public float addFunds(Account acc, float funds) {
 		DataAccess dBManager = new DataAccess();
-		float update7 = dBManager.updateFunds(funds + getCurrentUser().getWalletFunds(), getCurrentUser());
-		dBManager.createTransaction(funds, new Date(), "Added funds", getCurrentUser());
+		float update7 = dBManager.updateFunds(funds + acc.getWalletFunds(), acc);
+		dBManager.createTransaction(funds, new Date(), "Added funds", acc);
 		dBManager.close();
-		updateCurrentUser();
+		//updateCurrentUser();
 		return update7;
 	}
 	
 	@Override
-	public float withdrawFunds(float funds) {
+	public float withdrawFunds(Account acc, float funds) {
 		DataAccess dBManager = new DataAccess();
-		float update8 = dBManager.updateFunds(getCurrentUser().getWalletFunds() - funds, getCurrentUser());
-		dBManager.createTransaction(funds, new Date(), "Withdrawn funds", getCurrentUser());
+		float update8 = dBManager.updateFunds(acc.getWalletFunds() - funds, acc);
+		dBManager.createTransaction(funds, new Date(), "Withdrawn funds", acc);
 		dBManager.close();
-		updateCurrentUser();
+		//updateCurrentUser();
 		return update8;
 	}
 
 	
     
     @WebMethod
-    public Bet placeBet(float amount, Question question) throws InsuficientFunds, EventFinished {
+    public Bet placeBet(Account acc, float amount, Question question) throws InsuficientFunds, EventFinished {
     	DataAccess dBManager = new DataAccess();
-    	Account acc = getCurrentUser(); // Needs to update information
+    	
+    	//Account acc = getCurrentUser(); // Needs to update information
+    	
     	//Checking if there is enough money on wallet
     	if(acc.getWalletFunds() < amount) {
     		throw new InsuficientFunds(ResourceBundle.getBundle("Etiquetas").getString("InsuficientFunds"));
@@ -271,21 +262,13 @@ public class BLFacadeImplementation  implements BLFacade {
     	dBManager.updateFunds(acc.getWalletFunds()-amount, acc);
     	dBManager.createTransaction(amount*(-1),new Date(), bet.getQuestion().getQuestion(), acc);
     	dBManager.close();
-    	updateCurrentUser();
+    	//updateCurrentUser();
     	return bet;
     	
     }
-
-	private void updateCurrentUser() {
-		DataAccess dBManager = new DataAccess();
-		currentUser = dBManager.findAccount(getCurrentUser().getUsername());
-		dBManager.close();
-	}
 	
-	@WebMethod public Vector<Bet> getAllBets(){
+	@WebMethod public Vector<Bet> getAllBets(Account acc){
 		DataAccess dBManager = new DataAccess();
-    	Account acc = getCurrentUser();
-    	
     	Vector<Bet> bets = dBManager.getAllBets(acc);
     	dBManager.close();
     	return bets;
@@ -299,30 +282,18 @@ public class BLFacadeImplementation  implements BLFacade {
 		events = dBManager.getPassedEvents(new Date());
 		
 		for(Event e : events) {
-			Vector<Question> questions = e.getQuestions();
-			for(Question q : questions){
-				System.out.println(q);
-				//Account funds updated here
-				if(q.isCorrect()) {
-					Vector<Bet> bets = dBManager.getBetsByQuestion(q);
-					for(Bet b: bets) {
-						dBManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*q.getOdds(), b.getAccount());
-						dBManager.createTransaction(b.getBetAmount()*q.getOdds(), new Date(), "Bet " + b, b.getAccount());
-					}
-				}
-			}
-			dBManager.markEventAsFinished(e);
+			finalizeEvent(e);
 		}
 		
 		dBManager.close();
 	}
 
 	@WebMethod
-   public Transaction createTransaction(float amount, Date date, String description) {
+   public Transaction createTransaction(Account acc, float amount, Date date, String description) {
 	    DataAccess dBManager=new DataAccess();
 		Transaction trans=null;
 		
-		trans = dBManager.createTransaction(amount, date, description, getCurrentUser());		
+		trans = dBManager.createTransaction(amount, date, description, acc);		
 
 		dBManager.close();
 		
@@ -330,9 +301,9 @@ public class BLFacadeImplementation  implements BLFacade {
    }
 	
 	@WebMethod	
-	public Vector<Transaction> getTransactions()  {
+	public Vector<Transaction> getTransactions(Account acc)  {
 		DataAccess dbManager=new DataAccess();
-		Vector<Transaction>  trans=dbManager.getTransactions(getCurrentUser());
+		Vector<Transaction>  trans=dbManager.getTransactions(acc);
 		dbManager.close();
 		return trans;
 	}
@@ -351,6 +322,32 @@ public class BLFacadeImplementation  implements BLFacade {
 		boolean ev=dbManager.updateEventFinished(event, ans);
 		dbManager.close();
 		return ev;
+	}
+
+	@Override
+	public Account findAccount(String username) {
+		DataAccess dbManager=new DataAccess();
+		Account account = dbManager.findAccount(username);;
+		dbManager.close();
+		return account;
+	}
+
+	@Override
+	public void finalizeEvent(Event ev) {
+		DataAccess dbManager=new DataAccess();
+		Vector<Question> questions = ev.getQuestions();
+		for(Question q : questions){
+			System.out.println(q);
+			//Account funds updated here
+			if(q.isCorrect()) {
+				Vector<Bet> bets = dbManager.getBetsByQuestion(q);
+				for(Bet b: bets) {
+					dbManager.updateFunds(b.getAccount().getWalletFunds() + b.getBetAmount()*q.getOdds(), b.getAccount());
+					dbManager.createTransaction(b.getBetAmount()*q.getOdds(), new Date(), "Bet " + b.getQuestion().getQuestion(), b.getAccount());
+				}
+			}
+		}
+		dbManager.markEventAsFinished(ev);
 	}
 }
 

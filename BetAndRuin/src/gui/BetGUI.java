@@ -113,7 +113,7 @@ public class BetGUI extends JFrame {
 						BLFacade facade = MainGUI.getBusinessLogic();
 
 						try {
-							facade.placeBet(Float.parseFloat(BetAmountField.getText()), question);
+							facade.placeBet(MainGUI.getCurrentUser(), Float.parseFloat(BetAmountField.getText()), question);
 							// JLabel lblCalculatedWin = new JLabel("If you win, you'll get " +
 							// String.format("%.02f", betAmount) + " of what you bet!");
 							// Bet amount

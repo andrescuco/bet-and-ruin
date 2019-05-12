@@ -78,14 +78,12 @@ public class EditAccountGUI extends JFrame {
 	 */
 	public EditAccountGUI() {
 		setTitle("My Information");
-		final BLFacade facade = MainGUI.getBusinessLogic();
-		final JLabel CreditValue = new JLabel(facade.getCurrentUser().getWalletFunds() + " Betcoins");
+		final JLabel CreditValue = new JLabel(MainGUI.getCurrentUser().getWalletFunds() + " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.getCurrentUser().getWalletFunds();
-				CreditValue.setText(Float.toString(facade.getCurrentUser().getWalletFunds()));
+				MainGUI.getCurrentUser().getWalletFunds();
+				CreditValue.setText(Float.toString(MainGUI.getCurrentUser().getWalletFunds()));
 			}
 		});
 		
@@ -95,9 +93,7 @@ public class EditAccountGUI extends JFrame {
 		GenderDB.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.getCurrentUser().getGender();	
+				MainGUI.getCurrentUser().getGender();	
 			}
 		});
 		/*GenderDB.addItemListener(new ItemListener() {
@@ -122,13 +118,12 @@ public class EditAccountGUI extends JFrame {
 
 		
 		
-		//GenderDB.addItem(facade.getCurrentUser().getGender());
-		facade.getCurrentUser();
-		if (facade.getCurrentUser().getGender().toString().toLowerCase() != "female") {
+		//GenderDBaddItem(facade.getCurrentUser().getGender());
+		if (MainGUI.getCurrentUser().getGender().toString().toLowerCase() != "female") {
 			GenderDB.addItem("male");
 			GenderDB.addItem("female");
 		}
-		else if (facade.getCurrentUser().getGender().toString().toLowerCase() != "male") {
+		else if (MainGUI.getCurrentUser().getGender().toString().toLowerCase() != "male") {
 			GenderDB.addItem("female");
 			GenderDB.addItem("male");
 		}
@@ -145,7 +140,7 @@ public class EditAccountGUI extends JFrame {
 		Usernamelbl.setForeground(Color.ORANGE);
 		Usernamelbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
-		final JTextField Usernamefield = new JTextField(facade.getCurrentUser().getUsername());
+		final JTextField Usernamefield = new JTextField(MainGUI.getCurrentUser().getUsername());
 		Usernamefield.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -163,7 +158,7 @@ public class EditAccountGUI extends JFrame {
 		Passwordlbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
 		
-		final JTextField PasswordDB = new JTextField(facade.getCurrentUser().getPassword());
+		final JTextField PasswordDB = new JTextField(MainGUI.getCurrentUser().getPassword());
 		PasswordDB.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent arg0) {
@@ -179,7 +174,7 @@ public class EditAccountGUI extends JFrame {
 		Birthdatelbl.setForeground(Color.ORANGE);
 		Birthdatelbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
-		JTextField BirthdateDB = new JTextField(facade.getCurrentUser().getBirthday());
+		JTextField BirthdateDB = new JTextField(MainGUI.getCurrentUser().getBirthday());
 		BirthdateDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -190,7 +185,7 @@ public class EditAccountGUI extends JFrame {
 		EmailAddresslbl.setForeground(Color.ORANGE);
 		EmailAddresslbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
-		final JTextField EmailAddressDB = new JTextField(facade.getCurrentUser().getEmail());
+		final JTextField EmailAddressDB = new JTextField(MainGUI.getCurrentUser().getEmail());
 		EmailAddressDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -201,7 +196,7 @@ public class EditAccountGUI extends JFrame {
 		Firstnamelbl.setForeground(Color.ORANGE);
 		Firstnamelbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
-		final JTextField FirstnameDB = new JTextField(facade.getCurrentUser().getFirstname());
+		final JTextField FirstnameDB = new JTextField(MainGUI.getCurrentUser().getFirstname());
 		FirstnameDB.addFocusListener(new FocusAdapter() {
 			
 		});
@@ -210,7 +205,7 @@ public class EditAccountGUI extends JFrame {
 		Lastnamelbl.setForeground(Color.ORANGE);
 		Lastnamelbl.setFont(new Font("Roboto", Font.PLAIN, 15));
 
-		final JTextField LastnameDB = new JTextField(facade.getCurrentUser().getLastname());
+		final JTextField LastnameDB = new JTextField(MainGUI.getCurrentUser().getLastname());
 		LastnameDB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String lname = LastnameDB.getText();
@@ -236,37 +231,37 @@ public class EditAccountGUI extends JFrame {
 				
 				
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Account a = facade.getCurrentUser();
+				Account a = MainGUI.getCurrentUser();
 				/*if (Usernamefield.getText() != facade.getCurrentUser().getUsername()) {
 					facade.UpdateUsername(Usernamefield.getText(), a.getUsername());              THIS IS JUST IN CASE BUT NOT USED BECAUSE USERNAME IS PRIMARY KEY AND CANNOT BE OVERWRITTEN
 				}
 				*/
-				if (FirstnameDB.getText() != facade.getCurrentUser().getFirstname()) {
+				if (FirstnameDB.getText() != MainGUI.getCurrentUser().getFirstname()) {
 					 facade.UpdateFirstname(FirstnameDB.getText(), a.getUsername());
 				 }
 				
-				 if (LastnameDB.getText() != facade.getCurrentUser().getLastname()) {
+				 if (LastnameDB.getText() != MainGUI.getCurrentUser().getLastname()) {
 					facade.UpdateLastname(LastnameDB.getText(), a.getUsername());
 				 }
 				
-				if (PasswordDB.getText() != facade.getCurrentUser().getPassword()) {
+				if (PasswordDB.getText() != MainGUI.getCurrentUser().getPassword()) {
 					facade.UpdatePassword(PasswordDB.getText(), a.getUsername());
 				}
 				
-				 if (EmailAddressDB.getText() != facade.getCurrentUser().getEmail()) {
+				 if (EmailAddressDB.getText() != MainGUI.getCurrentUser().getEmail()) {
 					facade.UpdateEmailAddress(EmailAddressDB.getText(), a.getUsername());
 				 }
 					
-				 if (GenderDB.getSelectedItem() != facade.getCurrentUser().getGender().toString())
+				 if (GenderDB.getSelectedItem() != MainGUI.getCurrentUser().getGender().toString())
 					facade.UpdateGender(GenderDB.getSelectedItem().toString(), a.getUsername());
 				 	
 
 				System.out.println("Information Updated");
 				WarningLabel.setForeground(Color.GREEN);
 				WarningLabel.setText("Changed Saved");
-				facade.getCurrentUser().getGender();
+				MainGUI.getCurrentUser().getGender();
 				GenderDB.removeAllItems();
-				GenderDB.addItem(facade.getCurrentUser().getGender());
+				GenderDB.addItem(MainGUI.getCurrentUser().getGender());
 				MainGUI back = new MainGUI(); //
 				back.setVisible(true);
 				back.setLocationRelativeTo(null);
@@ -290,9 +285,8 @@ public class EditAccountGUI extends JFrame {
 		final JButton btnLogOut = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.deleteCurrentUser();
-				System.out.print(facade.getCurrentUser());
+				MainGUI.deleteCurrentUser();
+				System.out.print(MainGUI.getCurrentUser());
 				HomepageGUI home = new HomepageGUI();
 				home.setVisible(true);
 				dispose();
