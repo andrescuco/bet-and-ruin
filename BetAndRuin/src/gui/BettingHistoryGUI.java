@@ -3,12 +3,13 @@ package gui;
 
 
 import java.awt.*;
+import javax.swing.table.TableCellRenderer;
 import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import java.util.Vector;
-
+import javax.swing.UIManager;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
@@ -29,6 +30,8 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JFrame;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 
 /* MenuDemo.java requires images/middle.gif. */
 
@@ -206,7 +209,7 @@ public class BettingHistoryGUI extends JFrame {
 		//tableBets.getColumnModel().getColumn(3).setPreferredWidth(100);
         
         tableModelBets.setDataVector(null, columnNamesBets);
-		tableModelBets.setColumnCount(3); // another column added to allocate ev objects
+		tableModelBets.setColumnCount(4); // another column added to allocate ev objects
 
 		BLFacade facade=MainGUI.getBusinessLogic();
 		Vector<domain.Bet> bets=facade.getAllBets(MainGUI.getCurrentUser());
@@ -229,9 +232,56 @@ public class BettingHistoryGUI extends JFrame {
 			//row.add(bet); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
 			tableModelBets.addRow(row);		
 		}
+		
+		class ButtonRenderer extends JButton implements TableCellRenderer {
+
+			  public ButtonRenderer() {
+			    setOpaque(true);
+			  }
+
+			  public Component getTableCellRendererComponent(JTable table, Object value,
+			      boolean isSelected, boolean hasFocus, int row, int column) {
+			    if (isSelected) {
+			      setForeground(table.getSelectionForeground());
+			      setBackground(table.getSelectionBackground());
+				  System.out.print(isSelected); // Button has been clicked
+			    } else {
+			      setForeground(table.getForeground());
+			      setBackground(UIManager.getColor("Button.background"));
+			    }
+			    setText((value == null) ? "" : value.toString());
+			    return this;
+			  }
+			 
+			}
+		
+		class ButtonEditor extends DefaultCellEditor {
+			  protected JButton button;
+
+			  private String label;
+
+			  private boolean isPushed;
+
+			  public ButtonEditor(JCheckBox checkBox) {
+			    super(checkBox);
+			    button = new JButton();
+			    button.setOpaque(true);
+			    button.addActionListener(new ActionListener() {
+			      public void actionPerformed(ActionEvent e) {
+			    	 fireEditingStopped();
+			      }
+			  });
+			  }
+		}
+
 		tableBets.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tableBets.getColumnModel().getColumn(1).setPreferredWidth(200);
+		tableBets.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
+		tableBets.getColumnModel().getColumn(3).setCellEditor(
+		        new ButtonEditor(new JCheckBox()));
 		tableBets.getColumnModel().getColumn(2).setPreferredWidth(200);
+		
+		
 		//tableBets.getColumnModel().getColumn(3).setPreferredWidth(200);
 		//tableBets.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
 		//Display the window.
