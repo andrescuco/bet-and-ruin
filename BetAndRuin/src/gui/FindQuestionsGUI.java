@@ -45,8 +45,8 @@ public class FindQuestionsGUI extends JFrame {
 
 	};
 	private String[] columnNamesQueries = new String[] {
-			ResourceBundle.getBundle("Etiquetas").getString("QueryN"), 
-			ResourceBundle.getBundle("Etiquetas").getString("Query")
+			ResourceBundle.getBundle("Etiquetas").getString("PayoutN"), 
+			ResourceBundle.getBundle("Etiquetas").getString("Event")
 
 	};
 
@@ -189,7 +189,9 @@ public class FindQuestionsGUI extends JFrame {
 				for (domain.Question q:queries){
 					Vector<Object> row = new Vector<Object>();
 
-					row.add(q.getQuestionNumber());
+					
+					//row.add(q.getQuestionNumber());
+					row.add(String.format("%.2f", q.getOdds()));
 					row.add(q.getQuestion());
 					row.add(q);
 					tableModelQueries.addRow(row);	

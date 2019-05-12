@@ -82,7 +82,7 @@ public class BetGUI extends JFrame {
 
 				try {
 					lblCalculatedWin.setText("If you win you'll get "
-							+ String.format("%.0f", Float.parseFloat(BetAmountField.getText()) * question.getOdds())
+							+ String.format("%.2f", Float.parseFloat(BetAmountField.getText()) * question.getOdds())
 							+ " Betcoins!");
 				} catch (NumberFormatException nfe) {
 					lblCalculatedWin.setText("Please enter a valid bet amount");
