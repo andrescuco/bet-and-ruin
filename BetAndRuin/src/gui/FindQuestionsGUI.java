@@ -136,9 +136,9 @@ public class FindQuestionsGUI extends JFrame {
 							System.out.println(verdict);
 							
 							//TODO uncomment to forbid bet in past
-							//if (verdict > 0)
-							//	JOptionPane.showMessageDialog(rootPane, "Sorry the event date is past, you cannot bet on it","Too late!", JOptionPane.ERROR_MESSAGE);
-							//else {
+							if (verdict > 0)
+								JOptionPane.showMessageDialog(rootPane, "Sorry the event date is past, you cannot bet on it","Too late!", JOptionPane.ERROR_MESSAGE);
+							else {
 							row.add(ev.getEventNumber());
 							row.add(ev.getDescription());
 							row.add(ev); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,2)
@@ -147,7 +147,7 @@ public class FindQuestionsGUI extends JFrame {
 						tableEvents.getColumnModel().getColumn(0).setPreferredWidth(25);
 						tableEvents.getColumnModel().getColumn(1).setPreferredWidth(268);
 						tableEvents.getColumnModel().removeColumn(tableEvents.getColumnModel().getColumn(2)); // not shown in JTable
-					} catch (Exception e1) {
+					}} catch (Exception e1) {
 
 						jLabelQueries.setText(e1.getMessage());
 					}
