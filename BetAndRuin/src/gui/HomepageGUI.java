@@ -102,6 +102,7 @@ public class HomepageGUI {
 			});
 		
 		final JLabel lblOr = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("or"));
+		lblOr.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOr.setForeground(new Color(255, 255, 0));
 		
 		final JLabel lblAlreadyHaveAn = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
@@ -190,17 +191,9 @@ public class HomepageGUI {
 					.addComponent(btnSignIn)
 					.addGap(97))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(156)
-					.addComponent(btnEnterAsA)
-					.addContainerGap(191, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(46)
 					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(57, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(175)
-					.addComponent(btnRegister)
-					.addContainerGap(172, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -213,18 +206,26 @@ public class HomepageGUI {
 						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(31, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(208)
-					.addComponent(lblOr)
-					.addContainerGap(171, Short.MAX_VALUE))
+					.addGap(162)
+					.addComponent(btnRegister, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(164))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(85)
+					.addComponent(btnEnterAsA, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+					.addGap(93))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(100)
+					.addComponent(lblOr, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(104, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(19)
 					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
 					.addComponent(btnRegister)
-					.addGap(1)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblOr)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnEnterAsA)
