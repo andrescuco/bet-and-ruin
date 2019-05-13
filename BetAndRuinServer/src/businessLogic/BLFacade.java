@@ -69,6 +69,7 @@ public interface BLFacade  {
 	@WebMethod	public boolean checkPassword(Account a, String password);
 
 	@WebMethod Event deleteEvent(Event event);
+	@WebMethod Bet deleteBet(Bet bet/*, Event event*/);
 	
 
 	boolean UpdateFirstname(String firstname, String username);

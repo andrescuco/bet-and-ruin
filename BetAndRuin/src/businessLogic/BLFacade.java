@@ -105,4 +105,7 @@ public interface BLFacade  {
 	
 	@WebMethod Account findAccount(String username);
 	@WebMethod public void finalizeEvent(Event ev);
+
+
+	@WebMethod Bet deleteBet(Bet bet/*, Event event*/);
 }

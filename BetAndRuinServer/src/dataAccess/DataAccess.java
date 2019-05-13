@@ -443,6 +443,16 @@ public class DataAccess {
 			db.getTransaction().commit();
 			return ev;
 		}
+		
+
+		public Bet deleteBet(Bet bet) {
+			Bet b = db.find(Bet.class, bet);
+			db.getTransaction().begin();
+			db.remove(b);
+			db.getTransaction().commit();
+			System.out.print("Your bet " + b + " has been deleted");
+			return b;
+		}
 
 		public Bet createBet(float amount, Date date, Question question, Account account) {
 			

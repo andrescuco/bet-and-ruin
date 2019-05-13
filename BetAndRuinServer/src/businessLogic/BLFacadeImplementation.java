@@ -1,5 +1,6 @@
 package businessLogic;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
@@ -17,7 +18,7 @@ import domain.Event;
 import exceptions.EventFinished;
 import exceptions.InsuficientFunds;
 import exceptions.QuestionAlreadyExist;
-
+import java.text.SimpleDateFormat;
 /**
  * It implements the business logic as a web service.
  */
@@ -163,6 +164,27 @@ public class BLFacadeImplementation  implements BLFacade {
     	DataAccess dBManager = new DataAccess();
     	Event ev = dBManager.deleteEvent(event);
     	return ev;
+    }
+    
+    @WebMethod
+	public Bet deleteBet(Bet bet/*, Event event*/) {
+    	Calendar calendarDate = Calendar.getInstance();
+    	Date c1 = calendarDate.getTime();
+    	System.out.println("Current date: " + c1);
+    	Date c2 = bet.getBetDate(); /*event.getEventDate();*/
+    	System.out.println("The event date: "+ c2);
+    	int verdict = c1.compareTo(c2);
+    	System.out.println(verdict);								
+    	if (verdict > 0) {
+    		System.out.print("The EVENT on which you putted your bet hasn't started, you CAN cancel your bet");
+    	    DataAccess dBManager = new DataAccess();
+    	    Bet b = dBManager.deleteBet(bet);
+    	}
+    	else {
+    		System.out.print("The EVENT on which you putted your bet already started, you CANNOT cancel your bet");
+    	}
+    	//System.out.print("deleteBet from BL" + bet);
+    	return bet;
     }
 
 	@Override
