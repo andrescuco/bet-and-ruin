@@ -26,6 +26,7 @@ import java.awt.Font;
 import javax.swing.JSeparator;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 
 import javax.swing.JRadioButton;
@@ -36,6 +37,7 @@ import javax.swing.JComboBox;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 public class WalletGUI extends JFrame {
 
@@ -68,7 +70,7 @@ public class WalletGUI extends JFrame {
 	public WalletGUI() {
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(100, 100, 592, 463);
+		setBounds(100, 100, 588, 520);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,6 +80,7 @@ public class WalletGUI extends JFrame {
 		BLFacade facade=MainGUI.getBusinessLogic(); 
 		
 		JLabel lblMyWallet = new JLabel("My Wallet");
+		lblMyWallet.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\Wallet-Free-PNG-Image.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
 		lblMyWallet.setIcon(imageIcon);
 		lblMyWallet.setForeground(Color.ORANGE);
@@ -88,6 +91,7 @@ public class WalletGUI extends JFrame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EditAccountGUI back = new EditAccountGUI();
+				back.setLocationRelativeTo(null);
 				back.setVisible(true);
 				dispose();
 			}
@@ -115,6 +119,8 @@ public class WalletGUI extends JFrame {
 		
 		JLabel lblGetMoreCredits = new JLabel("Get more credits");
 		lblGetMoreCredits.setForeground(Color.ORANGE);
+		ImageIcon imageIcon1 = new ImageIcon(new ImageIcon("img\\be.png").getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH));
+		lblGetMoreCredits.setIcon(imageIcon1);
 		lblGetMoreCredits.setFont(new Font("Roboto", Font.BOLD, 16));
 		
 		JLabel lblMoreCreditsChoose = new JLabel(" Choose an option below:");
@@ -141,11 +147,23 @@ public class WalletGUI extends JFrame {
 		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean isPaypalSelected = PaypalButt.isSelected();
-				 
-				float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
-				Account acc = MainGUI.getCurrentUser();
-				funds = facade.addFunds(acc, funds);
-				lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
+				
+				if (isPaypalSelected == true) {
+					try {
+					    Desktop.getDesktop().browse(new URL("https://www.paypal.com/").toURI()); 
+					} catch (Exception e) {}
+					float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
+					Account acc = MainGUI.getCurrentUser();
+					funds = facade.addFunds(acc, funds);
+					lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
+				}
+				else {
+					float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
+					Account acc = MainGUI.getCurrentUser();
+					funds = facade.addFunds(acc, funds);
+					lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
+				}
+				
 				
 				
 				
@@ -167,50 +185,47 @@ public class WalletGUI extends JFrame {
         JSeparator separator = new JSeparator();
         GroupLayout gl_contentPane = new GroupLayout(contentPane);
         gl_contentPane.setHorizontalGroup(
-        	gl_contentPane.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+        	gl_contentPane.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
         				.addGroup(gl_contentPane.createSequentialGroup()
-        					.addGap(112)
+        					.addGap(14)
         					.addComponent(lblAvailableCredit, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
         					.addGap(18)
-        					.addComponent(lblWalletFunds)
-        					.addPreferredGap(ComponentPlacement.RELATED))
-        				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-        					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addComponent(lblMyWallet)
-        					.addGap(72)))
-        			.addPreferredGap(ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-        			.addComponent(btnBack))
-        		.addComponent(separator, GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
+        					.addComponent(lblWalletFunds))
+        				.addGroup(gl_contentPane.createSequentialGroup()
+        					.addGap(50)
+        					.addComponent(lblMyWallet, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(200))
+        		.addComponent(separator, GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
         		.addGroup(gl_contentPane.createSequentialGroup()
-        			.addContainerGap(243, Short.MAX_VALUE)
-        			.addComponent(lblGetMoreCredits)
-        			.addGap(221))
+        			.addGap(183)
+        			.addComponent(btnWithdrawFunds, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+        			.addGap(239))
         		.addGroup(gl_contentPane.createSequentialGroup()
-        			.addContainerGap(209, Short.MAX_VALUE)
-        			.addComponent(btnWithdrawFunds)
-        			.addGap(203))
-        		.addGroup(gl_contentPane.createSequentialGroup()
-        			.addContainerGap(216, Short.MAX_VALUE)
-        			.addComponent(lblMoreCreditsChoose)
-        			.addGap(209))
-        		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-        			.addGap(178)
+        			.addGap(140)
         			.addComponent(PaypalButt)
-        			.addGap(49)
+        			.addGap(67)
         			.addComponent(lblOr)
-        			.addGap(41)
+        			.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
         			.addComponent(VisaButt)
-        			.addContainerGap(116, Short.MAX_VALUE))
-        		.addGroup(gl_contentPane.createSequentialGroup()
-        			.addContainerGap(193, Short.MAX_VALUE)
-        			.addComponent(fundsToAdd, GroupLayout.PREFERRED_SIZE, 194, GroupLayout.PREFERRED_SIZE)
         			.addGap(179))
         		.addGroup(gl_contentPane.createSequentialGroup()
-        			.addContainerGap(240, Short.MAX_VALUE)
-        			.addComponent(btnContinue)
-        			.addGap(227))
+        			.addGap(170)
+        			.addComponent(fundsToAdd, 0, 217, Short.MAX_VALUE)
+        			.addGap(212))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGap(222)
+        			.addComponent(btnContinue, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(255, Short.MAX_VALUE))
+        		.addGroup(gl_contentPane.createSequentialGroup()
+        			.addGap(203)
+        			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+        				.addComponent(lblGetMoreCredits)
+        				.addComponent(lblMoreCreditsChoose))
+        			.addContainerGap(255, Short.MAX_VALUE))
         );
         gl_contentPane.setVerticalGroup(
         	gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -221,8 +236,8 @@ public class WalletGUI extends JFrame {
         					.addComponent(lblMyWallet)
         					.addGap(18)
         					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-        						.addComponent(lblWalletFunds)
-        						.addComponent(lblAvailableCredit, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)))
+        						.addComponent(lblAvailableCredit, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(lblWalletFunds)))
         				.addComponent(btnBack))
         			.addGap(18)
         			.addComponent(btnWithdrawFunds)
@@ -230,18 +245,18 @@ public class WalletGUI extends JFrame {
         			.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(lblGetMoreCredits)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGap(13)
         			.addComponent(lblMoreCreditsChoose)
-        			.addGap(19)
+        			.addGap(18)
         			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(lblOr)
         				.addComponent(PaypalButt)
+        				.addComponent(lblOr)
         				.addComponent(VisaButt))
         			.addGap(18)
         			.addComponent(fundsToAdd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addGap(18)
         			.addComponent(btnContinue)
-        			.addGap(64))
+        			.addGap(23))
         );
         contentPane.setLayout(gl_contentPane);
 		
