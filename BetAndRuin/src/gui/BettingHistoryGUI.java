@@ -462,6 +462,7 @@ public class BettingHistoryGUI extends JFrame {
 			        facade.deleteBet(bets.elementAt(modelRow));
 			        ((DefaultTableModel)table.getModel()).removeRow(modelRow);
 			        JOptionPane.showMessageDialog(rootPane, "You have successfully canceled your bet!", "Bet canceled", JOptionPane.INFORMATION_MESSAGE);
+			        facade.addFunds(MainGUI.getCurrentUser(), bets.elementAt(modelRow).getBetAmount());
 		        } else {
 		        	JOptionPane.showMessageDialog(rootPane, "You cannot cancel the bet, the event is already over!","Event has ended", JOptionPane.ERROR_MESSAGE);
 		        }
