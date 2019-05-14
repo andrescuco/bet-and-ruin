@@ -50,6 +50,7 @@ public class SetResultGUI extends JFrame {
 	};
 	private final JButton answerYesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AnswerYes"));
 	private final JButton answerNoButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AnswerNo")); 
+	private final JButton btnCustomAnswer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CustomAnswer")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	public SetResultGUI() {
 		getContentPane().setBackground(Color.BLACK);
@@ -89,7 +90,7 @@ public class SetResultGUI extends JFrame {
 		finalizeEventButton.setBounds(548, 420, 126, 30);
 		getContentPane().add(finalizeEventButton);
 
-		jButtonClose.setBounds(new Rectangle(10, 420, 130, 30));
+		jButtonClose.setBounds(new Rectangle(5, 420, 130, 30));
 
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -179,6 +180,7 @@ public class SetResultGUI extends JFrame {
 					else {
 						answerNoButton.setEnabled(true);
 						answerYesButton.setEnabled(true);
+						btnCustomAnswer.setEnabled(true);
 						jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
 					}
 				}
@@ -242,7 +244,7 @@ public class SetResultGUI extends JFrame {
 		});
 		answerYesButton.setEnabled(false);
 		answerYesButton.setBackground(Color.ORANGE);
-		answerYesButton.setBounds(222, 420, 130, 30);
+		answerYesButton.setBounds(274, 420, 130, 30);
 		
 		getContentPane().add(answerYesButton);
 		answerNoButton.addActionListener(new ActionListener() {
@@ -250,14 +252,29 @@ public class SetResultGUI extends JFrame {
 				int i=tableQueries.getSelectedRow();
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
 				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.updateQuestionAnswer(question, true);
+				facade.updateQuestionAnswer(question, false);
 			}
 		});
 		answerNoButton.setEnabled(false);
 		answerNoButton.setBackground(Color.ORANGE);
-		answerNoButton.setBounds(361, 420, 130, 30);
+		answerNoButton.setBounds(414, 420, 130, 30);
 		
 		getContentPane().add(answerNoButton);
+		
+		
+		btnCustomAnswer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int i=tableQueries.getSelectedRow();
+				String answer = JOptionPane.showInputDialog(null, "Enter the result of the event:");
+				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
+				BLFacade facade = MainGUI.getBusinessLogic();
+				facade.updateQuestionAnswer2(question, answer);
+			}
+		});
+		btnCustomAnswer.setEnabled(false);
+		btnCustomAnswer.setBackground(Color.ORANGE);
+		btnCustomAnswer.setBounds(138, 420, 130, 30);
+		getContentPane().add(btnCustomAnswer);
 		
 
 	}

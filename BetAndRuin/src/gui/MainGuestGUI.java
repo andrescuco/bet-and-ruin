@@ -210,6 +210,8 @@ public class MainGuestGUI extends JFrame {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
 		lblLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("Account"));
+		BackButton.setText(ResourceBundle.getBundle("Etiquetas").getString("Return"));
+		
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
 	}
 	
@@ -244,7 +246,7 @@ public class MainGuestGUI extends JFrame {
 	}
 	private JButton getBackButton() {
 		if (BackButton == null) {
-			BackButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGuestGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+			BackButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Return")); //$NON-NLS-1$ //$NON-NLS-2$
 			BackButton.setForeground(Color.ORANGE);
 			BackButton.setBackground(Color.DARK_GRAY);
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\return.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));

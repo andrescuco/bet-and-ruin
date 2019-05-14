@@ -101,6 +101,7 @@ public interface BLFacade  {
 	@WebMethod public Vector<Transaction> getTransactions(Account acc);
 
 	@WebMethod boolean updateQuestionAnswer(Question question, boolean ans);
+	@WebMethod boolean updateQuestionAnswer2(Question question, String ans);
 	@WebMethod boolean updateEventFinished(Event event, boolean ans);
 	
 	@WebMethod Account findAccount(String username);
