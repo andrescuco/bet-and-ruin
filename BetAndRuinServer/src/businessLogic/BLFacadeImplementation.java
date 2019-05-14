@@ -10,15 +10,14 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Question;
-import domain.Transaction;
 import domain.Account;
 import domain.Bet;
 import domain.Event;
+import domain.Question;
+import domain.Transaction;
 import exceptions.EventFinished;
 import exceptions.InsuficientFunds;
 import exceptions.QuestionAlreadyExist;
-import java.text.SimpleDateFormat;
 /**
  * It implements the business logic as a web service.
  */
@@ -167,25 +166,24 @@ public class BLFacadeImplementation  implements BLFacade {
     }
     
     @WebMethod
-	public Bet deleteBet(Bet bet/*, Event event*/) {
-    	Calendar calendarDate = Calendar.getInstance();
-    	Date c1 = calendarDate.getTime();
-    	System.out.println("Current date: " + c1);
-    	Date c2 = bet.getBetDate(); /*event.getEventDate();*/
-    	System.out.println("The event date: "+ c2);
-    	int verdict = c1.compareTo(c2);
-    	System.out.println(verdict);								
-    	if (verdict > 0) {
-    		System.out.print("The EVENT on which you putted your bet hasn't started, you CAN cancel your bet");
+	public Bet deleteBet(Bet bet) {
     	    DataAccess dBManager = new DataAccess();
     	    Bet b = dBManager.deleteBet(bet);
-    	}
-    	else {
-    		System.out.print("The EVENT on which you putted your bet already started, you CANNOT cancel your bet");
-    	}
-    	//System.out.print("deleteBet from BL" + bet);
-    	return bet;
+    	    return b;
+
     }
+
+	@WebMethod 
+	public boolean isEventOver(Event event) {
+		Calendar calendarDate = Calendar.getInstance();
+    	Date today = calendarDate.getTime();
+    	Date eventDate = event.getEventDate();
+    	if (today.before(eventDate)) {
+    	    return true;
+    	} else {
+        	return false;
+    	}
+	}
 
 	@Override
 	public boolean UpdateFirstname(String firstname, String username) {
@@ -349,7 +347,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	@Override
 	public Account findAccount(String username) {
 		DataAccess dbManager=new DataAccess();
-		Account account = dbManager.findAccount(username);;
+		Account account = dbManager.findAccount(username);
 		dbManager.close();
 		return account;
 	}
@@ -371,5 +369,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 		dbManager.markEventAsFinished(ev);
 	}
+	
+	@Override 
+	public Event getEventFromQuestion(Question question) {
+		DataAccess dbManager=new DataAccess();
+		Event ev = dbManager.getEventFromQuestion(question);
+		dbManager.close();
+		return ev;
+	}
+
 }
 

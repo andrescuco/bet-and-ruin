@@ -69,7 +69,7 @@ public interface BLFacade  {
 	@WebMethod	public boolean checkPassword(Account a, String password);
 
 	@WebMethod Event deleteEvent(Event event);
-	@WebMethod Bet deleteBet(Bet bet/*, Event event*/);
+	@WebMethod Bet deleteBet(Bet bet);
 	
 
 	boolean UpdateFirstname(String firstname, String username);
@@ -106,4 +106,9 @@ public interface BLFacade  {
 	
 	@WebMethod Account findAccount(String username);
 	@WebMethod public void finalizeEvent(Event ev);
+
+	@WebMethod Event getEventFromQuestion(Question question);
+
+
+	@WebMethod boolean isEventOver(Event event);
 }

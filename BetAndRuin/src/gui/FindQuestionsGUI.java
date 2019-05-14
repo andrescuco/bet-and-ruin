@@ -192,6 +192,7 @@ public class FindQuestionsGUI extends JFrame {
 					
 					//row.add(q.getQuestionNumber());
 					row.add(String.format("%.2f", q.getOdds()));
+					
 					row.add(q.getQuestion());
 					row.add(q);
 					tableModelQueries.addRow(row);	

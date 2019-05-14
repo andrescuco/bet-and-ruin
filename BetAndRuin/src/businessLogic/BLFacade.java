@@ -107,5 +107,11 @@ public interface BLFacade  {
 	@WebMethod public void finalizeEvent(Event ev);
 
 
-	@WebMethod Bet deleteBet(Bet bet/*, Event event*/);
+	@WebMethod Bet deleteBet(Bet bet);
+
+
+	@WebMethod boolean isEventOver(Event event);
+
+	@WebMethod Event getEventFromQuestion(Question question);
+
 }

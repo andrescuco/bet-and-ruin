@@ -562,4 +562,14 @@ public class DataAccess {
 			return true;
 		}
 
+		public Event getEventFromQuestion(Question question) {
+			Event ev = null;
+			db.getTransaction().begin();
+			Query q1 = db.createQuery("Select q.event FROM Question "
+					+ "As q WHERE q.questionNumber == " + question.getQuestionNumber());
+			ev = (Event) q1.getSingleResult();
+			db.getTransaction().commit();
+			return ev;
+		}
+
 }

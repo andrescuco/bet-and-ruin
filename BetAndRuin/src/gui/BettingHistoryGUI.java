@@ -455,17 +455,17 @@ public class BettingHistoryGUI extends JFrame {
 		    public void actionPerformed(ActionEvent e)
 		    {
 		    	BLFacade facade = MainGUI.getBusinessLogic();
-		    	//The row of the selected Bet, return that Bet Object
-
-				//Vector<domain.Bet> bets = facade.getAllBets(MainGUI.getCurrentUser());
 		        JTable table = (JTable)e.getSource();
 		        int modelRow = Integer.valueOf( e.getActionCommand() );
-		        System.out.print("Bet Object is: " + bets.elementAt(modelRow));
-		        //System.out.print("Event object is :" + bets.elementAt(modelRow).getQuestion().getEvent());
-		        facade.deleteBet(bets.elementAt(modelRow)/*, bets.elementAt(modelRow).getQuestion().getEvent()*/);
-		        //System.out.print(bets.elementAt(modelRow));
-		    	//System.out.print(table.getModel().getValueAt(modelRow, 1));
-		        ((DefaultTableModel)table.getModel()).removeRow(modelRow);
+		        // Deletes the bet if event date hasn't passed
+		        if (facade.isEventOver(facade.getEventFromQuestion(bets.elementAt(modelRow).getQuestion()))) {
+			        facade.deleteBet(bets.elementAt(modelRow));
+			        ((DefaultTableModel)table.getModel()).removeRow(modelRow);
+			        JOptionPane.showMessageDialog(rootPane, "You have successfully canceled your bet!", "Bet canceled", JOptionPane.INFORMATION_MESSAGE);
+		        } else {
+		        	JOptionPane.showMessageDialog(rootPane, "You cannot cancel the bet, the event is already over!","Event has ended", JOptionPane.ERROR_MESSAGE);
+		        }
+
 		    }
 		};
 
