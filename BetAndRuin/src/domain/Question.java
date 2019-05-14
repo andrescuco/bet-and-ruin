@@ -28,6 +28,10 @@ public class Question implements Serializable {
 	public boolean isCorrect() {
 		return correct;
 	}
+	
+	public String isCorrect1() {
+		return correct1;
+	}
 
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
@@ -51,6 +55,7 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.event = event;
 		this.correct = false;
+		this.correct1 = null;
 	}
 	
 	public Question(String query, float betMinimum,  Event event, float odds) {
@@ -60,6 +65,7 @@ public class Question implements Serializable {
 		this.correct = false;
 		this.event = event;
 		this.odds = odds; 
+		this.correct1 = null;
 	}
 
 	
