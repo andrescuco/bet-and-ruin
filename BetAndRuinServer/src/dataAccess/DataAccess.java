@@ -420,12 +420,12 @@ public class DataAccess {
 		return usernamelbl;
 	}
 
-		public Event createEvent(Date date, String description) {
+		public Event createEvent(Date date, String description, String result) {
 //			System.out.println(">> DataAccess: createQuestion=> event= " + event + " question= " + question + " betMinimum="
 //					+ betMinimum);
 
 			db.getTransaction().begin();
-			Event ev = new Event(description, date);
+			Event ev = new Event(description, date, result);
 			// db.persist(q);
 			db.persist(ev); // db.persist(q) not required when CascadeType.PERSIST is added in questions
 							// property of Event class
@@ -442,6 +442,15 @@ public class DataAccess {
 			db.remove(ev);
 			db.getTransaction().commit();
 			return ev;
+		}
+		
+		public boolean setResult(String result, Event object) {
+			Event ev = db.find(Event.class, object);
+			db.getTransaction().begin();
+
+			ev.setResult(result);
+			db.getTransaction().commit();
+			return true;
 		}
 		
 
@@ -552,6 +561,19 @@ public class DataAccess {
 			db.getTransaction().commit();
 			return true;
 		}
+		
+		public boolean updateQuestionAnswer2(Question question, String ans) {
+			TypedQuery<Question> query = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber=?1", Question.class);
+			query.setParameter(1, question.getQuestionNumber());
+			Question q = query.getSingleResult();
+			db.getTransaction().begin();
+			q.setCorrect1(ans);
+			System.out.println(q.toString() + "set" + ans);
+			db.getTransaction().commit();
+			return true;
+		}
+		
+		
 
 		public boolean updateEventFinished(Event event, boolean ans) {
 			Event ev = db.find(Event.class, event);

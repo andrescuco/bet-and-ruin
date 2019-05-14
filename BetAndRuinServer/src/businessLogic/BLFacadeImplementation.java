@@ -69,11 +69,11 @@ public class BLFacadeImplementation  implements BLFacade {
 		return qry;
    };
    @WebMethod
-   public Event createEvent(Date date, String eventName) {
+   public Event createEvent(Date date, String eventName, String result1) {
 	    DataAccess dBManager=new DataAccess();
 		Event qry=null;
 		
-		 qry=dBManager.createEvent(date, eventName);		
+		 qry=dBManager.createEvent(date, eventName, result1);		
 
 		dBManager.close();
 		
@@ -163,6 +163,14 @@ public class BLFacadeImplementation  implements BLFacade {
     	DataAccess dBManager = new DataAccess();
     	Event ev = dBManager.deleteEvent(event);
     	return ev;
+    }
+    
+    @WebMethod 
+    public boolean setResultEven(String result, Event object) {
+    	DataAccess dBManager = new DataAccess();
+    	boolean res = dBManager.setResult(result, object);
+    	dBManager.close();
+    	return res;
     }
     
     @WebMethod
@@ -335,6 +343,14 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return a;
 	}
+	
+	@WebMethod
+	public boolean updateQuestionAnswer2(Question question, String ans) {
+		DataAccess dbManager=new DataAccess();
+		boolean a=dbManager.updateQuestionAnswer2(question, ans);
+		dbManager.close();
+		return a;
+	}
 
 	@WebMethod
 	public boolean updateEventFinished(Event event, boolean ans) {
@@ -377,6 +393,8 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return ev;
 	}
+
+	
 
 }
 

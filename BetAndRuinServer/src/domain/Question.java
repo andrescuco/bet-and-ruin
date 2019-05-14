@@ -21,15 +21,24 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private boolean correct;
+	private String correct1;
 	private float odds; 
 	
 	
 	public boolean isCorrect() {
 		return correct;
 	}
+	
+	public String isCorrect1() {
+		return correct1;
+	}
 
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
+	}
+	
+	public void setCorrect1(String correct) {
+		this.correct1 = correct;
 	}
 
 	@XmlIDREF
@@ -46,6 +55,7 @@ public class Question implements Serializable {
 		this.betMinimum=betMinimum;
 		this.event = event;
 		this.correct = false;
+		this.correct1 = null;
 	}
 	
 	public Question(String query, float betMinimum,  Event event, float odds) {
@@ -53,6 +63,7 @@ public class Question implements Serializable {
 		this.question = query;
 		this.betMinimum=betMinimum;
 		this.correct = false;
+		this.correct1 = null;
 		this.event = event;
 		this.odds = odds;
 	}

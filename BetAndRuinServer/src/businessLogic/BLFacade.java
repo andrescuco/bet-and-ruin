@@ -64,9 +64,11 @@ public interface BLFacade  {
 
 	
 	 
-	@WebMethod Event createEvent(Date date, String inputQuery);
+	@WebMethod Event createEvent(Date date, String inputQuery, String result1);
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
+	
+	 @WebMethod public boolean setResultEven(String result, Event object);
 
 	@WebMethod Event deleteEvent(Event event);
 	@WebMethod Bet deleteBet(Bet bet);
@@ -102,6 +104,7 @@ public interface BLFacade  {
 	@WebMethod public Vector<Transaction> getTransactions(Account acc);
 
 	@WebMethod boolean updateQuestionAnswer(Question question, boolean ans);
+	@WebMethod boolean updateQuestionAnswer2(Question question, String ans);
 	@WebMethod boolean updateEventFinished(Event event, boolean ans);
 	
 	@WebMethod Account findAccount(String username);
