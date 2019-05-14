@@ -50,7 +50,9 @@ public class SetResultGUI extends JFrame {
 	};
 	private final JButton answerYesButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AnswerYes"));
 	private final JButton answerNoButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AnswerNo")); 
-	private final JButton btnCustomAnswer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CustomAnswer")); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton btnCustomAnswer = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetResult"));
+	 // obtain ev object
+	private final JLabel textResult = new JLabel();
 
 	public SetResultGUI() {
 		getContentPane().setBackground(Color.BLACK);
@@ -180,7 +182,6 @@ public class SetResultGUI extends JFrame {
 					else {
 						answerNoButton.setEnabled(true);
 						answerYesButton.setEnabled(true);
-						btnCustomAnswer.setEnabled(true);
 						jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
 					}
 				}
@@ -260,21 +261,45 @@ public class SetResultGUI extends JFrame {
 		answerNoButton.setBounds(414, 420, 130, 30);
 		
 		getContentPane().add(answerNoButton);
+		btnCustomAnswer.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		
 		
 		btnCustomAnswer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int i=tableQueries.getSelectedRow();
-				String answer = JOptionPane.showInputDialog(null, "Enter the result of the event:");
-				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
 				BLFacade facade = MainGUI.getBusinessLogic();
-				facade.updateQuestionAnswer2(question, answer);
+				 String result = null;
+				 int i=tableEvents.getSelectedRow();
+					domain.Event num=(domain.Event)tableModelEvents.getValueAt(i,2);
+				result = JOptionPane.showInputDialog("Please insert the result");
+				
+				System.out.println(result);
+				facade.setResultEven(result, num);
 			}
 		});
-		btnCustomAnswer.setEnabled(false);
+		btnCustomAnswer.setEnabled(true);
 		btnCustomAnswer.setBackground(Color.ORANGE);
 		btnCustomAnswer.setBounds(138, 420, 130, 30);
 		getContentPane().add(btnCustomAnswer);
+		
+		JLabel lblFinalResult = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SetResultGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblFinalResult.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
+		lblFinalResult.setForeground(Color.ORANGE);
+		lblFinalResult.setBounds(295, 211, 71, 14);
+		getContentPane().add(lblFinalResult);
+		
+		
+		
+		textResult.setBackground(Color.WHITE);
+		textResult.setForeground(Color.RED);
+		int i=tableEvents.getSelectedRow();
+		domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2);
+		textResult.setText(ev.getResult());
+		
+		
+		
+		
+		textResult.setBounds(395, 208, 106, 20);
+		getContentPane().add(textResult);
 		
 
 	}

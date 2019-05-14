@@ -67,6 +67,8 @@ public interface BLFacade  {
 	@WebMethod Event createEvent(Date date, String inputQuery);
 	@WebMethod	public boolean isValidUser(String username, String password);
 	@WebMethod	public boolean checkPassword(Account a, String password);
+	
+	 @WebMethod public boolean setResultEven(String result, Event object);
 
 	@WebMethod Event deleteEvent(Event event);
 	

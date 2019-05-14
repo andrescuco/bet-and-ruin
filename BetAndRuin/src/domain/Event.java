@@ -17,6 +17,10 @@ import exceptions.QuestionAlreadyExist;
 @Entity
 public class Event implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6774274601235274598L;
 	@XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue
@@ -24,6 +28,7 @@ public class Event implements Serializable {
 	private String description; 
 	private Date eventDate;
 	private boolean finished;
+	private String result;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Vector<Question> questions=new Vector<Question>();
@@ -39,10 +44,19 @@ public class Event implements Serializable {
 		this.finished = false;
 	}
 	
-	public Event(String description,Date eventDate) {
+	public Event(String description,Date eventDate, String result) {
 		this.description = description;
 		this.eventDate = eventDate;
 		this.finished = false;
+		this.result = null;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+	
+	public void setResult(String result) {
+		this.result = result;
 	}
 
 	public Integer getEventNumber() {
