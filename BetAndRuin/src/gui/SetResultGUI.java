@@ -168,6 +168,9 @@ public class SetResultGUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int i=tableEvents.getSelectedRow();
 				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
+				//Display answer
+				textResult.setText(ev.getResult());
+				
 				Vector<Question> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
@@ -241,6 +244,7 @@ public class SetResultGUI extends JFrame {
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.updateQuestionAnswer(question, true);
+				tableModelQueries.setValueAt(true, i, 2);
 			}
 		});
 		answerYesButton.setEnabled(false);
@@ -254,6 +258,7 @@ public class SetResultGUI extends JFrame {
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.updateQuestionAnswer(question, false);
+				tableModelQueries.setValueAt(false, i, 2);
 			}
 		});
 		answerNoButton.setEnabled(false);
@@ -273,6 +278,8 @@ public class SetResultGUI extends JFrame {
 				result = JOptionPane.showInputDialog("Please insert the result");
 				
 				System.out.println(result);
+				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2);
+				textResult.setText(result);
 				facade.setResultEven(result, num);
 			}
 		});
@@ -284,7 +291,7 @@ public class SetResultGUI extends JFrame {
 		JLabel lblFinalResult = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("SetResultGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		lblFinalResult.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
 		lblFinalResult.setForeground(Color.ORANGE);
-		lblFinalResult.setBounds(295, 211, 71, 14);
+		lblFinalResult.setBounds(295, 211, 109, 14);
 		getContentPane().add(lblFinalResult);
 		
 		
@@ -292,8 +299,7 @@ public class SetResultGUI extends JFrame {
 		textResult.setBackground(Color.WHITE);
 		textResult.setForeground(Color.RED);
 		int i=tableEvents.getSelectedRow();
-		domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2);
-		textResult.setText(ev.getResult());
+		
 		
 		
 		
