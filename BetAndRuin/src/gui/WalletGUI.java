@@ -158,10 +158,17 @@ public class WalletGUI extends JFrame {
 					lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
 				}
 				else {
+					CheckoutGUI open = new CheckoutGUI();
+					open.createAndShowUI();
+					dispose();
+					boolean myLocalVar = CheckoutGUI.getOk();
+					System.out.println(myLocalVar);
+					
 					float funds = Float.parseFloat(fundsToAdd.getSelectedItem().toString());
 					Account acc = MainGUI.getCurrentUser();
 					funds = facade.addFunds(acc, funds);
 					lblWalletFunds.setText(Float.toString(funds) + " Betcoins");
+					
 				}
 				
 				

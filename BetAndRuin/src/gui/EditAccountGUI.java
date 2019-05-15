@@ -324,6 +324,7 @@ public class EditAccountGUI extends JFrame {
 				Lastnamelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Lastname"));
 				Birthdatelbl.setText(ResourceBundle.getBundle("Etiquetas").getString("Birthdate"));
 				btnBack.setText(ResourceBundle.getBundle("Etiquetas").getString("Return"));
+				btnGetMoreCoins.setText(ResourceBundle.getBundle("Etiquetas").getString("Getmorecoins"));
 				
 			}
 		});

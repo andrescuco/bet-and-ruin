@@ -149,7 +149,7 @@ public class MainGuestGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton() {
 		if (rdbtnNewRadioButton == null) {
 			rdbtnNewRadioButton = new JRadioButton("English");
-			rdbtnNewRadioButton.setBackground(Color.GRAY);
+			rdbtnNewRadioButton.setBackground(Color.DARK_GRAY);
 			rdbtnNewRadioButton.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -164,7 +164,7 @@ public class MainGuestGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_1() {
 		if (rdbtnNewRadioButton_1 == null) {
 			rdbtnNewRadioButton_1 = new JRadioButton("Euskara");
-			rdbtnNewRadioButton_1.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_1.setBackground(Color.DARK_GRAY);
 			rdbtnNewRadioButton_1.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -179,7 +179,7 @@ public class MainGuestGUI extends JFrame {
 	private JRadioButton getRdbtnNewRadioButton_2() {
 		if (rdbtnNewRadioButton_2 == null) {
 			rdbtnNewRadioButton_2 = new JRadioButton("Castellano");
-			rdbtnNewRadioButton_2.setBackground(Color.GRAY);
+			rdbtnNewRadioButton_2.setBackground(Color.DARK_GRAY);
 			rdbtnNewRadioButton_2.setForeground(Color.ORANGE);
 			rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -195,7 +195,7 @@ public class MainGuestGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setBackground(Color.GRAY);
+			panel.setBackground(Color.DARK_GRAY);
 			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 			flowLayout.setVgap(15);
 			flowLayout.setHgap(15);
