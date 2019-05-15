@@ -31,7 +31,7 @@ import javax.swing.ButtonGroup;
 
 public class HomepageGUI {
 
-	private JFrame frame;
+	private JFrame frmBetAndRuin;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -67,13 +67,14 @@ public class HomepageGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.getContentPane().setForeground(Color.BLACK);
-		frame.setBounds(100, 100, 450, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null); 
-		frame.setVisible(true);
+		frmBetAndRuin = new JFrame();
+		frmBetAndRuin.setTitle(ResourceBundle.getBundle("Etiquetas").getString("HomepageGUI.frmBetAndRuin.title")); //$NON-NLS-1$ //$NON-NLS-2$
+		frmBetAndRuin.getContentPane().setBackground(Color.BLACK);
+		frmBetAndRuin.getContentPane().setForeground(Color.BLACK);
+		frmBetAndRuin.setBounds(100, 100, 450, 400);
+		frmBetAndRuin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBetAndRuin.setLocationRelativeTo(null); 
+		frmBetAndRuin.setVisible(true);
 
 		final JButton btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		btnRegister.addActionListener(new ActionListener() {
@@ -82,7 +83,7 @@ public class HomepageGUI {
 						
 				RegistrationGUI registration = new RegistrationGUI();	
 				registration.setLocationRelativeTo(null);
-				frame.dispose();
+				frmBetAndRuin.dispose();
 				registration.setVisible(true);
 					
 			}
@@ -97,7 +98,7 @@ public class HomepageGUI {
 				MainGuestGUI guest = new MainGuestGUI();
 				guest.setLocationRelativeTo(null);
 				guest.setVisible(true);
-				frame.dispose();
+				frmBetAndRuin.dispose();
 			}
 			});
 		
@@ -117,7 +118,7 @@ public class HomepageGUI {
 		LogInGUI log = new LogInGUI();
 		log.setLocationRelativeTo(null); //Centers window
 		log.setVisible(true);
-		frame.dispose();
+		frmBetAndRuin.dispose();
 							
 		}
 		});
@@ -181,7 +182,7 @@ public class HomepageGUI {
 		
 		
 		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmBetAndRuin.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -242,7 +243,7 @@ public class HomepageGUI {
 						.addComponent(rdbtnNewRadioButton_1))
 					.addContainerGap())
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmBetAndRuin.getContentPane().setLayout(groupLayout);
 	}
 
 	public void setVisible(boolean b) {

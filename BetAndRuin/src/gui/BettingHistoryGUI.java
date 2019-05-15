@@ -162,6 +162,7 @@ public class BettingHistoryGUI extends JFrame {
 		// Create the content-pane-to-be.
 		JPanel contentPane = new JPanel(new BorderLayout());
 		contentPane.setOpaque(true);
+		setTitle("Betting History");
 
 		// Create a scrolled text area.
 		output = new JTextArea(5, 30);

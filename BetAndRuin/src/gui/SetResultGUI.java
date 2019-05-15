@@ -24,7 +24,7 @@ public class SetResultGUI extends JFrame {
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
-	private JButton finalizeEventButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	private JButton finalizeEventButton = new JButton("Finalize Event"); //$NON-NLS-1$ //$NON-NLS-2$
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarMio = null;
@@ -70,7 +70,7 @@ public class SetResultGUI extends JFrame {
 
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(700, 500));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("QueryQueries"));
+		this.setTitle("Set Event Results");
 		jLabelEventDate.setFont(new Font("Roboto Cn", Font.PLAIN, 15));
 		jLabelEventDate.setForeground(Color.ORANGE);
 

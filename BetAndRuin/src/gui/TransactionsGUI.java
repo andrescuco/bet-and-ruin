@@ -52,6 +52,7 @@ public class TransactionsGUI extends JFrame {
     
     public TransactionsGUI() throws HeadlessException {
 		super();
+		setTitle("History of Transactions");
 		
 		//Create the content-pane-to-be.
         JPanel contentPane = new JPanel(new BorderLayout());

@@ -64,6 +64,7 @@ public class WithdrawGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WithdrawGUI() {
+		setTitle("Withdraw Betcoins");
 		fundsLabel = new JLabel(MainGUI.getCurrentUser().getWalletFunds()+ " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override
