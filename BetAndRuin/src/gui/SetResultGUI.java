@@ -242,6 +242,7 @@ public class SetResultGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int i=tableQueries.getSelectedRow();
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
+				question.setCorrect(true);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.updateQuestionAnswer(question, true);
 				tableModelQueries.setValueAt(true, i, 2);
@@ -258,6 +259,7 @@ public class SetResultGUI extends JFrame {
 				domain.Question question=(domain.Question)tableModelQueries.getValueAt(i,3);
 				BLFacade facade = MainGUI.getBusinessLogic();
 				facade.updateQuestionAnswer(question, false);
+				question.setCorrect(false);
 				tableModelQueries.setValueAt(false, i, 2);
 			}
 		});
