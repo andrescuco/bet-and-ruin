@@ -285,8 +285,8 @@ public class EditAccountGUI extends JFrame {
 		final JButton btnLogOut = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainGUI.deleteCurrentUser();
-				System.out.print(MainGUI.getCurrentUser());
+				MainGUI.deleteCurrentUser();	
+				System.out.print("After logout current user is: " + MainGUI.getCurrentUser());
 				HomepageGUI home = new HomepageGUI();
 				home.setVisible(true);
 				dispose();
