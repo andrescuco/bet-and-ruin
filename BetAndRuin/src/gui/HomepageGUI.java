@@ -92,6 +92,7 @@ public class HomepageGUI {
 		});
 		
 		final JButton btnEnterAsA = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Enterasaguest"));
+		JLabel lblWelcome = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Welcome"));
 
 		btnEnterAsA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
@@ -111,6 +112,7 @@ public class HomepageGUI {
 		lblAlreadyHaveAn.setForeground(new Color(255, 255, 0));
 		
 		final JButton btnSignIn = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
+		btnSignIn.setBackground(new Color(50, 205, 50));
 		
 		btnSignIn.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) 
@@ -142,6 +144,7 @@ public class HomepageGUI {
 				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
 				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
 				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+				lblWelcome.setText(ResourceBundle.getBundle("Etiquetas").getString("Welcome"));
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton);
@@ -158,6 +161,7 @@ public class HomepageGUI {
 				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
 				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
 				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+				lblWelcome.setText(ResourceBundle.getBundle("Etiquetas").getString("Welcome"));
 				
 			}
 		});
@@ -175,13 +179,15 @@ public class HomepageGUI {
 				btnSignIn.setText(ResourceBundle.getBundle("Etiquetas").getString("Signin"));
 				lblAlreadyHaveAn.setText(ResourceBundle.getBundle("Etiquetas").getString("AlreadyAccount"));
 				lblOr.setText(ResourceBundle.getBundle("Etiquetas").getString("or"));
+				lblWelcome.setText(ResourceBundle.getBundle("Etiquetas").getString("Welcome"));
+			
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_2);
 		rdbtnNewRadioButton_2.setBackground(new Color(0, 0, 0));
 		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 0));
 		
-		JLabel lblWelcome = new JLabel("Welcome!"); //$NON-NLS-1$ //$NON-NLS-2$
+		 //$NON-NLS-1$ //$NON-NLS-2$
 		lblWelcome.setForeground(SystemColor.window);
 		lblWelcome.setFont(new Font("Impact", Font.BOLD, 55));
 		
@@ -189,55 +195,55 @@ public class HomepageGUI {
 		
 		GroupLayout groupLayout = new GroupLayout(frmBetAndRuin.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(98, Short.MAX_VALUE)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(144)
 					.addComponent(lblAlreadyHaveAn)
-					.addGap(48)
+					.addGap(106)
 					.addComponent(btnSignIn)
-					.addGap(97))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(165, Short.MAX_VALUE)
+					.addContainerGap(245, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(171, Short.MAX_VALUE)
 					.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE)
 					.addGap(164))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(200)
 					.addComponent(lblOr, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(201, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(85)
-					.addComponent(btnEnterAsA, GroupLayout.PREFERRED_SIZE, 453, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(93, Short.MAX_VALUE))
+					.addContainerGap(207, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(separator, GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+							.addComponent(separator, GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(rdbtnNewRadioButton)
-							.addGap(146)
+							.addGap(178)
 							.addComponent(rdbtnNewRadioButton_1)
-							.addPreferredGap(ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
 							.addComponent(rdbtnNewRadioButton_2)
 							.addGap(26))))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(137, Short.MAX_VALUE)
-					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
-					.addGap(136))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(202)
+					.addContainerGap(196, Short.MAX_VALUE)
 					.addComponent(lblWelcome)
-					.addContainerGap(360, Short.MAX_VALUE))
+					.addGap(190))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(85)
+					.addComponent(btnEnterAsA, GroupLayout.PREFERRED_SIZE, 453, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(99, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(110)
+					.addComponent(logo, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+					.addGap(111))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(63, Short.MAX_VALUE)
+					.addGap(38)
 					.addComponent(lblWelcome)
-					.addGap(18)
-					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
-					.addGap(36)
+					.addGap(30)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 279, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
 					.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblOr)
@@ -247,8 +253,8 @@ public class HomepageGUI {
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSignIn)
-						.addComponent(lblAlreadyHaveAn))
+						.addComponent(lblAlreadyHaveAn)
+						.addComponent(btnSignIn))
 					.addGap(13)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(rdbtnNewRadioButton)
