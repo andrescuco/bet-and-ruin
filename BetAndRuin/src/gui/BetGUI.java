@@ -39,6 +39,7 @@ public class BetGUI extends JFrame {
 	private JTextField BetAmountField;
 
 	public BetGUI(final Question question) {
+		setTitle("Make your bet!");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);

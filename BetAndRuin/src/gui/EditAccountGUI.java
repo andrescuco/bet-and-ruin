@@ -45,6 +45,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.SystemColor;
 
 public class EditAccountGUI extends JFrame {
 
@@ -77,7 +78,7 @@ public class EditAccountGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public EditAccountGUI() {
-		setTitle("My Information");
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("EditAccountGUI.this.title")); //$NON-NLS-1$ //$NON-NLS-2$
 		final JLabel CreditValue = new JLabel(MainGUI.getCurrentUser().getWalletFunds() + " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override
@@ -283,10 +284,12 @@ public class EditAccountGUI extends JFrame {
 		});
 		
 		final JButton btnLogOut = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
+		btnLogOut.setBackground(SystemColor.desktop);
+		btnLogOut.setForeground(Color.BLACK);
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainGUI.deleteCurrentUser();
-				System.out.print(MainGUI.getCurrentUser());
+				MainGUI.deleteCurrentUser();	
+				System.out.print("After logout current user is: " + MainGUI.getCurrentUser());
 				HomepageGUI home = new HomepageGUI();
 				home.setVisible(true);
 				dispose();

@@ -68,6 +68,7 @@ public class WalletGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public WalletGUI() {
+		setTitle("Your Wallet");
 		setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(100, 100, 588, 520);

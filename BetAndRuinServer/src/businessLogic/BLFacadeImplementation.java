@@ -187,9 +187,9 @@ public class BLFacadeImplementation  implements BLFacade {
     	Date today = calendarDate.getTime();
     	Date eventDate = event.getEventDate();
     	if (today.before(eventDate)) {
-    	    return true;
+    	    return false;
     	} else {
-        	return false;
+        	return true;
     	}
 	}
 

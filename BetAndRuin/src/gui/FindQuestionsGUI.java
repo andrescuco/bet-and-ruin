@@ -25,7 +25,7 @@ public class FindQuestionsGUI extends JFrame {
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
-	private JButton makeBetButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindQuestionsGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+	private JButton makeBetButton = new JButton("Make a Bet!"); //$NON-NLS-1$ //$NON-NLS-2$
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
 	private Calendar calendarMio = null;

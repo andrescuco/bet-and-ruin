@@ -415,8 +415,8 @@ public class RegistrationGUI extends JFrame  {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(registerButton, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(warningLabel, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(warningLabel, GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
 	}

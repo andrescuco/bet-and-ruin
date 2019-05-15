@@ -28,10 +28,11 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import java.awt.SystemColor;
 
 public class HomepageGUI {
 
-	private JFrame frame;
+	private JFrame frmBetAndRuin;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
@@ -67,13 +68,14 @@ public class HomepageGUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.BLACK);
-		frame.getContentPane().setForeground(Color.BLACK);
-		frame.setBounds(100, 100, 450, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null); 
-		frame.setVisible(true);
+		frmBetAndRuin = new JFrame();
+		frmBetAndRuin.setTitle(ResourceBundle.getBundle("Etiquetas").getString("HomepageGUI.frmBetAndRuin.title")); //$NON-NLS-1$ //$NON-NLS-2$
+		frmBetAndRuin.getContentPane().setBackground(Color.BLACK);
+		frmBetAndRuin.getContentPane().setForeground(Color.BLACK);
+		frmBetAndRuin.setBounds(100, 100, 653, 716);
+		frmBetAndRuin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmBetAndRuin.setLocationRelativeTo(null); 
+		frmBetAndRuin.setVisible(true);
 
 		final JButton btnRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Register"));
 		btnRegister.addActionListener(new ActionListener() {
@@ -82,7 +84,7 @@ public class HomepageGUI {
 						
 				RegistrationGUI registration = new RegistrationGUI();	
 				registration.setLocationRelativeTo(null);
-				frame.dispose();
+				frmBetAndRuin.dispose();
 				registration.setVisible(true);
 					
 			}
@@ -97,7 +99,7 @@ public class HomepageGUI {
 				MainGuestGUI guest = new MainGuestGUI();
 				guest.setLocationRelativeTo(null);
 				guest.setVisible(true);
-				frame.dispose();
+				frmBetAndRuin.dispose();
 			}
 			});
 		
@@ -117,7 +119,7 @@ public class HomepageGUI {
 		LogInGUI log = new LogInGUI();
 		log.setLocationRelativeTo(null); //Centers window
 		log.setVisible(true);
-		frame.dispose();
+		frmBetAndRuin.dispose();
 							
 		}
 		});
@@ -179,58 +181,70 @@ public class HomepageGUI {
 		rdbtnNewRadioButton_2.setBackground(new Color(0, 0, 0));
 		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 0));
 		
+		JLabel lblWelcome = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("HomepageGUI.lblWelcome.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblWelcome.setForeground(SystemColor.window);
+		lblWelcome.setFont(new Font("Impact", Font.BOLD, 55));
 		
 		
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		
+		GroupLayout groupLayout = new GroupLayout(frmBetAndRuin.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(147, Short.MAX_VALUE)
+					.addContainerGap(98, Short.MAX_VALUE)
 					.addComponent(lblAlreadyHaveAn)
 					.addGap(48)
 					.addComponent(btnSignIn)
 					.addGap(97))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(165, Short.MAX_VALUE)
+					.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 302, GroupLayout.PREFERRED_SIZE)
+					.addGap(164))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(46)
-					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 331, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addGap(200)
+					.addComponent(lblOr, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(201, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(85)
+					.addComponent(btnEnterAsA, GroupLayout.PREFERRED_SIZE, 453, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(93, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(separator, GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+							.addContainerGap())
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(rdbtnNewRadioButton)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addGap(146)
 							.addComponent(rdbtnNewRadioButton_1)
-							.addGap(78)
-							.addComponent(rdbtnNewRadioButton_2))
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(31, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+							.addComponent(rdbtnNewRadioButton_2)
+							.addGap(26))))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(137, Short.MAX_VALUE)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 358, GroupLayout.PREFERRED_SIZE)
+					.addGap(136))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(162)
-					.addComponent(btnRegister, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(164))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(85)
-					.addComponent(btnEnterAsA, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(93))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(100)
-					.addComponent(lblOr, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(104, Short.MAX_VALUE))
+					.addGap(202)
+					.addComponent(lblWelcome)
+					.addContainerGap(360, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(19)
-					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-					.addComponent(btnRegister)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblOr)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnEnterAsA)
+					.addContainerGap(63, Short.MAX_VALUE)
+					.addComponent(lblWelcome)
 					.addGap(18)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(logo, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE)
+					.addGap(36)
+					.addComponent(btnRegister, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(lblOr)
+					.addGap(18)
+					.addComponent(btnEnterAsA, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 4, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnSignIn)
@@ -242,21 +256,11 @@ public class HomepageGUI {
 						.addComponent(rdbtnNewRadioButton_1))
 					.addContainerGap())
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmBetAndRuin.getContentPane().setLayout(groupLayout);
 	}
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/*public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	/*protected void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}*/
 }
