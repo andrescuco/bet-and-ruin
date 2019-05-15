@@ -63,9 +63,11 @@ public class CheckoutGUI
     	public void actionPerformed(ActionEvent arg0) {
     		 ok = true;
     		WalletGUI finish = new WalletGUI();
+    		finish.setLocationRelativeTo(null);
     		finish.setVisible(true);
     		JOptionPane.showMessageDialog(null, "Accepted");
     		mainPanel.setVisible(false);
+    		frame.dispose();
     		
     	}
     });
@@ -120,14 +122,20 @@ public class CheckoutGUI
     }
  
   }
+  
+  static JFrame frame = new JFrame("TextFieldEnablesButton");
  
   static void createAndShowUI()
   {
-    JFrame frame = new JFrame("TextFieldEnablesButton");
+    
     frame.getContentPane().add(new CheckoutGUI().getComponent());
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.pack();
     frame.setLocationRelativeTo(null);
     frame.setVisible(true);
-  }}
+  }
+  static void closeFrame() {
+	  frame.dispose();
+  }
+}
  

@@ -284,7 +284,7 @@ public class EditAccountGUI extends JFrame {
 		});
 		
 		final JButton btnLogOut = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Logout"));
-		btnLogOut.setBackground(SystemColor.desktop);
+		btnLogOut.setBackground(Color.WHITE);
 		btnLogOut.setForeground(Color.BLACK);
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
