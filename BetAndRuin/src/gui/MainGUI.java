@@ -123,6 +123,18 @@ public class MainGUI extends JFrame {
 		this.setSize(821, 527);
 		this.setContentPane(getJContentPane());
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainTitle"));
+		
+		
+		if (MainGUI.getCurrentUser().getIsAdmin()) {
+			System.out.print("Logged user is admin");
+		} else {
+			System.out.print("Logged user is NOT admin");
+			setResultButton.setVisible(false);
+			jButtonCreateQuery.setVisible(false);
+			jButtonCreateEvent.setVisible(false);
+		}
+			
+		
 	}
 	
 	private void initialize(int width, int length) {
@@ -477,19 +489,21 @@ public class MainGUI extends JFrame {
 		}
 		return separator_1;
 	}
+
 	private JButton getSetResultButton() {
-		if (setResultButton == null) {
-			setResultButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetEventResult")); //$NON-NLS-1$ //$NON-NLS-2$
-			setResultButton.setBackground(new Color(240, 230, 140));
-			ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\result.jpg").getImage().getScaledInstance(85, 65, Image.SCALE_SMOOTH));
-			getSetResultButton().setIcon(imageIcon);
-			setResultButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					JFrame setResultGUI	= new SetResultGUI();
-					setResultGUI.setLocationRelativeTo(null);
-					setResultGUI.setVisible(true);
-				}
-			});
+
+			if (setResultButton == null) {
+				setResultButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("SetEventResult")); //$NON-NLS-1$ //$NON-NLS-2$
+				setResultButton.setBackground(new Color(240, 230, 140));
+				ImageIcon imageIcon = new ImageIcon(new ImageIcon("img\\result.jpg").getImage().getScaledInstance(85, 65, Image.SCALE_SMOOTH));
+				getSetResultButton().setIcon(imageIcon);
+				setResultButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						JFrame setResultGUI	= new SetResultGUI();
+						setResultGUI.setLocationRelativeTo(null);
+						setResultGUI.setVisible(true);
+					}
+				});
 		}
 		return setResultButton;
 	}
