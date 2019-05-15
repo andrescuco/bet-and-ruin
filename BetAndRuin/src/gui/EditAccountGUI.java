@@ -78,7 +78,7 @@ public class EditAccountGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public EditAccountGUI() {
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("EditAccountGUI.this.title")); //$NON-NLS-1$ //$NON-NLS-2$
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("EditAccountGUITitle")); //$NON-NLS-1$ //$NON-NLS-2$
 		final JLabel CreditValue = new JLabel(MainGUI.getCurrentUser().getWalletFunds() + " Betcoins");
 		addFocusListener(new FocusAdapter() {
 			@Override

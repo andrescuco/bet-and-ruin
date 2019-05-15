@@ -69,7 +69,7 @@ public class HomepageGUI {
 	 */
 	private void initialize() {
 		frmBetAndRuin = new JFrame();
-		frmBetAndRuin.setTitle(ResourceBundle.getBundle("Etiquetas").getString("HomepageGUI.frmBetAndRuin.title")); //$NON-NLS-1$ //$NON-NLS-2$
+		frmBetAndRuin.setTitle("Bet & Ruin"); //$NON-NLS-1$ //$NON-NLS-2$
 		frmBetAndRuin.getContentPane().setBackground(Color.BLACK);
 		frmBetAndRuin.getContentPane().setForeground(Color.BLACK);
 		frmBetAndRuin.setBounds(100, 100, 653, 716);
@@ -181,7 +181,7 @@ public class HomepageGUI {
 		rdbtnNewRadioButton_2.setBackground(new Color(0, 0, 0));
 		rdbtnNewRadioButton_2.setForeground(new Color(255, 255, 0));
 		
-		JLabel lblWelcome = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("HomepageGUI.lblWelcome.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel lblWelcome = new JLabel("Welcome!"); //$NON-NLS-1$ //$NON-NLS-2$
 		lblWelcome.setForeground(SystemColor.window);
 		lblWelcome.setFont(new Font("Impact", Font.BOLD, 55));
 		
