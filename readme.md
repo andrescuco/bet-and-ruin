@@ -1,5 +1,4 @@
 ### Bet and Ruin
-[![HitCount](http://hits.dwyl.io/andrescuco/bet-and-ruin.svg)](http://hits.dwyl.io/andrescuco/bet-and-ruin)
 
 Desktop application created with Java Swing and JAX-WS webservices.
 
